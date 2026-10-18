@@ -1,0 +1,311 @@
+/*
+ * MyTime Break Alarm port
+ * Source behavior/display: floating MyTime Break Alarm.
+ * Placement only: under MNDO_WORK_HELPER_LINK and beside the envelope cluster.
+ */
+#MNDO_BREAK_ALARM_HOST{
+  --pip-line:rgba(112,151,203,.18);
+  --pip-line-strong:rgba(112,171,221,.32);
+  --pip-panel:rgba(14,22,35,.86);
+  --pip-panel-2:rgba(8,14,24,.94);
+  --pip-text:#edf6ff;
+  --pip-muted:#8ea4bb;
+  --pip-accent:#72d9e8;
+  --pip-green:#66d7b0;
+  --pip-violet:#9a8cff;
+  --pip-amber:#f2c766;
+
+  /* Follow the active tool theme without owning theme state. */
+  --break-theme-bg:var(--sr-tools-bg,linear-gradient(135deg,rgba(124,58,237,.32),rgba(59,130,246,.22)));
+  --break-theme-border:var(--sr-tools-border-color,rgba(235,238,255,.18));
+  --break-theme-shadow:var(--sr-tools-shadow,0 8px 20px rgba(0,0,0,.35));
+  --break-theme-text:var(--sr-tools-text,rgba(235,238,255,.96));
+  --break-theme-text-shadow:var(--sr-tools-text-shadow,none);
+  --break-theme-hover-bg:var(--sr-tools-hover-bg,var(--break-theme-bg));
+  --break-theme-hover-border:var(--sr-tools-hover-border-color,var(--break-theme-border));
+  --break-theme-hover-shadow:var(--sr-tools-hover-shadow,var(--break-theme-shadow));
+  --break-theme-hover-text:var(--sr-tools-hover-text,var(--break-theme-text));
+
+  /*
+   * Keep the actual hit-area identical to the visible Break button.
+   * Work Helper is 32px wide at right:-39px; a 43px Break button at
+   * right:-44.5px shares the same horizontal center without laying an
+   * invisible shell over the envelope/theme/presence controls.
+   */
+  position:absolute !important;
+  top:46px !important;
+  right:-44.5px !important;
+  width:43px !important;
+  height:33px !important;
+  margin:0 !important;
+  padding:0 !important;
+  overflow:visible !important;
+  pointer-events:none !important;
+  z-index:calc(var(--sr-layer-header-control,40) + 2) !important;
+  direction:ltr !important;
+  filter:none !important;
+}
+#MNDO_BREAK_ALARM_HOST,
+#MNDO_BREAK_ALARM_HOST *{box-sizing:border-box !important}
+
+#MNDO_BREAK_ALARM_HOST .breakPane{
+  position:absolute !important;
+  top:0 !important;
+  right:0 !important;
+  width:43px !important;
+  height:33px !important;
+  display:grid !important;
+  place-items:center !important;
+  pointer-events:auto !important;
+}
+
+#MNDO_BREAK_ALARM_HOST .breakAlarmButton{
+  appearance:none !important;
+  -webkit-appearance:none !important;
+  width:43px !important;
+  height:33px !important;
+  margin:0 !important;
+  padding:2px 3px !important;
+  display:grid !important;
+  grid-template-rows:17px 9px !important;
+  place-items:center !important;
+  gap:0 !important;
+  border:1px solid var(--break-theme-border) !important;
+  border-radius:8px !important;
+  background:var(--break-theme-bg) !important;
+  color:var(--break-theme-text) !important;
+  -webkit-text-fill-color:var(--break-theme-text) !important;
+  text-shadow:var(--break-theme-text-shadow) !important;
+  cursor:pointer !important;
+  box-shadow:var(--break-theme-shadow) !important;
+  overflow:hidden !important;
+  position:relative !important;
+  outline:0 !important;
+  transition:border-color .14s ease,background .14s ease,filter .14s ease,transform .08s ease !important;
+  pointer-events:auto !important;
+  font-family:"Segoe UI",Tahoma,Arial,sans-serif !important;
+}
+#MNDO_BREAK_ALARM_HOST .breakAlarmButton::before,
+#MNDO_BREAK_ALARM_HOST .breakAlarmButton::after{
+  content:"" !important;
+  position:absolute !important;
+  top:0 !important;
+  bottom:0 !important;
+  width:50% !important;
+  opacity:.13 !important;
+  transition:opacity .16s ease,filter .16s ease !important;
+}
+#MNDO_BREAK_ALARM_HOST .breakAlarmButton::before{
+  left:0 !important;
+  background:linear-gradient(180deg,color-mix(in srgb,var(--sr-theme-switch-edge-b,#2f95ff) 42%,transparent),transparent) !important;
+}
+#MNDO_BREAK_ALARM_HOST .breakAlarmButton::after{
+  right:0 !important;
+  background:linear-gradient(180deg,color-mix(in srgb,var(--sr-theme-switch-edge-a,#f1aa38) 42%,transparent),transparent) !important;
+}
+#MNDO_BREAK_ALARM_HOST .breakAlarmButton:hover{
+  border-color:var(--break-theme-hover-border) !important;
+  background:var(--break-theme-hover-bg) !important;
+  color:var(--break-theme-hover-text) !important;
+  -webkit-text-fill-color:var(--break-theme-hover-text) !important;
+  box-shadow:var(--break-theme-hover-shadow) !important;
+  filter:saturate(1.16) brightness(1.045) !important;
+}
+#MNDO_BREAK_ALARM_HOST .breakAlarmButton:active{transform:scale(.975) !important}
+#MNDO_BREAK_ALARM_HOST .breakAlarmButton:focus-visible{
+  box-shadow:0 0 0 2px var(--sr-theme-switch-glow,rgba(114,217,232,.14)),var(--break-theme-shadow) !important;
+}
+#MNDO_BREAK_ALARM_HOST .breakAlarmButton.active{
+  border-color:color-mix(in srgb,var(--break-theme-border) 48%,#66d7b0 52%) !important;
+  background:linear-gradient(180deg,rgba(102,215,176,.16),rgba(102,215,176,.05)),var(--break-theme-bg) !important;
+  color:var(--break-theme-text) !important;
+  -webkit-text-fill-color:var(--break-theme-text) !important;
+}
+#MNDO_BREAK_ALARM_HOST .breakAlarmButton.warning{
+  border-color:color-mix(in srgb,var(--break-theme-border) 42%,#f2c766 58%) !important;
+  color:var(--break-theme-text) !important;
+  -webkit-text-fill-color:var(--break-theme-text) !important;
+  background:linear-gradient(180deg,rgba(242,199,102,.20),rgba(242,199,102,.06)),var(--break-theme-bg) !important;
+}
+#MNDO_BREAK_ALARM_HOST .breakAlarmButton.urgent{
+  border-color:color-mix(in srgb,var(--break-theme-border) 34%,#ff6076 66%) !important;
+  color:var(--break-theme-text) !important;
+  -webkit-text-fill-color:var(--break-theme-text) !important;
+  background:linear-gradient(180deg,rgba(255,96,118,.22),rgba(255,96,118,.07)),var(--break-theme-bg) !important;
+  animation:mandoBreakUrgent .72s ease-in-out infinite alternate !important;
+}
+#MNDO_BREAK_ALARM_HOST .breakAlarmButton.urgent::before,
+#MNDO_BREAK_ALARM_HOST .breakAlarmButton.urgent::after{
+  opacity:.54 !important;
+  filter:saturate(1.15) brightness(1.12) !important;
+}
+#MNDO_BREAK_ALARM_HOST .breakGlyph{
+  position:relative !important;
+  z-index:2 !important;
+  display:grid !important;
+  place-items:center !important;
+  font:800 13px/17px "Segoe UI Emoji","Segoe UI Symbol",sans-serif !important;
+  filter:saturate(1.16) contrast(1.04) !important;
+}
+#MNDO_BREAK_ALARM_HOST .breakMiniTime{
+  position:relative !important;
+  z-index:2 !important;
+  max-width:39px !important;
+  overflow:hidden !important;
+  color:inherit !important;
+  -webkit-text-fill-color:currentColor !important;
+  font:950 6.5px/9px "Segoe UI",Tahoma,Arial,sans-serif !important;
+  font-variant-numeric:tabular-nums !important;
+  letter-spacing:.42px !important;
+  white-space:nowrap !important;
+  text-shadow:var(--break-theme-text-shadow) !important;
+}
+#MNDO_BREAK_ALARM_HOST .breakAlarmButton.active .breakGlyph,
+#MNDO_BREAK_ALARM_HOST .breakAlarmButton.warning .breakGlyph,
+#MNDO_BREAK_ALARM_HOST .breakAlarmButton.urgent .breakGlyph{
+  font:950 13px/17px Consolas,"Courier New",monospace !important;
+  letter-spacing:-.45px !important;
+}
+#MNDO_BREAK_ALARM_HOST .breakAlarmButton.active .breakMiniTime,
+#MNDO_BREAK_ALARM_HOST .breakAlarmButton.warning .breakMiniTime,
+#MNDO_BREAK_ALARM_HOST .breakAlarmButton.urgent .breakMiniTime{
+  font-size:5.9px !important;
+  letter-spacing:.5px !important;
+  opacity:.96 !important;
+}
+@keyframes mandoBreakUrgent{
+  from{filter:brightness(.98)}
+  to{filter:brightness(1.10);box-shadow:0 0 6px rgba(255,73,104,.12),0 0 5px rgba(58,125,255,.10) !important}
+}
+
+/* The chooser may extend outside the 43px host, but only while it is open. */
+#MNDO_BREAK_ALARM_HOST .breakMenu{
+  position:absolute !important;
+  z-index:8 !important;
+  left:auto !important;
+  right:0 !important;
+  top:42px !important;
+  width:304px !important;
+  height:76px !important;
+  padding:7px 8px !important;
+  border:1px solid var(--break-theme-border) !important;
+  border-radius:9px !important;
+  background:var(--break-theme-bg) !important;
+  color:var(--break-theme-text) !important;
+  box-shadow:var(--break-theme-shadow) !important;
+  backdrop-filter:blur(12px) saturate(140%) !important;
+  -webkit-backdrop-filter:blur(12px) saturate(140%) !important;
+  direction:rtl !important;
+  pointer-events:auto !important;
+  font-family:"Segoe UI",Tahoma,Arial,sans-serif !important;
+}
+#MNDO_BREAK_ALARM_HOST .breakMenu[hidden]{display:none !important}
+#MNDO_BREAK_ALARM_HOST .breakMenuHead{
+  height:17px !important;
+  display:flex !important;
+  align-items:center !important;
+  justify-content:space-between !important;
+  gap:8px !important;
+  margin-bottom:4px !important;
+}
+#MNDO_BREAK_ALARM_HOST .breakMenuHead strong{
+  font:800 9px/1 "Segoe UI",Tahoma,Arial,sans-serif !important;
+  color:var(--break-theme-text) !important;
+  white-space:nowrap !important;
+}
+#MNDO_BREAK_ALARM_HOST .breakMenuHead span{
+  min-width:0 !important;
+  overflow:hidden !important;
+  text-overflow:ellipsis !important;
+  white-space:nowrap !important;
+  font:700 7.5px/1 "Segoe UI",Tahoma,Arial,sans-serif !important;
+  color:color-mix(in srgb,var(--break-theme-text) 72%,transparent) !important;
+  direction:ltr !important;
+  text-align:left !important;
+}
+#MNDO_BREAK_ALARM_HOST .breakMenuHead span[data-stage="warning"]{color:var(--pip-amber) !important}
+#MNDO_BREAK_ALARM_HOST .breakMenuHead span[data-stage="urgent"]{color:#ff8396 !important}
+#MNDO_BREAK_ALARM_HOST .breakChoices{
+  height:26px !important;
+  display:grid !important;
+  grid-template-columns:38px 38px minmax(112px,1fr) 38px !important;
+  gap:4px !important;
+  direction:ltr !important;
+}
+#MNDO_BREAK_ALARM_HOST .breakChoices>button,
+#MNDO_BREAK_ALARM_HOST .breakCustomWrap button{
+  height:26px !important;
+  margin:0 !important;
+  padding:0 5px !important;
+  border:1px solid var(--break-theme-border) !important;
+  border-radius:6px !important;
+  background:color-mix(in srgb,var(--sr-theme-switch-surface,rgba(22,31,62,.30)) 74%,transparent) !important;
+  color:var(--break-theme-text) !important;
+  font:850 8px/1 "Segoe UI",Tahoma,Arial,sans-serif !important;
+  cursor:pointer !important;
+}
+#MNDO_BREAK_ALARM_HOST .breakChoices>button:hover,
+#MNDO_BREAK_ALARM_HOST .breakCustomWrap button:hover{
+  background:var(--break-theme-hover-bg) !important;
+  border-color:var(--break-theme-hover-border) !important;
+  color:var(--break-theme-hover-text) !important;
+}
+#MNDO_BREAK_ALARM_HOST .breakChoices>button:disabled,
+#MNDO_BREAK_ALARM_HOST .breakCustomWrap button:disabled,
+#MNDO_BREAK_ALARM_HOST .breakCustomWrap input:disabled{
+  opacity:.38 !important;
+  cursor:default !important;
+}
+#MNDO_BREAK_ALARM_HOST .breakCustomWrap{
+  min-width:0 !important;
+  height:26px !important;
+  display:grid !important;
+  grid-template-columns:minmax(62px,1fr) 40px !important;
+  gap:3px !important;
+  direction:ltr !important;
+}
+#MNDO_BREAK_ALARM_HOST .breakCustomWrap input{
+  width:100% !important;
+  height:26px !important;
+  margin:0 !important;
+  padding:0 6px !important;
+  border:1px solid var(--break-theme-border) !important;
+  border-radius:6px !important;
+  background:color-mix(in srgb,var(--sr-theme-switch-surface,rgba(22,31,62,.30)) 82%,rgba(0,0,0,.10)) !important;
+  color:var(--break-theme-text) !important;
+  font:800 8px/1 Consolas,"Courier New",monospace !important;
+  text-align:center !important;
+  direction:ltr !important;
+  outline:0 !important;
+  box-shadow:none !important;
+}
+#MNDO_BREAK_ALARM_HOST .breakCustomWrap input:focus{
+  border-color:var(--break-theme-hover-border) !important;
+  box-shadow:0 0 0 2px var(--sr-theme-switch-glow,rgba(114,217,232,.10)) !important;
+}
+#MNDO_BREAK_ALARM_HOST .breakStop{
+  color:#ffb0ba !important;
+  border-color:rgba(255,93,117,.24) !important;
+  background:rgba(119,26,42,.14) !important;
+}
+#MNDO_BREAK_ALARM_HOST .status{
+  position:absolute !important;
+  width:1px !important;
+  height:1px !important;
+  overflow:hidden !important;
+  clip:rect(0 0 0 0) !important;
+  white-space:nowrap !important;
+}
+
+/* Preserve source compact behavior on genuinely tiny viewports. */
+@media (max-width:295px){
+  #MNDO_BREAK_ALARM_HOST .breakPane{width:39px !important}
+  #MNDO_BREAK_ALARM_HOST .breakAlarmButton{width:39px !important}
+  #MNDO_BREAK_ALARM_HOST .breakMiniTime{max-width:35px !important;letter-spacing:.2px !important}
+  #MNDO_BREAK_ALARM_HOST .breakMenu{left:auto !important;right:0 !important;width:min(286px,calc(100vw - 6px)) !important;padding-inline:6px !important}
+  #MNDO_BREAK_ALARM_HOST .breakChoices{grid-template-columns:34px 34px minmax(78px,1fr) 34px !important;gap:3px !important}
+  #MNDO_BREAK_ALARM_HOST .breakCustomWrap{grid-template-columns:minmax(46px,1fr) 36px !important;gap:2px !important}
+}
+@media (prefers-reduced-motion:reduce){
+  #MNDO_BREAK_ALARM_HOST *{animation:none !important;transition:none !important;transform:none !important}
+}

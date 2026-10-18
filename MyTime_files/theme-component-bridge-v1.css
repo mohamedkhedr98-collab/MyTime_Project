@@ -1,0 +1,487 @@
+/* Theme Component Bridge v1
+ * One semantic palette owner for shared UI that sits outside individual theme files.
+ * Theme files keep their art/background identity; shared controls consume these tokens.
+ */
+
+html{
+  --srx-accent:#b88a4b;
+  --srx-accent-2:#e2c07a;
+  --srx-accent-rgb:184,138,75;
+  --srx-accent-2-rgb:226,192,122;
+  --srx-surface:#20150c;
+  --srx-surface-2:#352313;
+  --srx-surface-rgb:32,21,12;
+  --srx-text:#fff5df;
+  --srx-muted:#cbb994;
+  --srx-line:rgba(226,192,122,.54);
+  --srx-line-soft:rgba(226,192,122,.22);
+  --srx-glow:rgba(184,138,75,.24);
+  --srx-overlay:rgba(12,8,5,.74);
+}
+
+html.ivory-gold-theme-live,
+html[data-sr-visual-theme="ivory"]{
+  --srx-accent:#9d6928;
+  --srx-accent-2:#d9b46f;
+  --srx-accent-rgb:157,105,40;
+  --srx-accent-2-rgb:217,180,111;
+  --srx-surface:#25180d;
+  --srx-surface-2:#3b2817;
+  --srx-surface-rgb:37,24,13;
+  --srx-text:#fff3d8;
+  --srx-muted:#d7c29a;
+  --srx-line:rgba(217,180,111,.58);
+  --srx-line-soft:rgba(217,180,111,.24);
+  --srx-glow:rgba(157,105,40,.26);
+  --srx-overlay:rgba(19,12,7,.74);
+}
+
+html.eid-theme-live,
+html[data-sr-visual-theme="eid"]{
+  --srx-accent:#0e8c76;
+  --srx-accent-2:#d7b85d;
+  --srx-accent-rgb:14,140,118;
+  --srx-accent-2-rgb:215,184,93;
+  --srx-surface:#06241f;
+  --srx-surface-2:#0a3b32;
+  --srx-surface-rgb:6,36,31;
+  --srx-text:#effff9;
+  --srx-muted:#b6ddd2;
+  --srx-line:rgba(215,184,93,.54);
+  --srx-line-soft:rgba(14,140,118,.30);
+  --srx-glow:rgba(14,140,118,.30);
+  --srx-overlay:rgba(2,25,22,.76);
+}
+
+html.ua07-legacy-theme-live,
+html[data-sr-visual-theme="legacy"]{
+  --srx-accent:#d85320;
+  --srx-accent-2:#e6b15f;
+  --srx-accent-rgb:216,83,32;
+  --srx-accent-2-rgb:230,177,95;
+  --srx-surface:#28100b;
+  --srx-surface-2:#4a1d11;
+  --srx-surface-rgb:40,16,11;
+  --srx-text:#fff0d5;
+  --srx-muted:#e0b898;
+  --srx-line:rgba(230,177,95,.54);
+  --srx-line-soft:rgba(216,83,32,.28);
+  --srx-glow:rgba(216,83,32,.30);
+  --srx-overlay:rgba(24,8,4,.77);
+}
+
+html.ahly-premium-theme-live,
+html[data-sr-visual-theme="ahly"]{
+  --srx-accent:#c91532;
+  --srx-accent-2:#e5bd64;
+  --srx-accent-rgb:201,21,50;
+  --srx-accent-2-rgb:229,189,100;
+  --srx-surface:#20070c;
+  --srx-surface-2:#4a0b18;
+  --srx-surface-rgb:32,7,12;
+  --srx-text:#fff5e8;
+  --srx-muted:#e4c5b0;
+  --srx-line:rgba(229,189,100,.62);
+  --srx-line-soft:rgba(201,21,50,.34);
+  --srx-glow:rgba(201,21,50,.34);
+  --srx-overlay:rgba(24,3,8,.78);
+}
+
+html.egypt-worldcup-theme-live,
+html[data-sr-visual-theme="egypt"]{
+  --srx-accent:#b98a31;
+  --srx-accent-2:#efd27b;
+  --srx-accent-rgb:185,138,49;
+  --srx-accent-2-rgb:239,210,123;
+  --srx-surface:#0e0c08;
+  --srx-surface-2:#2b2111;
+  --srx-surface-rgb:14,12,8;
+  --srx-text:#fff3c9;
+  --srx-muted:#d7c18a;
+  --srx-line:rgba(239,210,123,.66);
+  --srx-line-soft:rgba(185,138,49,.31);
+  --srx-glow:rgba(185,138,49,.32);
+  --srx-overlay:rgba(5,5,4,.80);
+}
+
+html.sr-theme-off-live,
+html[data-sr-visual-theme="off"]{
+  --srx-accent:#64748b;
+  --srx-accent-2:#cbd5e1;
+  --srx-accent-rgb:100,116,139;
+  --srx-accent-2-rgb:203,213,225;
+  --srx-surface:#111827;
+  --srx-surface-2:#1f2937;
+  --srx-surface-rgb:17,24,39;
+  --srx-text:#f8fafc;
+  --srx-muted:#cbd5e1;
+  --srx-line:rgba(203,213,225,.42);
+  --srx-line-soft:rgba(148,163,184,.22);
+  --srx-glow:rgba(100,116,139,.22);
+  --srx-overlay:rgba(4,8,15,.78);
+}
+
+/* Header paint tokens. Layout remains in header-core / header-utility-dock.
+ * These are deliberately separate from the modal palette above: club themes
+ * change only Copy/TT/SR, while Eid and Egypt also unify the utility surfaces.
+ */
+html[data-sr-visual-theme="eid"]{
+  --sr-header-surface:#20232b;
+  --sr-header-surface-raised:#33333a;
+  --sr-header-ink:#eee6d6;
+  --sr-header-accent:#c5ad78;
+  --sr-header-line:rgba(197,173,120,.38);
+  --sr-header-line-hover:rgba(216,196,154,.62);
+  --sr-header-glow:rgba(197,173,120,.10);
+  --sr-theme-switch-edge-a:var(--sr-header-accent);
+  --sr-theme-switch-edge-b:#a1abba;
+  --sr-theme-switch-moon-a:#eee1bd;
+  --sr-theme-switch-moon-b:#b69a67;
+  --sr-theme-switch-orb-a:#dcd3bc;
+  --sr-theme-switch-orb-b:#7c8ca4;
+  --sr-theme-switch-star:#d8c7a0;
+  --sr-theme-switch-glow:var(--sr-header-glow);
+}
+html[data-sr-visual-theme="legacy"]{
+  --sr-header-surface:#18181d;
+  --sr-header-surface-raised:#323037;
+  --sr-header-ink:#eeeaeb;
+  --sr-header-accent:#bdabb0;
+  --sr-header-line:rgba(203,190,194,.32);
+  --sr-header-line-hover:rgba(229,213,218,.56);
+  --sr-header-glow:rgba(177,72,84,.10);
+}
+html[data-sr-visual-theme="ahly"]{
+  --sr-header-surface:#210c12;
+  --sr-header-surface-raised:#40202a;
+  --sr-header-ink:#f0e3ce;
+  --sr-header-accent:#c7ad7d;
+  --sr-header-line:rgba(199,173,125,.32);
+  --sr-header-line-hover:rgba(223,197,150,.56);
+  --sr-header-glow:rgba(185,87,101,.10);
+}
+html[data-sr-visual-theme="egypt"]{
+  --sr-header-surface:#171112;
+  --sr-header-surface-raised:#342325;
+  --sr-header-ink:#e9d9b7;
+  --sr-header-accent:#bfa270;
+  --sr-header-line:rgba(191,162,112,.36);
+  --sr-header-line-hover:rgba(216,191,145,.60);
+  --sr-header-glow:rgba(191,162,112,.10);
+}
+html:is([data-sr-visual-theme="eid"],[data-sr-visual-theme="legacy"],[data-sr-visual-theme="ahly"],[data-sr-visual-theme="egypt"]){
+  --sr-header-control-bg:linear-gradient(180deg,var(--sr-header-surface-raised),var(--sr-header-surface));
+  --sr-header-control-hover-bg:linear-gradient(180deg,color-mix(in srgb,var(--sr-header-surface-raised) 92%,var(--sr-header-accent)),var(--sr-header-surface));
+  --sr-header-control-shadow:inset 0 1px 0 color-mix(in srgb,var(--sr-header-ink) 10%,transparent),inset 0 -1px 0 rgba(0,0,0,.18),0 3px 9px rgba(0,0,0,.18);
+  --sr-header-control-hover-shadow:inset 0 1px 0 color-mix(in srgb,var(--sr-header-ink) 13%,transparent),0 3px 10px rgba(0,0,0,.22),0 0 8px var(--sr-header-glow);
+}
+
+/* Shared header utilities: one visual contract, palette supplied by current theme. */
+html body #copyBtn,
+html body #copyBtn1,
+html body #mndoTTTop,
+html body #mndoSRTop,
+html body #mndoTTBottom,
+html body #mndoSRBottom,
+html body #MNDO_AHT_TAGS_STACK #mndoQueryTimer,
+html body #MNDO_AHT_TAGS_STACK #bat2{
+  border:1px solid var(--srx-line)!important;
+  background:
+    linear-gradient(180deg,rgba(var(--srx-accent-2-rgb),.13),transparent 48%),
+    linear-gradient(135deg,var(--srx-surface-2),var(--srx-surface))!important;
+  color:var(--srx-text)!important;
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.10),
+    inset 0 -1px 0 rgba(0,0,0,.30),
+    0 3px 11px rgba(0,0,0,.22),
+    0 0 0 1px var(--srx-line-soft)!important;
+  text-shadow:0 1px 1px rgba(0,0,0,.58)!important;
+  filter:saturate(1.12)!important;
+  transition:border-color .16s ease,box-shadow .16s ease,background .16s ease,transform .16s ease!important;
+}
+
+html body #copyBtn:hover,
+html body #copyBtn1:hover,
+html body #mndoTTTop:hover,
+html body #mndoSRTop:hover,
+html body #mndoTTBottom:hover,
+html body #mndoSRBottom:hover,
+html body #MNDO_AHT_TAGS_STACK #bat2:hover{
+  border-color:rgba(var(--srx-accent-2-rgb),.86)!important;
+  background:
+    linear-gradient(180deg,rgba(var(--srx-accent-2-rgb),.20),transparent 52%),
+    linear-gradient(135deg,rgba(var(--srx-accent-rgb),.88),var(--srx-surface-2))!important;
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.14),
+    0 5px 15px rgba(0,0,0,.27),
+    0 0 13px var(--srx-glow)!important;
+}
+
+html body #MNDO_AHT_TAGS_STACK #mndoQueryTimer .mndoTimerTime,
+html body #MNDO_AHT_TAGS_STACK #mndoQueryTimer .mndoTimerLbl,
+html body #MNDO_AHT_TAGS_STACK #bat2{
+  color:var(--srx-text)!important;
+  -webkit-text-fill-color:var(--srx-text)!important;
+}
+
+/* Logo/tool cluster also inherits the active palette instead of living in a neutral skin. */
+html body #MNDO_WORK_HELPER_LINK,
+html body #MNDO_WORK_HELPER_PIP,
+html body #EID_TOGGLE_BTN,
+html body #UA07_SECRET_ENVELOPE,
+html body #breakAlarmButton,
+html body #UA07_ONLINE_COUNT{
+  border-color:var(--srx-line-soft)!important;
+  background-color:rgba(var(--srx-surface-rgb),.76)!important;
+  color:var(--srx-text)!important;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.08),0 3px 10px rgba(0,0,0,.18)!important;
+}
+html body #MNDO_WORK_HELPER_LINK:hover,
+html body #MNDO_WORK_HELPER_PIP:hover,
+html body #EID_TOGGLE_BTN:hover,
+html body #UA07_SECRET_ENVELOPE:hover,
+html body #breakAlarmButton:hover{
+  border-color:var(--srx-line)!important;
+  box-shadow:0 0 12px var(--srx-glow),inset 0 1px 0 rgba(255,255,255,.11)!important;
+}
+
+/* Administrative / secret modal: same component, automatically themed for every mode. */
+html body #UA07_SECRET_MODAL .ua07-secret-backdrop{
+  background:var(--srx-overlay)!important;
+  backdrop-filter:blur(8px) saturate(110%)!important;
+  -webkit-backdrop-filter:blur(8px) saturate(110%)!important;
+}
+html body #UA07_SECRET_MODAL .ua07-secret-card{
+  border:1px solid var(--srx-line)!important;
+  background:
+    radial-gradient(circle at 88% -12%,rgba(var(--srx-accent-rgb),.22),transparent 38%),
+    linear-gradient(145deg,var(--srx-surface-2),var(--srx-surface))!important;
+  color:var(--srx-text)!important;
+  box-shadow:0 24px 70px rgba(0,0,0,.48),0 0 0 1px var(--srx-line-soft),0 0 34px var(--srx-glow)!important;
+}
+html body #UA07_SECRET_MODAL .ua07-secret-head{
+  border-bottom-color:var(--srx-line-soft)!important;
+  background:linear-gradient(90deg,rgba(var(--srx-accent-rgb),.16),rgba(var(--srx-accent-2-rgb),.05))!important;
+}
+html body #UA07_SECRET_MODAL .ua07-secret-icon{
+  border:1px solid var(--srx-line)!important;
+  background:linear-gradient(145deg,rgba(var(--srx-accent-rgb),.78),rgba(var(--srx-accent-2-rgb),.28))!important;
+  color:var(--srx-text)!important;
+  box-shadow:0 0 16px var(--srx-glow)!important;
+}
+html body #UA07_SECRET_MODAL .ua07-secret-title,
+html body #UA07_SECRET_MODAL .ua07-secret-lead{
+  color:var(--srx-text)!important;
+  -webkit-text-fill-color:var(--srx-text)!important;
+}
+html body #UA07_SECRET_MODAL .ua07-secret-lead{
+  text-shadow:0 0 14px var(--srx-glow)!important;
+}
+html body #UA07_SECRET_MODAL .ua07-secret-text{
+  color:var(--srx-muted)!important;
+  -webkit-text-fill-color:var(--srx-muted)!important;
+}
+html body #UA07_SECRET_MODAL .ua07-secret-actions{
+  border-top-color:var(--srx-line-soft)!important;
+}
+html body #UA07_SECRET_MODAL .ua07-btn.ua07-primary{
+  border:1px solid rgba(var(--srx-accent-2-rgb),.68)!important;
+  background:linear-gradient(135deg,var(--srx-accent),var(--srx-surface-2))!important;
+  color:var(--srx-text)!important;
+  box-shadow:0 5px 16px var(--srx-glow),inset 0 1px 0 rgba(255,255,255,.12)!important;
+}
+html body #UA07_SECRET_MODAL .ua07-btn.ua07-ghost{
+  border:1px solid var(--srx-line-soft)!important;
+  background:rgba(var(--srx-surface-rgb),.72)!important;
+  color:var(--srx-muted)!important;
+}
+html body #UA07_SECRET_MODAL .ua07-btn:hover{
+  border-color:var(--srx-line)!important;
+  color:var(--srx-text)!important;
+  box-shadow:0 0 14px var(--srx-glow)!important;
+}
+
+/* Respect reduced motion while keeping the palette upgrade. */
+@media (prefers-reduced-motion:reduce){
+  html body #copyBtn,
+  html body #copyBtn1,
+  html body #mndoTTTop,
+  html body #mndoSRTop,
+  html body #mndoTTBottom,
+  html body #mndoSRBottom,
+  html body #MNDO_AHT_TAGS_STACK #bat2,
+  html body #MNDO_HEADER_UTILITY_PANEL #mndoOneHomeToggle{transition:none!important}
+}
+
+/* Copy and its companion controls share a quiet satin surface. Default and
+ * Ivory retain their existing paint; no AHT/status controls are included here. */
+html:is([data-sr-visual-theme="eid"],[data-sr-visual-theme="legacy"],[data-sr-visual-theme="ahly"],[data-sr-visual-theme="egypt"]) body :is(#copyBtn,#copyBtn1,#mndoTTTop,#mndoTTBottom,#mndoSRTop,#mndoSRBottom){
+  background:var(--sr-header-control-bg)!important;
+  border-color:var(--sr-header-line)!important;
+  color:var(--sr-header-ink)!important;
+  -webkit-text-fill-color:currentColor!important;
+  box-shadow:var(--sr-header-control-shadow)!important;
+  text-shadow:none!important;
+  filter:none!important;
+  backdrop-filter:none!important;
+  -webkit-backdrop-filter:none!important;
+}
+html:is([data-sr-visual-theme="eid"],[data-sr-visual-theme="legacy"],[data-sr-visual-theme="ahly"],[data-sr-visual-theme="egypt"]) body :is(#copyBtn,#copyBtn1,#mndoTTTop,#mndoTTBottom,#mndoSRTop,#mndoSRBottom):hover{
+  background:var(--sr-header-control-hover-bg)!important;
+  border-color:var(--sr-header-line-hover)!important;
+  box-shadow:var(--sr-header-control-hover-shadow)!important;
+  filter:none!important;
+}
+html:is([data-sr-visual-theme="eid"],[data-sr-visual-theme="legacy"],[data-sr-visual-theme="ahly"],[data-sr-visual-theme="egypt"]) body :is(#copyBtn,#copyBtn1,#mndoTTTop,#mndoTTBottom,#mndoSRTop,#mndoSRBottom):focus-visible{
+  outline:2px solid var(--sr-header-accent)!important;
+  outline-offset:2px!important;
+}
+
+/* Eid's upper navigation gets the same material without taking over its
+ * sizes, placement, hover geometry, active classes or click ownership. */
+html[data-sr-visual-theme="eid"] body #tabs :is(.tablinks,.tab-utility-btn){
+  background:var(--sr-header-control-bg)!important;
+  border-color:var(--sr-header-line)!important;
+  color:var(--sr-header-ink)!important;
+  -webkit-text-fill-color:currentColor!important;
+  box-shadow:var(--sr-header-control-shadow)!important;
+  text-shadow:none!important;
+  filter:none!important;
+}
+html[data-sr-visual-theme="eid"] body #tabs :is(.tablinks,.tab-utility-btn):is(:hover,.active){
+  background:var(--sr-header-control-hover-bg)!important;
+  border-color:var(--sr-header-line-hover)!important;
+  box-shadow:var(--sr-header-control-hover-shadow)!important;
+}
+html[data-sr-visual-theme="eid"] body #tabs :is(.tablinks,.tab-utility-btn):focus-visible{
+  outline:2px solid var(--sr-header-accent)!important;
+  outline-offset:2px!important;
+}
+html[data-sr-visual-theme="eid"] body :is(#EID_TOGGLE_BTN,#UA07_SECRET_ENVELOPE,#UA07_ONLINE_COUNT),
+html[data-sr-visual-theme="eid"] body #MNDO_AHT_TAGS_STACK #mndoQueryTimer:not(.mndoWarn):not(.mndoDanger){
+  background:var(--sr-header-control-bg)!important;
+  border-color:var(--sr-header-line)!important;
+  color:var(--sr-header-ink)!important;
+  -webkit-text-fill-color:currentColor!important;
+  box-shadow:var(--sr-header-control-shadow)!important;
+  text-shadow:none!important;
+  filter:none!important;
+}
+html[data-sr-visual-theme="eid"] body #MNDO_AHT_TAGS_STACK #mndoQueryTimer:not(.mndoWarn):not(.mndoDanger) :is(.mndoTimerTime,.mndoTimerLbl){
+  color:var(--sr-header-ink)!important;
+  -webkit-text-fill-color:currentColor!important;
+}
+html[data-sr-visual-theme="eid"] body :is(#EID_TOGGLE_BTN,#UA07_SECRET_ENVELOPE):hover{
+  background:var(--sr-header-control-hover-bg)!important;
+  border-color:var(--sr-header-line-hover)!important;
+  box-shadow:var(--sr-header-control-hover-shadow)!important;
+}
+
+/* Only Eid/Egypt opt in to panel + clock unification. No geometry is changed. */
+html:is([data-sr-visual-theme="eid"],[data-sr-visual-theme="egypt"]) body :is(#MNDO_HEADER_UTILITY_PANEL,#MNDO_HEADER_CLOCK){
+  background:var(--sr-header-control-bg)!important;
+  border-color:var(--sr-header-line)!important;
+  color:var(--sr-header-ink)!important;
+  -webkit-text-fill-color:currentColor!important;
+  box-shadow:var(--sr-header-control-shadow)!important;
+  text-shadow:none!important;
+  filter:none!important;
+  backdrop-filter:blur(10px) saturate(100%);
+  -webkit-backdrop-filter:blur(10px) saturate(100%);
+}
+html:is([data-sr-visual-theme="eid"],[data-sr-visual-theme="egypt"]) body #MNDO_HEADER_UTILITY_PANEL::before{background:none;}
+html:is([data-sr-visual-theme="eid"],[data-sr-visual-theme="egypt"]) body #MNDO_HEADER_UTILITY_PANEL :is(.mndo-work-helper-link,#bat2,.breakAlarmButton,#MNDO_HEADER_UTILITY_COLLAPSE){
+  background:var(--sr-header-control-bg)!important;
+  border-color:var(--sr-header-line)!important;
+  color:var(--sr-header-ink)!important;
+  -webkit-text-fill-color:currentColor!important;
+  box-shadow:var(--sr-header-control-shadow)!important;
+  text-shadow:none!important;
+  filter:none!important;
+}
+html:is([data-sr-visual-theme="eid"],[data-sr-visual-theme="egypt"]) body #MNDO_HEADER_UTILITY_PANEL :is(.mndo-work-helper-link,#bat2,.breakAlarmButton,#MNDO_HEADER_UTILITY_COLLAPSE):hover{
+  background:var(--sr-header-control-hover-bg)!important;
+  border-color:var(--sr-header-line-hover)!important;
+  box-shadow:var(--sr-header-control-hover-shadow)!important;
+}
+html:is([data-sr-visual-theme="eid"],[data-sr-visual-theme="egypt"]) body #MNDO_HEADER_UTILITY_PANEL :is(.mndo-work-helper-link,#bat2,.breakAlarmButton,#MNDO_HEADER_UTILITY_COLLAPSE):focus-visible{
+  outline:2px solid var(--sr-header-accent)!important;
+  outline-offset:2px!important;
+}
+html:is([data-sr-visual-theme="eid"],[data-sr-visual-theme="egypt"]) body #MNDO_HEADER_CLOCK .mndo-header-clock-time{text-shadow:none!important;}
+html:is([data-sr-visual-theme="eid"],[data-sr-visual-theme="egypt"]) body #MNDO_HEADER_CLOCK::before{opacity:.76;}
+
+/* ONE now lives in the utility panel, not the metrics stack. Paint follows
+ * the current control palette in both states; handlers still own aria-pressed,
+ * is-active and the check mark. Ivory changes only this chip. */
+html{
+  --sr-one-bg:var(--sr-header-control-bg,var(--sr-tools-bg));
+  --sr-one-hover-bg:var(--sr-header-control-hover-bg,var(--sr-tools-hover-bg));
+  --sr-one-border:var(--sr-header-line,var(--sr-tools-border-color));
+  --sr-one-active-border:var(--sr-header-line-hover,var(--sr-tools-hover-border-color));
+  --sr-one-text:var(--sr-header-ink,var(--sr-tools-text));
+  --sr-one-accent:var(--sr-header-accent,var(--sr-tools-text));
+  --sr-one-shadow:var(--sr-header-control-shadow,var(--sr-tools-shadow));
+  --sr-one-active-shadow:var(--sr-header-control-hover-shadow,var(--sr-tools-hover-shadow));
+}
+html[data-sr-visual-theme="off"]{
+  --sr-one-bg:linear-gradient(135deg,var(--srx-surface-2),var(--srx-surface));
+  --sr-one-hover-bg:linear-gradient(135deg,color-mix(in srgb,var(--srx-surface-2) 88%,var(--srx-accent-2)),var(--srx-surface));
+  --sr-one-border:var(--srx-line-soft);
+  --sr-one-active-border:var(--srx-line);
+  --sr-one-text:var(--srx-text);
+  --sr-one-accent:var(--srx-accent-2);
+  --sr-one-shadow:inset 0 1px 0 var(--srx-line-soft);
+  --sr-one-active-shadow:inset 0 1px 0 var(--srx-line-soft),0 0 5px var(--srx-glow);
+}
+html[data-sr-visual-theme="ivory"]{
+  --sr-one-bg:var(--ivory-control-bg);
+  --sr-one-hover-bg:var(--ivory-control-hover-bg);
+  --sr-one-border:var(--ivory-control-border);
+  --sr-one-active-border:var(--ivory-gold);
+  --sr-one-text:var(--ivory-control-text);
+  --sr-one-accent:var(--ivory-gold);
+  --sr-one-shadow:var(--ivory-control-shadow);
+  --sr-one-active-shadow:var(--ivory-control-hover-shadow);
+}
+html body #MNDO_HEADER_UTILITY_PANEL #mndoOneHomeToggle{
+  background:var(--sr-one-bg)!important;
+  border-color:var(--sr-one-border)!important;
+  color:var(--sr-one-text)!important;
+  -webkit-text-fill-color:currentColor!important;
+  box-shadow:var(--sr-one-shadow)!important;
+  text-shadow:none!important;
+  filter:none!important;
+}
+html body #MNDO_HEADER_UTILITY_PANEL #mndoOneHomeToggle:hover,
+html body #MNDO_HEADER_UTILITY_PANEL #mndoOneHomeToggle[aria-pressed="true"]{
+  background:var(--sr-one-hover-bg)!important;
+  border-color:var(--sr-one-active-border)!important;
+  box-shadow:var(--sr-one-active-shadow)!important;
+}
+html body #MNDO_HEADER_UTILITY_PANEL #mndoOneHomeToggle:focus-visible{
+  outline:2px solid var(--sr-one-accent)!important;
+  outline-offset:2px!important;
+}
+html body #MNDO_HEADER_UTILITY_PANEL #mndoOneHomeToggle .mndo-one-label{font-size:inherit!important;}
+html body #MNDO_HEADER_UTILITY_PANEL #mndoOneHomeToggle .mndo-one-led{
+  background:color-mix(in srgb,var(--sr-one-text) 40%,transparent)!important;
+  box-shadow:none!important;
+}
+html body #MNDO_HEADER_UTILITY_PANEL #mndoOneHomeToggle .mndo-one-mark{
+  border-color:var(--sr-one-border)!important;
+  background:color-mix(in srgb,var(--sr-one-accent) 8%,transparent)!important;
+  box-shadow:none!important;
+  color:transparent!important;
+  -webkit-text-fill-color:currentColor!important;
+  font-size:6px!important;
+}
+html body #MNDO_HEADER_UTILITY_PANEL #mndoOneHomeToggle[aria-pressed="true"] .mndo-one-led{
+  background:var(--sr-one-accent)!important;
+  box-shadow:0 0 5px color-mix(in srgb,var(--sr-one-accent) 40%,transparent)!important;
+}
+html body #MNDO_HEADER_UTILITY_PANEL #mndoOneHomeToggle[aria-pressed="true"] .mndo-one-mark{
+  border-color:var(--sr-one-active-border)!important;
+  background:color-mix(in srgb,var(--sr-one-accent) 16%,transparent)!important;
+  color:var(--sr-one-text)!important;
+}

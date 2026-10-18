@@ -1,0 +1,2342 @@
+
+#outageNormalPanel {font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial; margin:0; background:transparent; color:#eaf0ff;}
+#outageNormalPanel h2 {margin:0 0 8px 0; font-size:18px;}
+#outageNormalPanel .row {display:flex; flex-wrap:wrap; gap:10px; align-items:flex-end; margin-bottom:10px;}
+#outageNormalPanel label {font-size:12px; opacity:.92; display:block; margin-bottom:6px;}
+#outageNormalPanel input, #outageNormalPanel select {border-radius:12px; border:1px solid rgba(255,255,255,.22); background:rgba(255,255,255,.08); color:#fff; padding:11px 12px; box-sizing:border-box;}
+#outageNormalPanel input[type="text"] {min-width:420px;}
+#outageNormalPanel input[type="datetime-local"] {min-width:240px;}
+#outageNormalPanel button {border:0; border-radius:12px; padding:10px 14px; font-weight:900; cursor:pointer;}
+#outageNormalPanel .primary {background:#6aa7ff; color:#081022;}
+#outageNormalPanel .ghost {background:rgba(255,255,255,.10); color:#fff; border:1px solid rgba(255,255,255,.18);}
+#outageNormalPanel .box {width:100%; min-height:150px; padding:14px; border-radius:14px; border:1px solid rgba(255,255,255,.14); background:rgba(255,255,255,.06); overflow:auto;}
+#outageNormalPanel .timer {margin:12px 0; padding:10px; border-radius:14px; border:1px solid rgba(255,255,255,.12); background:rgba(255,255,255,.06);}
+#outageNormalPanel .timer-grid {display:flex; flex-wrap:wrap; gap:10px; justify-content:flex-start;}
+#outageNormalPanel .pill {display:flex; gap:8px; align-items:center; padding:8px 10px; border-radius:999px; border:1px solid rgba(255,255,255,.14); background:rgba(255,255,255,.06);}
+#outageNormalPanel .label {opacity:.85; font-size:12px;}
+#outageNormalPanel .value {font-weight:1000;}
+#outageNormalPanel .hint {font-size:12px; opacity:.86; line-height:1.7; margin-top:6px}
+#outageNormalPanel details {border:1px solid rgba(255,255,255,.12); background:rgba(255,255,255,.04); border-radius:14px; padding:10px 12px; margin-top:10px}
+#outageNormalPanel summary {cursor:pointer; font-weight:900;}
+#outageNormalPanel .help-grid {display:flex; gap:12px; flex-wrap:wrap; margin-top:10px;}
+#outageNormalPanel .help-item {flex:1 1 360px;}
+#outageNormalPanel .help-item img {max-width:100%; border-radius:12px; border:1px solid rgba(255,255,255,.12);}
+#outageNormalPanel #ocrStatus {font-size:12px; opacity:.9; padding:6px 0 0 0;}
+#outageNormalPanel /* Make selects clearer + colored state via wrapper class */
+  .select-wrap {position:relative; min-width:240px;}
+#outageNormalPanel .select-wrap select {width:100%; padding-inline-start:14px; padding-inline-end:40px; font-weight:900; letter-spacing:.2px; outline:none;}
+#outageNormalPanel .select-wrap:after {content:"▾"; position:absolute; left:14px; bottom:12px; opacity:.85; pointer-events:none; font-size:14px;}
+#outageNormalPanel .select-wrap select {appearance:none; -webkit-appearance:none; -moz-appearance:none;}
+#outageNormalPanel .select-wrap.mode-unplanned select {background:rgba(106,167,255,.18);}
+#outageNormalPanel .select-wrap.mode-planned select {background:rgba(255,196,0,.18);}
+#outageNormalPanel .select-wrap.type-normal select {background:rgba(255,255,255,.10);}
+#outageNormalPanel .select-wrap.type-unstable select {background:rgba(255,102,102,.18);}
+#outageNormalPanel .select-wrap.type-major select {background:rgba(255,0,170,.16);}
+#outageNormalPanel .select-wrap.reason select {background:rgba(0,255,170,.14);}
+#outageNormalPanel /* Output readability */
+  .highlight-box {white-space:pre-wrap; line-height:2; text-align:right;}
+#outageNormalPanel .highlight-box .line {display:block; margin:6px 0;}
+#outageNormalPanel /* Hide legacy area completely */
+  #advancedInputWrap {display:none !important;}
+#outageNormalPanel #objectionSection {display:none !important;}
+#outageNormalPanel /* Fix: dropdown list background may be light while text was white -> invisible until hover */
+  select option { color:#111; background:#fff; }
+#outageNormalPanel /* Keep the select control itself readable on dark UI */
+  select { color:#fff; }
+#outageNormalPanel /* timedef-like compact layout */
+  .page {display:flex; justify-content:center; padding:10px 0;}
+#outageNormalPanel .card {width:100%; max-width:640px;}
+#outageNormalPanel {margin:12px;}
+#outageNormalPanel h2 {text-align:center;}
+#outageNormalPanel .row {gap:10px;}
+#outageNormalPanel /* stack controls like timedef */
+  .row {flex-direction:column; align-items:stretch;}
+#outageNormalPanel .row > div, #outageNormalPanel .row > button {width:100%;}
+#outageNormalPanel input, #outageNormalPanel select {width:100%;}
+#outageNormalPanel input[type="text"] {min-width:unset;}
+#outageNormalPanel input[type="datetime-local"] {
+    min-width: unset;
+}
+
+#outageNormalPanel .timer-grid {
+    justify-content: space-between;
+}
+
+#outageNormalPanel .pill {
+    justify-content: space-between;
+}
+
+/* keep buttons in one row on wide screens */
+@media (min-width: 640px) {
+
+    #outageNormalPanel .actions {
+        display: flex;
+        gap: 10px;
+    }
+
+    #outageNormalPanel .actions button {
+        width: 50%;
+    }
+
+    #outageNormalPanel .timeRow {
+        display: flex;
+        gap: 10px;
+    }
+
+    #outageNormalPanel .timeRow input {
+        width: 50%;
+    }
+
+}
+/* Fix large blank gap:
+   some blocks had inline flex: 1 1 760px
+   which becomes height in column layout (flex-basis on main axis)
+*/
+#outageNormalPanel .row > div[style*="flex:1 1"] {
+    flex: 0 0 auto !important;
+}
+
+/* Compact: show main selects in one row on wider screens */
+@media (min-width: 880px) {
+
+    #outageNormalPanel .row.controls {
+        flex-direction: row !important;
+        align-items: flex-end !important;
+        margin-bottom: 8px;
+    }
+
+    #outageNormalPanel .row.controls > div {
+        flex: 1 1 0;
+        min-width: 150px;
+    }
+
+    #outageNormalPanel #modeWrap,
+    #outageNormalPanel #typeWrap,
+    #outageNormalPanel #majorReasonWrap {
+        min-width: 180px;
+    }
+
+}
+#outageNormalPanel .select-wrap.type-majorMaint select {background:rgba(255,0,170,.16);}
+#outageNormalPanel .select-wrap.type-majorTheft select {background:rgba(255,0,170,.16);}
+#outageNormalPanel /* ===== Modern Pro UI Upgrade (override) ===== */
+  :root {
+    color-scheme: dark;
+    --bg0:#070A12;
+    --bg1:#0B1020;
+    --card: rgba(255,255,255,.06);
+    --card2: rgba(255,255,255,.085);
+    --stroke: rgba(255,255,255,.14);
+    --stroke2: rgba(255,255,255,.22);
+    --text:#EAF0FF;
+    --muted: rgba(234,240,255,.78);
+    --accent:#6AA7FF;
+    --accent2:#9B7CFF;
+    --radius:18px;
+    --shadow: 0 18px 70px rgba(0,0,0,.45);
+  }
+#outageNormalPanel {
+    background:
+      radial-gradient(1200px 600px at 80% -10%, rgba(106,167,255,.18), transparent 60%),
+      radial-gradient(900px 500px at 10% 20%, rgba(155,124,255,.16), transparent 55%),
+      linear-gradient(180deg, var(--bg0), var(--bg1));
+    color:var(--text);
+  }
+#outageNormalPanel .card {
+    border-radius: calc(var(--radius) + 6px);
+    border:1px solid var(--stroke);
+    background: linear-gradient(180deg, var(--card2), var(--card));
+    box-shadow: var(--shadow);
+    backdrop-filter: blur(10px);
+  }
+#outageNormalPanel h2 {letter-spacing:.2px;}
+#outageNormalPanel label {color: var(--muted); opacity:1;}
+#outageNormalPanel input, #outageNormalPanel select {
+    border-radius: var(--radius);
+    border:1px solid var(--stroke2);
+    background: rgba(255,255,255,.06);
+    padding: 12px 14px;
+    transition: border-color .15s ease, box-shadow .15s ease, transform .05s ease;
+  }
+#outageNormalPanel input:focus, #outageNormalPanel select:focus {
+    outline:none;
+    border-color: rgba(106,167,255,.55);
+    box-shadow: 0 0 0 4px rgba(106,167,255,.16);
+  }
+
+/* ===== Fix: datetime picker value not visible on some Chrome dark themes ===== */
+#outageNormalPanel input[type="datetime-local"]{
+  color: var(--text);
+  -webkit-text-fill-color: var(--text);
+}
+#outageNormalPanel input[type="datetime-local"]::-webkit-datetime-edit,
+#outageNormalPanel input[type="datetime-local"]::-webkit-datetime-edit-text,
+#outageNormalPanel input[type="datetime-local"]::-webkit-datetime-edit-month-field,
+#outageNormalPanel input[type="datetime-local"]::-webkit-datetime-edit-day-field,
+#outageNormalPanel input[type="datetime-local"]::-webkit-datetime-edit-year-field,
+#outageNormalPanel input[type="datetime-local"]::-webkit-datetime-edit-hour-field,
+#outageNormalPanel input[type="datetime-local"]::-webkit-datetime-edit-minute-field,
+#outageNormalPanel input[type="datetime-local"]::-webkit-datetime-edit-ampm-field{
+  color: var(--text);
+  -webkit-text-fill-color: var(--text);
+  opacity: 1;
+}
+#outageNormalPanel input[type="datetime-local"]::-webkit-calendar-picker-indicator{
+  filter: invert(1) brightness(1.15);
+  opacity: .9;
+  cursor: pointer;
+}
+/* ===== Field color upgrade (more contrast) ===== */
+#outageNormalPanel input, #outageNormalPanel select{
+  background: rgba(255,255,255,.085);
+  border-color: rgba(255,255,255,.24);
+}
+#outageNormalPanel input::placeholder{
+  color: rgba(234,240,255,.55);
+}
+#outageNormalPanel button {border-radius: var(--radius);}
+#outageNormalPanel .primary {
+    background: linear-gradient(135deg, var(--accent), var(--accent2));
+    color:#06101F;
+    box-shadow: 0 12px 26px rgba(106,167,255,.18);
+  }
+#outageNormalPanel .primary:hover {filter: brightness(1.06);}
+#outageNormalPanel .ghost {border:1px solid var(--stroke);}
+#outageNormalPanel .box, #outageNormalPanel .timer, #outageNormalPanel details {
+    border-radius: calc(var(--radius) + 2px);
+    border:1px solid var(--stroke);
+    background: rgba(255,255,255,.05);
+  }
+#outageNormalPanel select option { color:#111; background:#fff; }
+#outageNormalPanel /* ===== Timer row compact (force 1-row on desktop) ===== */
+  .timer {padding:10px 10px;}
+#outageNormalPanel .timer-grid {
+    display:grid;
+    grid-template-columns: 1fr;
+    gap:10px;
+    align-items:stretch;
+  }
+#outageNormalPanel .pill {
+    width:100%;
+    padding:8px 10px;
+    min-width:0;
+  }
+#outageNormalPanel .pill .label {white-space:nowrap;}
+#outageNormalPanel .pill .value {white-space:nowrap; overflow:hidden; text-overflow:ellipsis; min-width:0;}
+@media (min-width: 720px){#outageNormalPanel .timer-grid {grid-template-columns: repeat(3, minmax(0, 1fr));}
+
+  }
+#outageNormalPanel /* === LUX COMPACT OVERRIDE (v1) === */
+:root {
+  --lux-bg: #070A12;
+  --lux-card: rgba(255,255,255,.045);
+  --lux-stroke: rgba(255,255,255,.14);
+  --lux-stroke2: rgba(255,255,255,.20);
+  --lux-text: #EAF0FF;
+  --lux-muted: rgba(234,240,255,.72);
+  --lux-accent: #6AA7FF;
+  --lux-accent2:#9B7CFF;
+  --lux-radius: 18px;
+}
+#outageNormalPanel {
+  margin:0 !important;
+  padding:10px 10px 14px !important;
+  background:
+    radial-gradient(900px 520px at 80% -10%, rgba(106,167,255,.16), transparent 60%),
+    radial-gradient(800px 520px at 10% 20%, rgba(155,124,255,.14), transparent 55%),
+    linear-gradient(180deg, var(--lux-bg), #0B1020) !important;
+  color: var(--lux-text) !important;
+  display:flex;
+  justify-content:center;
+}
+#outageNormalPanel .card {
+  width:100% !important;
+  max-width:560px !important;
+  padding:0 !important;
+  margin:0 !important;
+  border:none !important;
+  background:transparent !important;
+  box-shadow:none !important;
+  backdrop-filter:none !important;
+}
+#outageNormalPanel h2 {
+  margin: 0 0 10px !important;
+  font-size:18px !important;
+  letter-spacing:.2px !important;
+  text-align:center !important;
+}
+#outageNormalPanel /* tighter form spacing */
+.row {gap:8px !important; margin:0 0 8px !important;}
+#outageNormalPanel .select-wrap, #outageNormalPanel .field {margin:0 !important;}
+#outageNormalPanel label {color:var(--lux-muted) !important; font-size:12px !important; margin-bottom:6px !important;}
+#outageNormalPanel /* inputs */
+input, #outageNormalPanel select {
+  border-radius: 999px !important;
+  border:1px solid var(--lux-stroke) !important;
+  background: rgba(255,255,255,.05) !important;
+  padding: 12px 14px !important;
+}
+#outageNormalPanel input:focus, #outageNormalPanel select:focus {
+  border-color: rgba(106,167,255,.55) !important;
+  box-shadow: 0 0 0 4px rgba(106,167,255,.14) !important;
+}
+#outageNormalPanel /* Buttons */
+button {border-radius:999px !important;}
+#outageNormalPanel .primary {
+  background: linear-gradient(135deg, var(--lux-accent), var(--lux-accent2)) !important;
+  color:#06101F !important;
+  box-shadow: 0 12px 26px rgba(106,167,255,.16) !important;
+}
+#outageNormalPanel .ghost {
+  background: rgba(255,255,255,.06) !important;
+  border:1px solid var(--lux-stroke) !important;
+}
+#outageNormalPanel /* Remove "inner templates": timer + pills become clean inline stats */
+.timer {
+  margin: 8px 0 10px !important;
+  padding: 0 !important;
+  border: none !important;
+  background: transparent !important;
+}
+#outageNormalPanel #timerHint {margin:0 0 6px !important;}
+#outageNormalPanel .timer-grid {
+  display:grid !important;
+  grid-template-columns: 1fr !important;
+  gap: 6px !important;
+  justify-content:stretch !important;
+}
+@media (min-width: 720px){#outageNormalPanel .timer-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+    gap: 10px !important;
+  }
+
+}
+#outageNormalPanel .pill {
+  padding: 10px 12px !important;
+  border-radius: var(--lux-radius) !important;
+  border:1px solid var(--lux-stroke) !important;
+  background: var(--lux-card) !important;
+}
+#outageNormalPanel .pill .label {color:var(--lux-muted) !important; font-size:11px !important;}
+#outageNormalPanel .pill .value {font-weight:800 !important; font-size:14px !important;}
+#outageNormalPanel /* Output areas: minimal, #outageNormalPanel no big empty space */
+.box {
+  min-height: 96px !important;
+  padding: 12px 12px !important;
+  border-radius: var(--lux-radius) !important;
+  border:1px solid var(--lux-stroke2) !important;
+  background: rgba(255,255,255,.035) !important;
+}
+#outageNormalPanel #output {margin-top:10px !important;}
+#outageNormalPanel #objectionSection {margin-top:10px !important;}
+#outageNormalPanel details {
+  border-radius: var(--lux-radius) !important;
+  border:1px solid var(--lux-stroke) !important;
+  background: rgba(255,255,255,.03) !important;
+}
+#outageNormalPanel /* === end override === */
+
+
+/* === LUX Compact: timer pills shrink-to-content (professional) === */
+.timer-grid {
+  display:flex !important;
+  flex-wrap:nowrap !important;          /* desktop: one row */
+  gap:8px !important;
+  justify-content:flex-start !important;
+  align-items:center !important;
+  width:100% !important;
+  overflow:hidden !important;           /* no spill outside tool */
+}
+@media (max-width: 860px){#outageNormalPanel .timer-grid {
+    flex-wrap:wrap !important;          /* mobile: wrap nicely */
+    overflow:visible !important;
+  }
+
+}
+#outageNormalPanel .timer-grid .pill {
+  display:inline-flex !important;
+  align-items:center !important;
+  gap:10px !important;
+  width:fit-content !important;         /* shrink to text */
+  max-width:100% !important;
+  flex:0 0 auto !important;             /* don't stretch */
+  padding:10px 12px !important;
+  border-radius:16px !important;
+  white-space:nowrap !important;
+}
+#outageNormalPanel .timer-grid .pill .label {
+  font-size:11px !important;
+  opacity:.78 !important;
+}
+#outageNormalPanel .timer-grid .pill .value {
+  font-size:14px !important;
+  font-weight:900 !important;
+  letter-spacing:.2px !important;
+}
+/* If the timer section is RTL, keep pills readable */
+#outageNormalPanel .timer-grid {
+    direction: rtl;
+}
+
+#outageNormalPanel .timer-grid .pill {
+    direction: rtl;
+}
+
+/* =========================
+   v4 — Crop empty spaces (lux compact)
+   هدفها: كل مربع على قد اللي فيه + صفوف متناسقة بدون فراغات
+========================= */
+
+/* لا تخلّي عناصر الصف تتمدّد 100% على الشاشات الواسعة */
+@media (min-width: 720px) {
+
+    .row > div,
+    .row > button {
+        width: auto !important;
+    }
+
+    #outageNormalPanel input,
+    #outageNormalPanel select {
+        width: auto !important;
+    }
+
+    #outageNormalPanel .select-wrap select {
+        width: auto !important;
+    }
+
+}
+#outageNormalPanel /* صف الكنترولز (رقم الشكوى + الوضع + نوع الاوتج) */
+.row.controls {
+  justify-content:center !important;
+  gap:8px !important;
+  align-items:flex-end !important;
+  gap:10px !important;
+}
+#outageNormalPanel .row.controls > div {
+  flex:0 0 auto !important;
+  width:fit-content !important;
+}
+#outageNormalPanel /* مقاسات ناعمة مبنية على المحتوى */
+#complaintId {width:auto !important; min-width:8ch !important; max-width:14ch !important; text-align:center; display:inline-block;}
+#outageNormalPanel #modeWrap select {max-width: 24ch !important;}
+#outageNormalPanel #typeWrap select {max-width: 30ch !important;}
+#outageNormalPanel /* صف الوقت: خلي المربعات على قدها */
+.timeRow {
+  display:flex !important;
+  flex-wrap:wrap !important;
+  gap:10px !important;
+  align-items:center !important;
+}
+#outageNormalPanel #timePicker {width: 20ch !important;}
+#outageNormalPanel #timePaste {width:auto !important; min-width:18ch !important; max-width:30ch !important;}
+#outageNormalPanel /* الأزرار: ممنوع تمدد/فراغات */
+.actions {
+  display:flex !important;
+  gap:10px !important;
+  width:fit-content !important;
+  flex:0 0 auto !important;
+  align-items:center !important;
+}
+#outageNormalPanel .actions button {
+  width:fit-content !important;
+  min-width: 140px !important;
+}
+#outageNormalPanel /* تقليل padding العام عشان الإطار يبقى أصغر ومتماسك */
+.card {padding: 14px !important;}
+#outageNormalPanel .row {margin-bottom: 8px !important;}
+#outageNormalPanel /* ===== v5: Minimal rows + tidy alignment ===== */
+.row { 
+  display:flex !important;
+  flex-wrap:wrap !important;
+  justify-content:center !important;
+  align-items:flex-end !important;
+  gap:12px !important;
+}
+#outageNormalPanel /* Controls row: keep on one line when possible */
+.row.controls > div {
+  flex:0 0 auto !important;
+  width:fit-content !important;
+}
+#outageNormalPanel #complaintId {
+  width: 12ch !important;
+  text-align:center;
+}
+#outageNormalPanel /* Make selects compact but not huge */
+#modeSelect, #outageNormalPanel #outageTypeUI {
+  width: 240px !important;
+  max-width: 75vw;
+}
+#outageNormalPanel /* Time row: paste box gets the space, #outageNormalPanel picker stays compact */
+.timeRow {
+  display:flex !important;
+  flex-wrap:nowrap !important;
+  gap:10px !important;
+  align-items:stretch !important;
+}
+#outageNormalPanel #timePicker { width: 20ch !important; flex:0 0 auto !important; }
+#outageNormalPanel #timePaste { min-width: 34ch !important; flex:1 1 auto !important; }
+#outageNormalPanel /* Actions: inline, #outageNormalPanel tight */
+.actions {
+  display:flex !important;
+  flex-direction:row !important;
+  gap:10px !important;
+  align-items:center !important;
+  justify-content:center !important;
+  width:fit-content !important;
+}
+#outageNormalPanel .actions button {
+  min-width: 140px !important;
+  padding: 11px 14px !important;
+}
+#outageNormalPanel /* Keep everything inside the tool width nicely */
+.card { max-width: 920px !important; margin-inline:auto !important; padding-inline: 14px !important; }
+@media (max-width: 720px){#outageNormalPanel #modeSelect, #outageNormalPanel #outageTypeUI { width: 100% !important; }
+#outageNormalPanel .timeRow { flex-wrap:wrap !important; }
+#outageNormalPanel #timePicker, #outageNormalPanel #timePaste { width: 100% !important; min-width: 0 !important; }
+#outageNormalPanel .actions { width:100% !important; justify-content:space-between !important; }
+#outageNormalPanel .actions button { flex:1 1 0 !important; min-width: 0 !important; }
+
+}
+#outageNormalPanel /* ===== v6 Tight Frame + Min Rows (override) ===== */
+  body {margin:0; padding:18px; background:
+    radial-gradient(900px 520px at 20% 10%, rgba(106,167,255,.14), transparent 60%),
+    radial-gradient(900px 520px at 80% 0%, rgba(155,124,255,.12), transparent 60%),
+    #0b1020;
+  }
+#outageNormalPanel .page {padding:0}
+#outageNormalPanel .card {
+    margin:0 auto;
+    width:100%;
+    max-width:620px;
+    padding:18px 18px 14px;
+    border-radius:22px;
+    border:1px solid rgba(255,255,255,.14);
+    background: linear-gradient(180deg, rgba(255,255,255,.075), rgba(255,255,255,.035));
+    box-shadow: 0 18px 70px rgba(0,0,0,.45);
+    backdrop-filter: blur(10px);
+  }
+#outageNormalPanel /* stop global stretching */
+  input[type="text"], #outageNormalPanel input[type="datetime-local"], #outageNormalPanel select {min-width:0 !important; width:auto;}
+#outageNormalPanel .row {justify-content:space-between; align-items:flex-end;}
+#outageNormalPanel .row.controls {
+    display:grid;
+    grid-template-columns: 12ch minmax(0, 1fr) minmax(0, 1fr);
+    gap:10px;
+    align-items:end;
+  }
+@media (max-width: 680px){#outageNormalPanel .row.controls {grid-template-columns: 1fr; }
+#outageNormalPanel .row {justify-content:stretch;}
+
+  }
+#outageNormalPanel #complaintId {width:12ch; max-width:100%;}
+#outageNormalPanel #modeSelect, #outageNormalPanel #outageTypeUI {width:240px; max-width:100%;}
+#outageNormalPanel #modeWrap, #outageNormalPanel #typeWrap {min-width:0;}
+#outageNormalPanel .timeRow {
+    display:grid;
+    grid-template-columns: 220px minmax(0, 1fr);
+    gap:10px;
+    align-items:center;
+  }
+@media (max-width: 680px){#outageNormalPanel .timeRow {grid-template-columns: 1fr;}
+#outageNormalPanel #timePicker {width:100%;}
+
+  }
+#outageNormalPanel #timePicker {width:220px;}
+#outageNormalPanel #timePaste {width:100%; min-width:0;}
+#outageNormalPanel .actions {
+    display:flex;
+    gap:10px;
+    justify-content:flex-end;
+    align-items:flex-end;
+    margin-top:6px;
+    flex: 0 0 auto;
+  }
+#outageNormalPanel .actions button {width:fit-content; padding:10px 16px;}
+#outageNormalPanel /* timer pills: stay on one row when space allows */
+  .timer-grid {justify-content:flex-end;}
+#outageNormalPanel .pill {display:inline-flex; width:fit-content; flex:0 0 auto;}
+#outageNormalPanel /* =========================
+   v7: Tight frame + aligned rows (no "floating centers")
+   ========================= */
+* {box-sizing:border-box;}
+#outageNormalPanel /* predictable sizing */ 
+
+.card {
+  margin-inline:auto !important;
+  max-width:620px !important;
+  width:100% !important;
+}
+#outageNormalPanel /* Make each row align to the same left/right edges */
+.row {
+  display:grid !important;
+  grid-template-columns: 1fr !important;
+  gap:12px !important;
+  justify-items:stretch !important;
+  align-items:end !important;
+  margin-bottom:12px !important;
+}
+#outageNormalPanel /* Top timer pills: same row, #outageNormalPanel same edges */
+.timer-grid {
+  display:grid !important;
+  grid-template-columns: repeat(3, minmax(0,1fr)) !important;
+  gap:10px !important;
+  width:100% !important;
+  justify-items:stretch !important;
+}
+#outageNormalPanel .pill {
+  width:100% !important;
+  min-width:0 !important;
+  padding:10px 12px !important;
+}
+#outageNormalPanel .pill .label {font-size:11px !important;}
+#outageNormalPanel .pill .value {font-size:14px !important;}
+#outageNormalPanel /* Controls row: 3 columns aligned (Complaint / Mode / Type) */
+.row.controls {
+  grid-template-columns: minmax(10ch, 14ch) minmax(0, 1fr) minmax(0, 1fr) !important;
+  gap:12px !important;
+}
+#outageNormalPanel .row.controls > div {
+  width:auto !important;
+}
+#outageNormalPanel #complaintId {width:100% !important; text-align:center;}
+#outageNormalPanel #modeWrap select, #outageNormalPanel #typeWrap select {width:100% !important; max-width:none !important;}
+#outageNormalPanel /* Time row: picker fixed, #outageNormalPanel paste expands - aligned with same edges */
+.timeBlock {width:100% !important;}
+#outageNormalPanel .timeRow {
+  display:grid !important;
+  grid-template-columns: minmax(220px, 260px) minmax(0, 1fr) !important;
+  gap:10px !important;
+  width:100% !important;
+}
+#outageNormalPanel #timePicker, #outageNormalPanel #timePaste {width:100% !important;}
+#outageNormalPanel /* Actions: one line, #outageNormalPanel aligned with frame edges (RTL start = right) */
+.actions {
+  display:flex !important;
+  justify-content:flex-start !important;
+  gap:10px !important;
+  width:100% !important;
+}
+#outageNormalPanel .actions button {
+  width: fit-content !important;
+  min-width: 140px !important;
+  flex: 0 0 auto !important;
+}
+/* Mobile: stack nicely */
+@media (max-width: 680px) {
+
+    #outageNormalPanel .timer-grid {
+        grid-template-columns: 1fr !important;
+    }
+
+    #outageNormalPanel .row.controls {
+        grid-template-columns: 1fr !important;
+    }
+
+    #outageNormalPanel .timeRow {
+        grid-template-columns: 1fr !important;
+    }
+
+    #outageNormalPanel .actions {
+        flex-wrap: wrap !important;
+    }
+
+    #outageNormalPanel .actions button {
+        min-width: 160px !important;
+    }
+
+}
+#outageNormalPanel /* أيقونات Generate/Reset داخل صف الوقت */
+.iconBar {
+  display:inline-flex !important;
+  gap:10px !important;
+  align-items:center !important;
+  flex:0 0 auto !important;
+}
+#outageNormalPanel .iconBtn {
+  width:44px !important;
+  height:44px !important;
+  padding:0 !important;
+  border-radius:14px !important;
+  display:inline-flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+  border:1px solid rgba(255,255,255,.14) !important;
+  background: rgba(255,255,255,.06) !important;
+  color:#eaf0ff !important;
+  cursor:pointer !important;
+}
+#outageNormalPanel .iconBtn.primaryIcon {
+  background: linear-gradient(135deg, #6AA7FF, #9B7CFF) !important;
+  color:#06101F !important;
+  border-color: transparent !important;
+}
+#outageNormalPanel .iconBtn.genIcon {
+  width:88px !important; /* ضعف العرض */
+  height:44px !important;
+  border-radius:16px !important;
+  padding:0 14px !important;
+  justify-content:center !important;
+  gap:10px !important;
+}
+#outageNormalPanel .iconBtn.genIcon svg {width:18px; height:18px;}
+#outageNormalPanel .iconBtn.genIcon .genLabel {
+  font-size:12px;
+  font-weight:900;
+  letter-spacing:.2px;
+  white-space:nowrap;
+}
+#outageNormalPanel .iconBtn:hover {filter:brightness(1.06);}
+#outageNormalPanel .iconBtn:active {transform:translateY(1px);}
+#outageNormalPanel .iconBtn svg {width:20px; height:20px;}
+#outageNormalPanel /* ===== v9 Compact two-rows + aligned ===== */
+.wrap {max-width: 640px !important; margin: 0 auto !important;}
+#outageNormalPanel /* Controls row: keep tight, #outageNormalPanel aligned */
+.controlsRow {display:grid !important; grid-template-columns: auto auto minmax(120px, 1fr) !important; gap:10px !important; align-items:end !important;}
+#outageNormalPanel /* complaint id shrink to content */
+#complaintId {width: 9ch !important; min-width: 7ch !important; max-width: 14ch !important; text-align:center !important;}
+#outageNormalPanel /* selects consistent width (no floating) */
+#modeSelect, #outageNormalPanel #outageTypeUI {min-width: 170px !important; width: 100% !important;}
+#outageNormalPanel /* Time row: single line (picker + paste + icons), #outageNormalPanel no extra gaps */
+.timeRow {
+  display:grid !important;
+  grid-template-columns: auto minmax(14ch, 1fr) auto !important;
+  gap:10px !important;
+  align-items:center !important;
+}
+#outageNormalPanel #timePicker {width: 22ch !important; min-width: 20ch !important;}
+#outageNormalPanel #timePaste {width: 20ch !important; min-width: 16ch !important; max-width: 30ch !important;}
+#outageNormalPanel .iconBar {display:flex !important; gap:8px !important; align-items:center !important;}
+#outageNormalPanel .iconBtn {
+  width:34px !important; height:34px !important;
+  border-radius:12px !important;
+}
+#outageNormalPanel .iconBtn svg {width:18px !important; height:18px !important;}
+#outageNormalPanel /* Reduce vertical spacing to keep tool short */
+.row {margin-bottom:8px !important;}
+#outageNormalPanel .help {margin-top:6px !important;}
+#outageNormalPanel .outputBox {min-height: 92px !important;}
+#outageNormalPanel /* ===== v10: aligned + shrink-to-content + no wasted gaps ===== */
+.row.controls {
+  display:grid !important;
+  grid-template-columns: fit-content(14ch) fit-content(26ch) fit-content(26ch) !important;
+  gap:10px !important;
+  align-items:end !important;
+  justify-content:space-between !important;
+}
+@media (max-width: 760px){#outageNormalPanel .row.controls {grid-template-columns: 1fr !important;}
+
+}
+#outageNormalPanel .row.controls > div {flex:0 0 auto !important; min-width:0 !important;}
+#outageNormalPanel #complaintId {
+  width: 10ch !important;
+  min-width: 9ch !important;
+  max-width: 14ch !important;
+  text-align:center !important;
+  padding-inline:12px !important;
+}
+#outageNormalPanel #modeSelect, #outageNormalPanel #outageTypeUI {
+  width: 24ch !important;
+  min-width: 20ch !important;
+  max-width: 30ch !important;
+}
+#outageNormalPanel /* Time row: everything in one tight line */
+.timeRow {
+  display:flex !important;
+  flex-wrap:nowrap !important;
+  align-items:center !important;
+  justify-content:flex-start !important;
+  gap:8px !important;
+}
+#outageNormalPanel .timeRow > * {flex:0 0 auto !important;}
+#outageNormalPanel #timePicker {
+  width: 26ch !important;
+  min-width: 24ch !important;
+}
+#outageNormalPanel #timePaste {
+  width: 28ch !important;
+  min-width: 22ch !important;
+  max-width: 34ch !important;
+}
+#outageNormalPanel .iconBar {
+  display:inline-flex !important;
+  gap:8px !important;
+  margin:0 !important;
+  padding:0 !important;
+}
+#outageNormalPanel .iconBtn {
+  width:34px !important;
+  height:34px !important;
+  border-radius:12px !important;
+}
+#outageNormalPanel .iconBtn svg {width:18px !important; height:18px !important;}
+#outageNormalPanel /* ===== v11: frame fits content + no dead spaces ===== */
+.page {display:flex; justify-content:center;}
+#outageNormalPanel .card {
+  display:inline-block;
+  width:fit-content;
+  max-width:calc(100vw - 32px);
+  padding:16px 18px;
+}
+#outageNormalPanel /* prevent rows from stretching wider than needed */
+.row, #outageNormalPanel .timer, #outageNormalPanel .timeBlock {width:fit-content; max-width:100%;}
+#outageNormalPanel /* make timer pills define the frame width */
+.timer-grid {display:inline-flex !important; gap:10px !important; flex-wrap:nowrap !important; width:max-content; max-width:100%;}
+#outageNormalPanel .pill {width:fit-content; flex:0 0 auto;}
+#outageNormalPanel /* controls row: keep three fields aligned and tight */
+.row.controls {display:grid !important; grid-template-columns: repeat(3, max-content) !important; gap:14px !important; align-items:end !important; justify-content:start !important;}
+#outageNormalPanel .row.controls > div {width:max-content;}
+#outageNormalPanel /* time row: single line, #outageNormalPanel no wasted stretch */
+.timeRow {display:flex !important; flex-wrap:nowrap !important; align-items:center !important; gap:10px !important;}
+#outageNormalPanel #timePicker {min-width:26ch !important; width:fit-content !important;}
+#outageNormalPanel #timePaste {min-width:18ch !important; width:fit-content !important; max-width:40ch !important;}
+#outageNormalPanel .iconBar {display:inline-flex !important; gap:6px !important; width:fit-content !important;}
+#outageNormalPanel .iconBtn {width:30px !important; height:30px !important; border-radius:11px !important;}
+#outageNormalPanel .iconBtn svg {width:16px !important; height:16px !important;}
+#outageNormalPanel /* complaint box grows to show full number */
+#complaintId {min-width:8ch !important; max-width:30ch !important; width:fit-content !important;}
+#outageNormalPanel /* --- Compact icon buttons (Reset/Generate) --- */
+  .iconBar {display:flex; gap:8px; align-items:center;}
+#outageNormalPanel .iconBtn {
+    height:44px;
+    border-radius:16px;
+    border:1px solid rgba(255,255,255,.16);
+    background:rgba(255,255,255,.06);
+    color:#eaf0ff;
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    cursor:pointer;
+    user-select:none;
+    padding:0 12px;
+  }
+#outageNormalPanel .iconBtn:active {transform:translateY(1px);}
+#outageNormalPanel .iconBtn.reset {width:44px;}
+#outageNormalPanel .iconBtn.gen {width:88px; background:linear-gradient(135deg,#6AA7FF,#9B7CFF); color:#06101F; border-color:transparent; font-weight:900;}
+#outageNormalPanel .iconBtn .txt {font-size:12px; font-weight:900; letter-spacing:.2px;}
+#outageNormalPanel .iconBtn .ico {font-size:16px; line-height:1;}
+#outageNormalPanel .iconBtn.gen .ico {margin-inline-end:8px;}
+#outageNormalPanel /* --- Output copy button --- */
+  .copyBtn {
+    margin-inline-start:10px;
+    height:28px;
+    min-width:28px;
+    padding:0 10px;
+    border-radius:12px;
+    border:1px solid rgba(255,255,255,.16);
+    background:rgba(255,255,255,.06);
+    color:#eaf0ff;
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    gap:6px;
+    cursor:pointer;
+    font-size:12px;
+    font-weight:800;
+  }
+#outageNormalPanel .copyBtn:hover {background:rgba(255,255,255,.09);}
+#outageNormalPanel .copyBtn:active {transform:translateY(1px);}
+#outageNormalPanel .hbHead {display:flex; align-items:center; justify-content:space-between; gap:10px;}
+#outageNormalPanel .hbTitle {display:flex; align-items:center; gap:10px;}
+#outageNormalPanel /* === v15: Generate button wider + refined icon === */
+.iconBar {gap:8px !important;}
+#outageNormalPanel .iconBtn {
+  height:44px !important;
+  box-sizing:border-box !important;
+}
+#outageNormalPanel .iconBtn.reset { width:44px !important; border-radius:14px !important; }
+#outageNormalPanel .iconBtn.gen {
+  width:auto !important;
+  min-width:88px !important; /* ضعف مربع الريست تقريباً */
+  padding:0 14px !important;
+  border-radius:999px !important;
+  justify-content:center !important;
+  gap:8px !important;
+}
+#outageNormalPanel .iconBtn.gen .txt { font-weight:900 !important; font-size:12px !important; letter-spacing:.1px !important; opacity:.95 !important;}
+#outageNormalPanel .iconBtn.gen .ico { font-size:15px !important; line-height:1 !important; }
+#outageNormalPanel /* ===== Lux Color Upgrade (semantic + pleasing chips) ===== */
+:root {
+  --chip-purple: 155,124,255;
+  --chip-cyan:   80,220,255;
+  --chip-amber:  255,199,94;
+  --chip-pink:   255,105,180;
+  --chip-green:  110,255,190;
+  --chip-blue:   106,167,255;
+
+  --chip-bg-a: .14;
+  --chip-bg-b: .08;
+  --chip-stroke: .38;
+}
+#outageNormalPanel /* Pills (الدورة) — كل مربع لون مميز */
+.timer-grid .pill { position:relative; overflow:hidden; }
+#outageNormalPanel .timer-grid .pill::before {
+  content:"";
+  position:absolute; inset:0;
+  background: radial-gradient(120% 180% at 20% 10%, rgba(255,255,255,.10), transparent 55%);
+  pointer-events:none;
+}
+#outageNormalPanel .timer-grid .pill:nth-child(1) {
+  border-color: rgba(var(--chip-purple), var(--chip-stroke));
+  background: linear-gradient(135deg, rgba(var(--chip-purple), var(--chip-bg-a)), rgba(var(--chip-purple), var(--chip-bg-b)));
+}
+#outageNormalPanel .timer-grid .pill:nth-child(2) {
+  border-color: rgba(var(--chip-cyan), var(--chip-stroke));
+  background: linear-gradient(135deg, rgba(var(--chip-cyan), var(--chip-bg-a)), rgba(var(--chip-cyan), var(--chip-bg-b)));
+}
+#outageNormalPanel .timer-grid .pill:nth-child(3) {
+  border-color: rgba(var(--chip-amber), var(--chip-stroke));
+  background: linear-gradient(135deg, rgba(var(--chip-amber), var(--chip-bg-a)), rgba(var(--chip-amber), var(--chip-bg-b)));
+}
+#outageNormalPanel /* Controls row – حقول/قوائم بألوان مميزة */
+#complaintId {
+  border-color: rgba(var(--chip-purple), .50) !important;
+  background: linear-gradient(135deg, rgba(var(--chip-purple), .12), rgba(255,255,255,.05)) !important;
+}
+#outageNormalPanel #modeSelect {
+  border-color: rgba(var(--chip-blue), .48) !important;
+  background: linear-gradient(135deg, rgba(var(--chip-blue), .10), rgba(255,255,255,.05)) !important;
+}
+#outageNormalPanel #outageTypeUI {
+  border-color: rgba(var(--chip-green), .45) !important;
+  background: linear-gradient(135deg, rgba(var(--chip-green), .10), rgba(255,255,255,.05)) !important;
+}
+#outageNormalPanel /* Time row – picker (amber) + paste (cyan) */
+#timePicker {
+  border-color: rgba(var(--chip-amber), .55) !important;
+  background: linear-gradient(135deg, rgba(var(--chip-amber), .10), rgba(255,255,255,.05)) !important;
+}
+#outageNormalPanel #timePaste {
+  border-color: rgba(var(--chip-cyan), .50) !important;
+  background: linear-gradient(135deg, rgba(var(--chip-cyan), .10), rgba(255,255,255,.05)) !important;
+}
+#outageNormalPanel /* Icon buttons – reset neutral, #outageNormalPanel generate brand */
+.iconBtn {
+  border-color: rgba(255,255,255,.16) !important;
+  background: rgba(255,255,255,.06) !important;
+}
+#outageNormalPanel .iconBtn:hover { filter: brightness(1.06); }
+#outageNormalPanel .iconBtn.genIcon {
+  border-color: rgba(var(--chip-blue), .40) !important;
+  background: linear-gradient(135deg, rgba(var(--chip-blue), .55), rgba(var(--chip-purple), .42)) !important;
+  color:#06101F !important;
+  box-shadow: 0 14px 30px rgba(106,167,255,.16);
+}
+#outageNormalPanel .iconBtn.genIcon .genGlyph {
+  width:20px; height:20px; display:inline-flex; align-items:center; justify-content:center;
+  border-radius:8px;
+  background: rgba(255,255,255,.22);
+}
+#outageNormalPanel /* Output cards accent */
+.box {
+  border-color: rgba(var(--chip-blue), .18) !important;
+  background: radial-gradient(1200px 420px at 20% -10%, rgba(var(--chip-blue), .10), transparent 60%),
+              rgba(255,255,255,.04) !important;
+}
+#outageNormalPanel .copyBtn {
+  border-color: rgba(var(--chip-green), .40) !important;
+  background: linear-gradient(135deg, rgba(var(--chip-green), .18), rgba(255,255,255,.05)) !important;
+}
+#outageNormalPanel /* === Pro upgrade: Generate/Reset + timer pills (v18) === */
+:root {
+  --p-cycle: rgba(155,124,255,.22);
+  --p-elapsed: rgba(80,220,255,.20);
+  --p-remaining: rgba(255,196,0,.18);
+  --stroke-soft: rgba(255,255,255,.16);
+  --stroke-strong: rgba(255,255,255,.26);
+}
+#outageNormalPanel /* timer pills: cleaner + premium */
+.timer-grid {gap:12px !important;}
+#outageNormalPanel .pill {
+  padding: 9px 12px !important;
+  border-radius: 999px !important;
+  border:1px solid var(--stroke-soft) !important;
+  background: rgba(255,255,255,.055) !important;
+  box-shadow: 0 10px 26px rgba(0,0,0,.22);
+}
+#outageNormalPanel .pill .label {font-size:11px !important; opacity:.82 !important;}
+#outageNormalPanel .pill .value {font-size:14px !important; letter-spacing:.2px;}
+#outageNormalPanel .pill.cycle {
+  background: linear-gradient(135deg, var(--p-cycle), rgba(255,255,255,.04)) !important;
+  border-color: rgba(155,124,255,.34) !important;
+}
+#outageNormalPanel .pill.elapsed {
+  background: linear-gradient(135deg, var(--p-elapsed), rgba(255,255,255,.04)) !important;
+  border-color: rgba(80,220,255,.34) !important;
+}
+#outageNormalPanel .pill.remaining {
+  background: linear-gradient(135deg, var(--p-remaining), rgba(255,255,255,.04)) !important;
+  border-color: rgba(255,196,0,.34) !important;
+}
+#outageNormalPanel /* icon buttons: tighter + clearer emphasis like “filled tonal” vs “outlined” */
+.iconBar {gap:8px !important;}
+#outageNormalPanel .iconBtn {
+  height:44px !important;
+  border-radius: 16px !important;
+  border:1px solid var(--stroke-soft) !important;
+  background: rgba(255,255,255,.05) !important;
+  box-shadow: 0 10px 26px rgba(0,0,0,.24);
+}
+#outageNormalPanel .iconBtn.reset {
+  width:44px !important;
+  background: rgba(255,255,255,.045) !important;
+  border-color: var(--stroke-strong) !important;
+}
+#outageNormalPanel .iconBtn.reset:hover {background: rgba(255,255,255,.07) !important;}
+#outageNormalPanel .iconBtn.gen {
+  width: 96px !important; /* ~2x width */
+  padding: 0 14px !important;
+  justify-content: center !important;
+  gap: 8px !important;
+  border-color: transparent !important;
+  color:#071022 !important;
+  background: linear-gradient(135deg, rgba(106,167,255,.98), rgba(155,124,255,.98)) !important;
+  box-shadow: 0 14px 34px rgba(106,167,255,.22);
+}
+#outageNormalPanel .iconBtn.gen:hover {filter: brightness(1.05);}
+#outageNormalPanel .iconBtn .txt {font-weight:1000 !important; font-size:13px !important; letter-spacing:.2px;}
+#outageNormalPanel .iconBtn .ico {font-size:16px !important;}
+#outageNormalPanel /* focus visible for keyboard users */
+.iconBtn:focus {outline:none;}
+#outageNormalPanel .iconBtn:focus-visible {
+  box-shadow: 0 0 0 4px rgba(106,167,255,.18), 0 14px 34px rgba(0,0,0,.28) !important;
+}
+
+#outageNormalPanel .outageLayout{
+  display:grid;
+  grid-template-columns: minmax(320px, 1fr) minmax(360px, 520px);
+  gap: 18px;
+  align-items: start;
+  direction:ltr;
+}
+#outageNormalPanel .outageForm{direction:rtl;}
+#outageNormalPanel .outageResult{direction:rtl;}
+#outageNormalPanel .resultHeader{
+  font-weight: 900;
+  font-size: 13px;
+  opacity: .9;
+  margin: 8px 0 10px;
+}
+#outageNormalPanel .resultBox{
+  min-height: 360px;
+  max-height: 62vh;
+  overflow:auto;
+}
+#outageNormalPanel .resultObjection{margin-top:12px;}
+@media (max-width: 980px){
+  #outageNormalPanel .outageLayout{grid-template-columns: 1fr; }
+  #outageNormalPanel .resultBox{max-height:none;}
+}
+
+/* === MNDO polish overrides (fill + darker + pro selects) === */
+#outageNormalPanel{width:100% !important;}
+#outageNormalPanel .outageLayout{
+  grid-template-columns: 1fr 1fr !important;
+  align-items: stretch !important;
+  width: 100% !important;
+}
+#outageNormalPanel .outageForm,
+#outageNormalPanel .outageResult{
+  border: 1px solid rgba(255,255,255,.14) !important;
+  background: rgba(0,0,0,.58) !important;
+  border-radius: 16px !important;
+  padding: 14px !important;
+  min-height: 380px !important;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.06) !important;
+}
+#outageNormalPanel .resultBox{
+  min-height: 420px !important;
+  background: rgba(0,0,0,.55) !important;
+  border: 1px solid rgba(255,255,255,.14) !important;
+}
+#outageNormalPanel .box{
+  background: rgba(0,0,0,.52) !important;
+  border: 1px solid rgba(255,255,255,.16) !important;
+}
+#outageNormalPanel input,
+#outageNormalPanel select{
+  background: rgba(0,0,0,.55) !important;
+  border: 1px solid rgba(255,255,255,.18) !important;
+  color: rgba(255,255,255,.92) !important;
+}
+#outageNormalPanel select{
+  appearance:none;
+  background-image:
+    linear-gradient(45deg, transparent 50%, rgba(255,255,255,.75) 50%),
+    linear-gradient(135deg, rgba(255,255,255,.75) 50%, transparent 50%);
+  background-position:
+    calc(100% - 18px) calc(1em + 2px),
+    calc(100% - 13px) calc(1em + 2px);
+  background-size: 6px 6px, 6px 6px;
+  background-repeat: no-repeat;
+  padding-right: 34px !important;
+}
+#outageNormalPanel input:focus,
+#outageNormalPanel select:focus{
+  outline:none;
+  border-color: rgba(6,167,255,.55) !important;
+  box-shadow: 0 0 0 4px rgba(6,167,255,.12) !important;
+}
+#outageNormalPanel .controls button{
+  background: linear-gradient(135deg, rgba(6,167,255,.95), rgba(147,110,255,.92)) !important;
+  color:#081018 !important;
+}
+@media (max-width: 980px){
+  #outageNormalPanel .outageForm,
+  #outageNormalPanel .outageResult{ min-height: auto !important; }
+  #outageNormalPanel .resultBox{ min-height: 320px !important; }
+}
+/* === MNDO_FINAL_FIX_V11: Fill the whole SR Technical panel (remove centering/max-width) === */
+#outageNormalPanel{display:block !important; justify-content:initial !important; align-items:initial !important; background:transparent !important; padding:0 !important;}
+#outageNormalPanel .page{display:block !important; width:100% !important; padding:0 !important;}
+#outageNormalPanel .card{width:100% !important; max-width:none !important; margin:0 !important; padding:0 !important; background:transparent !important; border:none !important; box-shadow:none !important; backdrop-filter:none !important;}
+#outageNormalPanel .outageLayout{width:100% !important; grid-template-columns: 1fr 1fr !important; align-items:stretch !important;}
+#outageNormalPanel .outageForm, #outageNormalPanel .outageResult{min-width:0 !important;}
+#outageNormalPanel .outageResult{display:flex !important; flex-direction:column !important;}
+#outageNormalPanel .resultBox{flex:1 1 auto !important; min-height:420px !important; max-height:70vh !important;}
+@media (max-width: 980px){
+  #outageNormalPanel .outageLayout{grid-template-columns:1fr !important;}
+  #outageNormalPanel .resultBox{max-height:none !important;}
+}
+
+
+
+
+      /* Tags overlay now relies on a full-screen fixed layer instead of hiding the whole page. */
+    
+
+
+      /* Flex container for the mobile converters ensuring consistent layout */
+      .mobile-flex {
+        display: flex;
+        gap: 20px;
+        flex-wrap: wrap;
+        align-items: flex-start;
+      }
+      /* Card styling for mobile conversion tools */
+      .converter-card {
+        background: linear-gradient(135deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.02));
+        border: 1px solid var(--mndo-border);
+        border-radius: var(--mndo-radius);
+        box-shadow: var(--mndo-shadow-soft);
+        padding: 20px;
+        color: #fff;
+        max-width: 350px;
+        box-sizing: border-box;
+        display: flex;
+        flex-direction: column;
+      }
+      .converter-card h2 {
+        margin-bottom: 20px;
+        font-size: 20px;
+        color: #fff;
+      }
+      .converter-card label {
+        margin: 10px 0;
+        font-weight: bold;
+        font-size: 16px;
+        color: #e0e0e0;
+      }
+      .converter-card input,
+      .converter-card select {
+        margin: 10px 0;
+        padding: 10px;
+        width: 100%;
+        background-color: rgba(255, 255, 255, 0.14);
+        border: 1px solid var(--mndo-border-strong);
+        border-radius: var(--mndo-radius);
+        color: #fff;
+        box-sizing: border-box;
+      }
+      .converter-card select option {
+        background-color: rgba(20, 20, 28, 0.98);
+        color: #fff;
+      }
+      .converter-card select:focus {
+        outline: none;
+        box-shadow: 0 0 0 2px rgba(129, 199, 132, 0.45);
+      }
+      .converter-card button {
+        margin: 10px 0;
+        padding: 12px;
+        width: 100%;
+        border: none;
+        border-radius: var(--mndo-radius-pill);
+        background-image: linear-gradient(to right, #4CAF50, #81C784);
+        color: white;
+        font-weight: bold;
+        cursor: pointer;
+      }
+      .converter-card button:hover {
+        filter: brightness(1.05);
+      }
+      .converter-card .result {
+        margin-top: 10px;
+        font-weight: bold;
+        color: #fff;
+      }
+    
+
+
+  /*
+    Search results theme blend — safe visual layer only.
+    Keeps search logic/click behavior untouched; removes the hard white panel.
+  */
+  :root{
+    --mndo-search-panel-bg:
+      radial-gradient(120% 150% at 16% 0%, rgba(255,255,255,0.14), rgba(255,255,255,0) 45%),
+      linear-gradient(180deg, rgba(18,22,34,0.96), rgba(8,10,18,0.965));
+    --mndo-search-row-bg: rgba(255,255,255,0.055);
+    --mndo-search-row-hover: rgba(145,172,230,0.18);
+    --mndo-search-text: rgba(255,255,255,0.94);
+    --mndo-search-muted-border: rgba(255,255,255,0.14);
+    --mndo-search-accent: rgba(145,172,230,0.72);
+    --mndo-search-shadow: 0 20px 52px rgba(0,0,0,0.54), 0 0 26px rgba(90,120,255,0.10);
+  }
+
+  /* Default / no extra skin: dark glass so it follows the original dark page instead of white. */
+  html:not(.eid-theme-live):not(.ua07-legacy-theme-live):not(.ahly-premium-theme-live) #searchResults.search-results,
+  html:not(.eid-theme-live):not(.ua07-legacy-theme-live):not(.ahly-premium-theme-live) #searchResults{
+    background: var(--mndo-search-panel-bg) !important;
+    color: var(--mndo-search-text) !important;
+    border-color: var(--mndo-search-muted-border) !important;
+    box-shadow: var(--mndo-search-shadow) !important;
+    -webkit-backdrop-filter: blur(10px) saturate(150%) !important;
+    backdrop-filter: blur(10px) saturate(150%) !important;
+  }
+
+  html:not(.eid-theme-live):not(.ua07-legacy-theme-live):not(.ahly-premium-theme-live) #searchResults.search-results a,
+  html:not(.eid-theme-live):not(.ua07-legacy-theme-live):not(.ahly-premium-theme-live) #searchResults a,
+  html:not(.eid-theme-live):not(.ua07-legacy-theme-live):not(.ahly-premium-theme-live) #searchResults.search-results a.highlight,
+  html:not(.eid-theme-live):not(.ua07-legacy-theme-live):not(.ahly-premium-theme-live) #searchResults a.highlight{
+    background: var(--mndo-search-row-bg) !important;
+    color: var(--mndo-search-text) !important;
+    -webkit-text-fill-color: var(--mndo-search-text) !important;
+    border-bottom-color: var(--mndo-search-muted-border) !important;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.45) !important;
+  }
+
+  html:not(.eid-theme-live):not(.ua07-legacy-theme-live):not(.ahly-premium-theme-live) #searchResults.search-results a:hover,
+  html:not(.eid-theme-live):not(.ua07-legacy-theme-live):not(.ahly-premium-theme-live) #searchResults a:hover,
+  html:not(.eid-theme-live):not(.ua07-legacy-theme-live):not(.ahly-premium-theme-live) #searchResults.search-results a:focus,
+  html:not(.eid-theme-live):not(.ua07-legacy-theme-live):not(.ahly-premium-theme-live) #searchResults a:focus{
+    background: var(--mndo-search-row-hover) !important;
+    color: #ffffff !important;
+    -webkit-text-fill-color: #ffffff !important;
+  }
+
+  html:not(.eid-theme-live):not(.ua07-legacy-theme-live):not(.ahly-premium-theme-live) #searchResults.search-results::-webkit-scrollbar-thumb,
+  html:not(.eid-theme-live):not(.ua07-legacy-theme-live):not(.ahly-premium-theme-live) #searchResults::-webkit-scrollbar-thumb{
+    background: var(--mndo-search-accent) !important;
+  }
+
+  /* Eid theme: same night/gold feel as the Eid background. */
+  html.eid-theme-live #searchResults.search-results,
+  html.eid-theme-live #searchResults{
+    background:
+      radial-gradient(120% 150% at 18% 0%, rgba(255,239,186,0.18), rgba(255,239,186,0) 46%),
+      radial-gradient(90% 120% at 50% 100%, rgba(255,165,118,0.10), rgba(255,165,118,0) 62%),
+      linear-gradient(180deg, rgba(7,11,20,0.955), rgba(5,8,14,0.965)) !important;
+    color: rgba(244,247,255,0.96) !important;
+    border-color: rgba(255,239,186,0.28) !important;
+    box-shadow: 0 20px 52px rgba(0,0,0,0.58), 0 0 28px rgba(243,211,122,0.14) !important;
+    -webkit-backdrop-filter: blur(10px) saturate(155%) !important;
+    backdrop-filter: blur(10px) saturate(155%) !important;
+  }
+
+  html.eid-theme-live #searchResults.search-results a,
+  html.eid-theme-live #searchResults a,
+  html.eid-theme-live #searchResults.search-results a.highlight,
+  html.eid-theme-live #searchResults a.highlight{
+    background: rgba(255,239,186,0.070) !important;
+    color: rgba(244,247,255,0.97) !important;
+    -webkit-text-fill-color: rgba(244,247,255,0.97) !important;
+    border-bottom-color: rgba(255,239,186,0.16) !important;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.48) !important;
+  }
+
+  html.eid-theme-live #searchResults.search-results a:hover,
+  html.eid-theme-live #searchResults a:hover,
+  html.eid-theme-live #searchResults.search-results a:focus,
+  html.eid-theme-live #searchResults a:focus{
+    background: linear-gradient(90deg, rgba(243,211,122,0.24), rgba(255,165,118,0.15)) !important;
+    color: #ffffff !important;
+    -webkit-text-fill-color: #ffffff !important;
+  }
+
+  html.eid-theme-live #searchResults.search-results::-webkit-scrollbar-thumb,
+  html.eid-theme-live #searchResults::-webkit-scrollbar-thumb{
+    background: rgba(243,211,122,0.72) !important;
+  }
+
+  /* UA07 legacy theme: black/silver/red. */
+  html.ua07-legacy-theme-live #searchResults.search-results,
+  html.ua07-legacy-theme-live #searchResults{
+    background:
+      radial-gradient(130% 160% at 18% 0%, rgba(255,255,255,0.16), rgba(255,255,255,0) 42%),
+      linear-gradient(180deg, rgba(22,22,25,0.97), rgba(5,5,6,0.97) 58%, rgba(58,0,0,0.92) 100%) !important;
+    color: rgba(255,255,255,0.94) !important;
+    border-color: rgba(255,255,255,0.20) !important;
+    box-shadow: 0 20px 52px rgba(0,0,0,0.68), 0 0 28px rgba(170,0,0,0.16) !important;
+    -webkit-backdrop-filter: blur(10px) saturate(150%) !important;
+    backdrop-filter: blur(10px) saturate(150%) !important;
+  }
+
+  html.ua07-legacy-theme-live #searchResults.search-results a,
+  html.ua07-legacy-theme-live #searchResults a,
+  html.ua07-legacy-theme-live #searchResults.search-results a.highlight,
+  html.ua07-legacy-theme-live #searchResults a.highlight{
+    background: rgba(255,255,255,0.060) !important;
+    color: rgba(255,255,255,0.94) !important;
+    -webkit-text-fill-color: rgba(255,255,255,0.94) !important;
+    border-bottom-color: rgba(255,255,255,0.13) !important;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.60) !important;
+  }
+
+  html.ua07-legacy-theme-live #searchResults.search-results a:hover,
+  html.ua07-legacy-theme-live #searchResults a:hover,
+  html.ua07-legacy-theme-live #searchResults.search-results a:focus,
+  html.ua07-legacy-theme-live #searchResults a:focus{
+    background: linear-gradient(90deg, rgba(155,0,0,0.52), rgba(255,255,255,0.08)) !important;
+    color: #ffffff !important;
+    -webkit-text-fill-color: #ffffff !important;
+  }
+
+  html.ua07-legacy-theme-live #searchResults.search-results::-webkit-scrollbar-thumb,
+  html.ua07-legacy-theme-live #searchResults::-webkit-scrollbar-thumb{
+    background: rgba(185,24,24,0.72) !important;
+  }
+
+  /* Ahly theme: deep red/gold, matching the active Ahly skin. */
+  html.ahly-premium-theme-live #searchResults.search-results,
+  html.ahly-premium-theme-live #searchResults{
+    background:
+      radial-gradient(130% 160% at 18% 0%, rgba(255,244,210,0.16), rgba(255,244,210,0) 42%),
+      linear-gradient(180deg, rgba(48,2,3,0.975), rgba(5,0,1,0.975) 58%, rgba(115,0,0,0.94) 100%) !important;
+    color: rgba(255,248,225,0.97) !important;
+    border-color: rgba(255,213,112,0.30) !important;
+    box-shadow: 0 22px 56px rgba(0,0,0,0.70), 0 0 30px rgba(215,0,0,0.20) !important;
+    -webkit-backdrop-filter: blur(10px) saturate(155%) !important;
+    backdrop-filter: blur(10px) saturate(155%) !important;
+  }
+
+  html.ahly-premium-theme-live #searchResults.search-results a,
+  html.ahly-premium-theme-live #searchResults a,
+  html.ahly-premium-theme-live #searchResults.search-results a.highlight,
+  html.ahly-premium-theme-live #searchResults a.highlight{
+    background: rgba(255,213,112,0.065) !important;
+    color: rgba(255,248,225,0.97) !important;
+    -webkit-text-fill-color: rgba(255,248,225,0.97) !important;
+    border-bottom-color: rgba(255,213,112,0.15) !important;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.58) !important;
+  }
+
+  html.ahly-premium-theme-live #searchResults.search-results a:hover,
+  html.ahly-premium-theme-live #searchResults a:hover,
+  html.ahly-premium-theme-live #searchResults.search-results a:focus,
+  html.ahly-premium-theme-live #searchResults a:focus{
+    background: linear-gradient(90deg, rgba(160,0,0,0.58), rgba(255,213,112,0.14)) !important;
+    color: #ffffff !important;
+    -webkit-text-fill-color: #ffffff !important;
+  }
+
+  html.ahly-premium-theme-live #searchResults.search-results::-webkit-scrollbar-thumb,
+  html.ahly-premium-theme-live #searchResults::-webkit-scrollbar-thumb{
+    background: rgba(255,213,112,0.72) !important;
+  }
+
+
+
+  /*
+    MNDO_DIALOG_REACTION_AHT_TOP_PAGE_SCROLL_TAGS_HIT_FIX_V6
+    One-file safe layer only:
+    - Suggestions close button is always on top and fully clickable.
+    - Reaction emoji menu opens above Suggestions instead of behind the overlay.
+    - Support/Suggestions stay above header/logo/buttons without forcing Admin open.
+    - AHT + Tags stay at their original top-of-page position, and scroll naturally with the page.
+    - No heavy global click/keydown recalculation loops.
+  */
+
+  /* Tags click target: easier click, but no visual jump or oversized hit layer. */
+  #bat2,
+  #MNDO_AHT_TAGS_STACK #bat2{
+    box-sizing: border-box !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    min-width: 60px !important;
+    min-height: 30px !important;
+    padding: 6px 14px !important;
+    line-height: 1 !important;
+    cursor: pointer !important;
+    pointer-events: auto !important;
+    touch-action: manipulation !important;
+    user-select: none !important;
+    -webkit-user-select: none !important;
+    -webkit-tap-highlight-color: transparent !important;
+    transform: none !important;
+  }
+  #bat2:hover,
+  #bat2:active,
+  #MNDO_AHT_TAGS_STACK #bat2:hover,
+  #MNDO_AHT_TAGS_STACK #bat2:active{
+    transform: none !important;
+  }
+  #bat2:focus-visible,
+  #MNDO_AHT_TAGS_STACK #bat2:focus-visible{
+    outline: 2px solid rgba(255,255,255,0.70) !important;
+    outline-offset: 3px !important;
+  }
+
+  /* Keep AHT + Tags as a normal page-scrolling element.
+     It is positioned once using document coordinates, NOT viewport/fixed coordinates,
+     so the page scrolls over it naturally instead of moving underneath it. */
+  #MNDO_AHT_TAGS_STACK.mndo-aht-tags-page-lock{
+    position: absolute !important;
+    top: var(--mndo-aht-tags-page-top, 6px) !important;
+    right: var(--mndo-aht-tags-right, 0px) !important;
+    left: auto !important;
+    bottom: auto !important;
+    margin: 0 !important;
+    transform: none !important;
+    z-index: 9000 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: stretch !important;
+    gap: 6px !important;
+    pointer-events: auto !important;
+    white-space: nowrap !important;
+    contain: layout style !important;
+  }
+  #MNDO_AHT_TAGS_STACK.mndo-aht-tags-page-lock #mndoQueryTimer,
+  #MNDO_AHT_TAGS_STACK.mndo-aht-tags-page-lock #bat2{
+    position: static !important;
+    top: auto !important;
+    right: auto !important;
+    bottom: auto !important;
+    left: auto !important;
+    margin: 0 !important;
+    transform: none !important;
+    display: inline-flex !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    pointer-events: auto !important;
+  }
+
+  /* Open dialogs sit over every header/logo/tool element. */
+  #suggestionsOverlay.mndo-dialog-layer-open,
+  #supportNameOverlay.mndo-dialog-layer-open,
+  #supportChatOverlay.mndo-dialog-layer-open{
+    position: fixed !important;
+    inset: 0 !important;
+    z-index: 2147483000 !important;
+    isolation: isolate !important;
+    pointer-events: auto !important;
+    background: rgba(0,0,0,0.68) !important;
+    -webkit-backdrop-filter: blur(5px) saturate(120%) !important;
+    backdrop-filter: blur(5px) saturate(120%) !important;
+  }
+  #suggestionsOverlay.mndo-dialog-layer-open,
+  #supportNameOverlay.mndo-dialog-layer-open,
+  #supportChatOverlay.mndo-dialog-layer-open{
+    display: flex !important;
+  }
+  #adminOverlay.mndo-admin-layer-open{
+    position: fixed !important;
+    inset: 0 !important;
+    z-index: 2147483646 !important;
+    isolation: isolate !important;
+    pointer-events: auto !important;
+  }
+
+  /* Suggestions close button fix: panel must not cover the close button. */
+  #suggestionsOverlay.mndo-dialog-layer-open .suggestions-modal{
+    position: relative !important;
+    z-index: 2 !important;
+    isolation: isolate !important;
+  }
+  #suggestionsOverlay.mndo-dialog-layer-open .suggestions-panel{
+    position: relative !important;
+    z-index: 1 !important;
+  }
+  #suggestionsOverlay #suggestionsCloseBtn,
+  #suggestionsOverlay.mndo-dialog-layer-open #suggestionsCloseBtn,
+  #suggestionsOverlay .suggestions-close{
+    position: absolute !important;
+    top: 10px !important;
+    right: 12px !important;
+    z-index: 20 !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    pointer-events: auto !important;
+    cursor: pointer !important;
+    color: rgba(255,255,255,0.96) !important;
+    background: rgba(15,16,24,0.78) !important;
+    border-color: rgba(255,255,255,0.26) !important;
+    line-height: 1 !important;
+    transform: none !important;
+  }
+  #suggestionsOverlay #suggestionsCloseBtn:hover{
+    filter: brightness(1.12) !important;
+    transform: none !important;
+  }
+
+  .mndo-dialog-layer-open .support-modal,
+  .mndo-dialog-layer-open .support-chat,
+  #adminOverlay.mndo-admin-layer-open .admin-modal{
+    position: relative !important;
+    z-index: 2 !important;
+    isolation: isolate !important;
+  }
+
+  /* While a front dialog is open, header/search/logo/buttons cannot cover it. */
+  body.mndo-front-dialog-open #MNDO_UA07_LOGO3,
+  body.mndo-front-dialog-open #MNDO_UA07_LOGO,
+  body.mndo-front-dialog-open #UA07_LUX_LOGO_BETWEEN,
+  body.mndo-front-dialog-open #UA07_SECRET_ENVELOPE_WRAP,
+  body.mndo-front-dialog-open .mndo-header-logo-slot,
+  body.mndo-front-dialog-open .mndo-search-logo-row,
+  body.mndo-front-dialog-open .mndo-search-hk-anchor,
+  body.mndo-front-dialog-open .search-container,
+  body.mndo-front-dialog-open #MNDO_AHT_TAGS_STACK,
+  body.mndo-front-dialog-open #mndoQueryTimer,
+  body.mndo-front-dialog-open #bat2,
+  body.mndo-front-dialog-open #copyBtn,
+  body.mndo-front-dialog-open #copyBtn1,
+  body.mndo-front-dialog-open #mndoTTTop,
+  body.mndo-front-dialog-open #mndoSRTop,
+  body.mndo-front-dialog-open #mndoTTBottom,
+  body.mndo-front-dialog-open #mndoSRBottom,
+  body.mndo-front-dialog-open .floating-actions,
+  body.mndo-front-dialog-open .suggestions-fab,
+  body.mndo-front-dialog-open .support-fab{
+    z-index: 1 !important;
+    pointer-events: none !important;
+  }
+  body.mndo-front-dialog-open #searchResults,
+  body.mndo-front-dialog-open #searchResults.search-results{
+    display: none !important;
+    visibility: hidden !important;
+    pointer-events: none !important;
+  }
+
+  /* Reaction emoji menu must appear above the Suggestions overlay. */
+  #suggestionsOverlay .sr-react-open{
+    min-width: 28px !important;
+    min-height: 28px !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    pointer-events: auto !important;
+    position: relative !important;
+    z-index: 5 !important;
+    transform: none !important;
+  }
+  #suggestionsOverlay .sr-react-host,
+  #suggestionsOverlay .sr-suggest-react-anchor{
+    pointer-events: auto !important;
+    position: relative !important;
+    z-index: 4 !important;
+  }
+  #sr-react-menu,
+  #sr-react-menu.open{
+    z-index: 2147483602 !important;
+    pointer-events: auto !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+  }
+  #sr-react-menu .choice,
+  #sr-react-menu .choice:hover,
+  #sr-react-menu .choice.active{
+    transform: none !important;
+    transition: background-color .12s ease, filter .12s ease !important;
+  }
+
+  /* V6: Tags must be clickable/hoverable from the whole visible pill, not only a lower edge. */
+  #MNDO_AHT_TAGS_STACK.mndo-aht-tags-page-lock{
+    z-index: 2147482000 !important;
+    overflow: visible !important;
+  }
+  #MNDO_AHT_TAGS_STACK.mndo-aht-tags-page-lock #mndoQueryTimer{
+    position: relative !important;
+    z-index: 1 !important;
+    pointer-events: none !important;
+  }
+  #MNDO_AHT_TAGS_STACK.mndo-aht-tags-page-lock #bat2{
+    position: relative !important;
+    z-index: 3 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: 100% !important;
+    min-width: 72px !important;
+    height: 36px !important;
+    min-height: 36px !important;
+    padding: 0 18px !important;
+    line-height: 36px !important;
+    overflow: visible !important;
+    cursor: pointer !important;
+    pointer-events: auto !important;
+  }
+  #MNDO_AHT_TAGS_STACK.mndo-aht-tags-page-lock #bat2::before{
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background: transparent;
+    cursor: pointer;
+  }
+
+  /* High z-index search/header wrappers must not steal hover/click from the Tags pill. */
+  .mndo-search-logo-row,
+  .mndo-search-hk-anchor,
+  .search-container{
+    pointer-events: none !important;
+  }
+  #searchInput,
+  .search-container .search-input,
+  #searchResults,
+  #searchResults *,
+  .search-container .search-icon,
+  .mndo-header-logo-slot,
+  .mndo-header-logo-slot *,
+  #MNDO_UA07_LOGO3,
+  #MNDO_UA07_LOGO3 *,
+  #UA07_SECRET_ENVELOPE_WRAP,
+  #UA07_SECRET_ENVELOPE,
+  #UA07_SECRET_ENVELOPE *{
+    pointer-events: auto !important;
+  }
+
+
+
+  /*
+    Ahly active-tab visual fix — one-file safe layer.
+    Makes the selected main menu clearly different in Ahly theme only,
+    without changing click logic or layout/scale behavior.
+  */
+  html.ahly-premium-theme-live #tabs .tablinks{
+    position: relative !important;
+  }
+
+  html.ahly-premium-theme-live #tabs .tablinks.active,
+  html.ahly-premium-theme-live #tabs .tablinks.mndo-ahly-current-tab,
+  html.ahly-premium-theme-live #tabs .tablinks[aria-current="page"]{
+    color: #fff7d6 !important;
+    -webkit-text-fill-color: #fff7d6 !important;
+    border-color: rgba(255, 217, 116, 0.88) !important;
+    background:
+      linear-gradient(180deg, rgba(255,255,255,0.22), rgba(255,255,255,0.035) 30%),
+      radial-gradient(120% 185% at 18% 0%, rgba(255,218,118,0.32), rgba(255,218,118,0) 48%),
+      radial-gradient(125% 190% at 92% 0%, rgba(255,0,0,0.32), rgba(255,0,0,0) 58%),
+      linear-gradient(180deg, rgba(187,0,0,0.98) 0%, rgba(103,0,0,0.98) 50%, rgba(18,18,22,0.98) 100%) !important;
+    text-shadow:
+      0 1px 2px rgba(0,0,0,0.96),
+      0 0 9px rgba(255,221,128,0.26) !important;
+    box-shadow:
+      0 0 0 2px rgba(255,218,118,0.24),
+      0 13px 28px rgba(0,0,0,0.62),
+      0 0 22px rgba(177,0,0,0.34),
+      inset 0 1px 0 rgba(255,255,255,0.22),
+      inset 0 -2px 0 rgba(255,219,113,0.52),
+      inset 0 0 0 1px rgba(255,240,180,0.08) !important;
+    filter: saturate(1.16) brightness(1.07) !important;
+    transform: translateY(-1px) !important;
+  }
+
+  html.ahly-premium-theme-live #tabs .tablinks.active:hover,
+  html.ahly-premium-theme-live #tabs .tablinks.mndo-ahly-current-tab:hover,
+  html.ahly-premium-theme-live #tabs .tablinks[aria-current="page"]:hover{
+    color: #fffbe8 !important;
+    -webkit-text-fill-color: #fffbe8 !important;
+    border-color: rgba(255, 230, 145, 0.96) !important;
+    box-shadow:
+      0 0 0 2px rgba(255,230,145,0.30),
+      0 15px 31px rgba(0,0,0,0.64),
+      0 0 26px rgba(210,0,0,0.42),
+      inset 0 1px 0 rgba(255,255,255,0.25),
+      inset 0 -2px 0 rgba(255,226,136,0.62) !important;
+  }
+
+  html.ahly-premium-theme-live #tabs .tablinks.active::after,
+  html.ahly-premium-theme-live #tabs .tablinks.mndo-ahly-current-tab::after,
+  html.ahly-premium-theme-live #tabs .tablinks[aria-current="page"]::after{
+    content: "";
+    position: absolute;
+    left: 12px;
+    right: 12px;
+    bottom: 4px;
+    height: 3px;
+    border-radius: 999px;
+    pointer-events: none;
+    background: linear-gradient(90deg, rgba(255,218,118,0), rgba(255,232,150,0.95), rgba(255,218,118,0));
+    box-shadow: 0 0 9px rgba(255,218,118,0.55);
+  }
+
+
+
+  /*
+    Stable search results layer:
+    - keeps the results centered under the search box
+    - removes layout jitter by avoiding repeated transform/left rewrites
+    - keeps row text centered without changing the active theme colors
+  */
+  .search-container{
+    position: relative !important;
+    overflow: visible !important;
+  }
+
+  #searchResults.search-results,
+  #searchResults{
+    position: absolute !important;
+    top: calc(100% + 6px) !important;
+    left: var(--mndo-search-panel-left, 50%) !important;
+    right: auto !important;
+    width: var(--mndo-search-panel-width, min(100%, 460px)) !important;
+    min-width: var(--mndo-search-panel-width, min(100%, 460px)) !important;
+    max-width: var(--mndo-search-panel-width, min(100%, 460px)) !important;
+    transform: var(--mndo-search-panel-transform, translate3d(-50%, 0, 0)) !important;
+    margin: 6px 0 0 0 !important;
+    box-sizing: border-box !important;
+    text-align: center !important;
+    z-index: 2147483647 !important;
+    contain: layout paint !important;
+    will-change: auto !important;
+    backface-visibility: hidden !important;
+    scrollbar-gutter: stable !important;
+  }
+
+  #searchResults.search-results a,
+  #searchResults a{
+    text-align: center !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+    padding-left: 18px !important;
+    padding-right: 18px !important;
+    line-height: 1.45 !important;
+    white-space: normal !important;
+    overflow-wrap: anywhere !important;
+    transform: none !important;
+    transition-property: background-color, color, border-color, box-shadow !important;
+    transition-duration: .12s !important;
+  }
+
+  #searchResults.search-results a:hover,
+  #searchResults.search-results a:focus,
+  #searchResults a:hover,
+  #searchResults a:focus{
+    transform: none !important;
+  }
+
+  #searchResults.search-results a .fa,
+  #searchResults.search-results a i,
+  #searchResults a .fa,
+  #searchResults a i{
+    flex: 0 0 auto !important;
+    margin-inline: 6px !important;
+  }
+
+
+
+
+
+/* =========================================================
+   Ahly Premium Theme - v9 same-logic visible buttons fix
+   Requested fix:
+   - no toolsBar/banner background
+   - main tabs and secondary tool buttons are visible in normal state
+   - hover is heavier/clearer but still premium and comfortable
+   - visual only: no IDs, URLs, SR logic, order, or HTML behavior changed
+   ========================================================= */
+
+html.ahly-premium-theme-live {
+  --ahly-v9-cream: #fff6dc;
+  --ahly-v9-champagne: #e8d49f;
+  --ahly-v9-champagne-soft: #d7bf86;
+  --ahly-v9-ink: rgba(7,0,0,.94);
+  --ahly-v9-red-1: rgba(112,0,0,.82);
+  --ahly-v9-red-2: rgba(44,0,1,.92);
+  --ahly-v9-border: rgba(232,205,139,.25);
+  --ahly-v9-border-hot: rgba(255,229,164,.55);
+}
+
+/* No banners/backplates behind the rows. Keep only the original row logic/spacing. */
+html.ahly-premium-theme-live #tabs,
+html.ahly-premium-theme-live #tabs.tab {
+  background: transparent !important;
+  background-color: transparent !important;
+  border: 0 !important;
+  box-shadow: none !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+
+html.ahly-premium-theme-live .toolsBar,
+html.ahly-premium-theme-live .tabcontent .toolsBar {
+  text-align: left !important;
+  padding-left: 20px !important;
+  padding-right: 20px !important;
+  padding-top: 2px !important;
+  padding-bottom: 0 !important;
+  margin-top: -10px !important;
+  margin-bottom: 18px !important;
+  box-sizing: border-box !important;
+  background: transparent !important;
+  background-color: transparent !important;
+  border: 0 !important;
+  outline: 0 !important;
+  box-shadow: none !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+
+/* Remove older eagle/glass pseudo-layers on these small links. */
+html.ahly-premium-theme-live .toolsBar .toolsStyle::before,
+html.ahly-premium-theme-live .toolsBar .toolsStyle::after,
+html.ahly-premium-theme-live .tabcontent .toolsBar .toolsStyle::before,
+html.ahly-premium-theme-live .tabcontent .toolsBar .toolsStyle::after,
+html.ahly-premium-theme-live .tabcontent .dropdown .dropbtn::before,
+html.ahly-premium-theme-live .tabcontent .dropdown .dropbtn::after,
+html.ahly-premium-theme-live .tabcontent .navbar a::before,
+html.ahly-premium-theme-live .tabcontent .navbar a::after,
+html.ahly-premium-theme-live .tabcontent :is(#singlelink, .tabcontent > a[data-sr-catalog-link], .tabcontent > a[href*="srTypeId="])::before,
+html.ahly-premium-theme-live .tabcontent :is(#singlelink, .tabcontent > a[data-sr-catalog-link], .tabcontent > a[href*="srTypeId="])::after {
+  content: none !important;
+  opacity: 0 !important;
+  background: none !important;
+  box-shadow: none !important;
+}
+
+/* Main top tabs: individual visible buttons, no parent banner. */
+html.ahly-premium-theme-live #tabs .tablinks {
+  position: relative !important;
+  color: var(--ahly-v9-champagne) !important;
+  -webkit-text-fill-color: var(--ahly-v9-champagne) !important;
+  background:
+    radial-gradient(130% 160% at 20% 0%, rgba(255,246,211,.105), rgba(255,246,211,0) 42%),
+    linear-gradient(180deg, rgba(49,0,1,.78) 0%, rgba(8,0,0,.92) 60%, rgba(65,0,0,.58) 100%) !important;
+  background-color: rgba(12,0,0,.88) !important;
+  border: 1px solid var(--ahly-v9-border) !important;
+  border-radius: 14px !important;
+  text-shadow:
+    0 2px 3px rgba(0,0,0,.98),
+    0 0 7px rgba(232,205,139,.12) !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255,246,211,.105),
+    inset 0 -1px 0 rgba(232,205,139,.13),
+    0 9px 19px rgba(0,0,0,.28) !important;
+  filter: none !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  transition: background .16s ease, color .16s ease, border-color .16s ease, box-shadow .16s ease, transform .16s ease !important;
+}
+
+html.ahly-premium-theme-live #tabs .tablinks:hover,
+html.ahly-premium-theme-live #tabs .tablinks:focus,
+html.ahly-premium-theme-live #tabs .tablinks.active,
+html.ahly-premium-theme-live #tabs .tablinks.mndo-ahly-current-tab,
+html.ahly-premium-theme-live #tabs .tablinks[aria-current="page"] {
+  color: var(--ahly-v9-cream) !important;
+  -webkit-text-fill-color: var(--ahly-v9-cream) !important;
+  background:
+    radial-gradient(135% 165% at 18% 0%, rgba(255,246,211,.18), rgba(255,246,211,0) 43%),
+    linear-gradient(180deg, rgba(142,0,0,.90) 0%, rgba(46,0,1,.95) 56%, rgba(10,0,0,.96) 100%) !important;
+  border-color: var(--ahly-v9-border-hot) !important;
+  text-shadow:
+    0 2px 3px rgba(0,0,0,1),
+    0 0 12px rgba(255,235,178,.24) !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255,246,211,.18),
+    inset 0 -2px 0 rgba(255,225,150,.48),
+    0 12px 26px rgba(0,0,0,.42),
+    0 0 0 1px rgba(255,230,166,.075) !important;
+  transform: translateY(-1px) !important;
+}
+
+html.ahly-premium-theme-live #tabs .tablinks.active::after,
+html.ahly-premium-theme-live #tabs .tablinks.mndo-ahly-current-tab::after,
+html.ahly-premium-theme-live #tabs .tablinks[aria-current="page"]::after {
+  content: "" !important;
+  position: absolute !important;
+  left: 14px !important;
+  right: 14px !important;
+  bottom: 4px !important;
+  height: 2px !important;
+  border-radius: 999px !important;
+  pointer-events: none !important;
+  background: linear-gradient(90deg, rgba(232,205,139,0), rgba(255,230,166,.88), rgba(232,205,139,0)) !important;
+  box-shadow: 0 0 8px rgba(255,225,150,.34) !important;
+}
+
+/* Secondary tool buttons under SR tabs: visible in normal state, no banner behind them. */
+html.ahly-premium-theme-live .toolsBar .toolsStyle,
+html.ahly-premium-theme-live .tabcontent .toolsBar .toolsStyle {
+  display: inline-block !important;
+  position: relative !important;
+  isolation: auto !important;
+  overflow: visible !important;
+  box-sizing: border-box !important;
+  margin: 2px 6px 8px 0 !important;
+  padding: 3px 8px !important;
+  border-radius: 7px !important;
+  text-decoration: none !important;
+  vertical-align: top !important;
+  color: var(--ahly-v9-champagne) !important;
+  -webkit-text-fill-color: var(--ahly-v9-champagne) !important;
+  background:
+    radial-gradient(120% 150% at 16% 0%, rgba(255,246,211,.075), rgba(255,246,211,0) 42%),
+    linear-gradient(180deg, rgba(35,0,1,.68) 0%, rgba(7,0,0,.86) 58%, rgba(63,0,0,.42) 100%) !important;
+  background-color: rgba(10,0,0,.72) !important;
+  border: 1px solid rgba(232,205,139,.18) !important;
+  text-shadow:
+    0 2px 3px rgba(0,0,0,.98),
+    0 0 6px rgba(232,205,139,.10) !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255,246,211,.075),
+    inset 0 -1px 0 rgba(232,205,139,.09),
+    0 5px 12px rgba(0,0,0,.20) !important;
+  opacity: 1 !important;
+  filter: none !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  transition: background .16s ease, color .16s ease, border-color .16s ease, box-shadow .16s ease, transform .16s ease !important;
+}
+
+html.ahly-premium-theme-live .toolsBar .toolsStyle:hover,
+html.ahly-premium-theme-live .toolsBar .toolsStyle:focus,
+html.ahly-premium-theme-live .tabcontent .toolsBar .toolsStyle:hover,
+html.ahly-premium-theme-live .tabcontent .toolsBar .toolsStyle:focus {
+  color: var(--ahly-v9-cream) !important;
+  -webkit-text-fill-color: var(--ahly-v9-cream) !important;
+  background:
+    radial-gradient(125% 150% at 15% 0%, rgba(255,246,211,.16), rgba(255,246,211,0) 43%),
+    linear-gradient(90deg, rgba(142,0,0,.86) 0%, rgba(66,0,1,.90) 54%, rgba(10,0,0,.86) 100%) !important;
+  border-color: rgba(255,229,164,.45) !important;
+  text-shadow:
+    0 2px 3px rgba(0,0,0,1),
+    0 0 11px rgba(255,235,178,.22) !important;
+  box-shadow:
+    inset 2px 0 0 rgba(255,225,150,.60),
+    inset 0 1px 0 rgba(255,246,211,.14),
+    inset 0 -1px 0 rgba(255,225,150,.22),
+    0 8px 18px rgba(0,0,0,.34) !important;
+  transform: translateY(-1px) !important;
+}
+
+/* SR option/dropdown buttons below the secondary links: visible like other themes. */
+html.ahly-premium-theme-live .tabcontent .dropdown .dropbtn,
+html.ahly-premium-theme-live .tabcontent .navbar a,
+html.ahly-premium-theme-live .tabcontent :is(#singlelink, .tabcontent > a[data-sr-catalog-link], .tabcontent > a[href*="srTypeId="]),
+html.ahly-premium-theme-live .dropdown .dropbtn,
+html.ahly-premium-theme-live .navbar a,
+html.ahly-premium-theme-live :is(#singlelink, .tabcontent > a[data-sr-catalog-link], .tabcontent > a[href*="srTypeId="]) {
+  color: var(--ahly-v9-champagne) !important;
+  -webkit-text-fill-color: var(--ahly-v9-champagne) !important;
+  background:
+    radial-gradient(120% 150% at 16% 0%, rgba(255,246,211,.065), rgba(255,246,211,0) 42%),
+    linear-gradient(180deg, rgba(30,0,1,.54) 0%, rgba(6,0,0,.72) 62%, rgba(50,0,0,.30) 100%) !important;
+  background-color: rgba(8,0,0,.58) !important;
+  border-color: rgba(232,205,139,.14) !important;
+  border-radius: 7px !important;
+  text-shadow:
+    0 2px 3px rgba(0,0,0,.98),
+    0 0 6px rgba(232,205,139,.10) !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255,246,211,.060),
+    inset 0 -1px 0 rgba(232,205,139,.08),
+    0 4px 11px rgba(0,0,0,.16) !important;
+  filter: none !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+
+html.ahly-premium-theme-live .dropdown:hover .dropbtn,
+html.ahly-premium-theme-live .dropdown:focus-within .dropbtn,
+html.ahly-premium-theme-live .dropdown.open .dropbtn,
+html.ahly-premium-theme-live .dropdown.active .dropbtn,
+html.ahly-premium-theme-live :is(#singlelink, .tabcontent > a[data-sr-catalog-link], .tabcontent > a[href*="srTypeId="]):hover,
+html.ahly-premium-theme-live :is(#singlelink, .tabcontent > a[data-sr-catalog-link], .tabcontent > a[href*="srTypeId="]):focus,
+html.ahly-premium-theme-live .navbar a:hover,
+html.ahly-premium-theme-live .navbar a:focus {
+  color: var(--ahly-v9-cream) !important;
+  -webkit-text-fill-color: var(--ahly-v9-cream) !important;
+  background:
+    radial-gradient(125% 150% at 15% 0%, rgba(255,246,211,.15), rgba(255,246,211,0) 43%),
+    linear-gradient(90deg, rgba(140,0,0,.82) 0%, rgba(57,0,1,.88) 56%, rgba(8,0,0,.82) 100%) !important;
+  border-color: rgba(255,229,164,.39) !important;
+  box-shadow:
+    inset 2px 0 0 rgba(255,225,150,.52),
+    inset 0 1px 0 rgba(255,246,211,.13),
+    inset 0 -1px 0 rgba(255,225,150,.20),
+    0 8px 18px rgba(0,0,0,.32) !important;
+  transform: translateY(-1px) !important;
+}
+
+/* Open menu readability: solid clear panel so text never disappears into the Ahly background. */
+html.ahly-premium-theme-live .dropdown-content,
+html.ahly-premium-theme-live .sub-dropdown-content,
+html.ahly-premium-theme-live .dropdown:hover .dropdown-content,
+html.ahly-premium-theme-live .dropdown:focus-within .dropdown-content,
+html.ahly-premium-theme-live .sub-dropdown:hover .sub-dropdown-content,
+html.ahly-premium-theme-live .sub-dropdown:focus-within .sub-dropdown-content {
+  color: var(--ahly-v9-champagne) !important;
+  -webkit-text-fill-color: var(--ahly-v9-champagne) !important;
+  background:
+    radial-gradient(115% 140% at 18% 0%, rgba(232,205,139,.095), rgba(232,205,139,0) 42%),
+    linear-gradient(180deg, rgba(13,0,1,.97) 0%, rgba(33,0,1,.965) 54%, rgba(4,0,0,.985) 100%) !important;
+  background-color: rgba(9,0,0,.975) !important;
+  border: 1px solid rgba(232,205,139,.28) !important;
+  box-shadow:
+    0 18px 42px rgba(0,0,0,.62),
+    inset 0 1px 0 rgba(255,246,211,.085) !important;
+  text-shadow: 0 2px 3px rgba(0,0,0,1) !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  z-index: 999999 !important;
+}
+
+html.ahly-premium-theme-live .sub-dropdown,
+html.ahly-premium-theme-live .sub-dropdown[style],
+html.ahly-premium-theme-live .dropdown-content a,
+html.ahly-premium-theme-live .sub-dropdown-content a,
+html.ahly-premium-theme-live .sub-dropdown > a,
+html.ahly-premium-theme-live #searchResults.search-results a,
+html.ahly-premium-theme-live #searchResults a {
+  color: var(--ahly-v9-champagne) !important;
+  -webkit-text-fill-color: var(--ahly-v9-champagne) !important;
+  background: rgba(0,0,0,.12) !important;
+  background-color: rgba(0,0,0,.12) !important;
+  border-color: rgba(232,205,139,.10) !important;
+  text-shadow: 0 2px 3px rgba(0,0,0,1), 0 0 6px rgba(232,205,139,.09) !important;
+  box-shadow: inset 0 -1px 0 rgba(232,205,139,.07) !important;
+}
+
+html.ahly-premium-theme-live .sub-dropdown:hover,
+html.ahly-premium-theme-live .sub-dropdown:hover[style],
+html.ahly-premium-theme-live .dropdown-content a:hover,
+html.ahly-premium-theme-live .sub-dropdown-content a:hover,
+html.ahly-premium-theme-live .sub-dropdown:hover > a,
+html.ahly-premium-theme-live .dropdown-content a:focus,
+html.ahly-premium-theme-live .sub-dropdown-content a:focus,
+html.ahly-premium-theme-live #searchResults.search-results a:hover,
+html.ahly-premium-theme-live #searchResults a:hover,
+html.ahly-premium-theme-live #searchResults.search-results a:focus,
+html.ahly-premium-theme-live #searchResults a:focus,
+html.ahly-premium-theme-live #searchResults.search-results a.highlight,
+html.ahly-premium-theme-live #searchResults a.highlight {
+  color: var(--ahly-v9-cream) !important;
+  -webkit-text-fill-color: var(--ahly-v9-cream) !important;
+  background:
+    radial-gradient(115% 145% at 12% 0%, rgba(255,246,211,.14), rgba(255,246,211,0) 42%),
+    linear-gradient(90deg, rgba(145,0,0,.88) 0%, rgba(74,0,1,.86) 54%, rgba(12,0,0,.82) 100%) !important;
+  border-color: rgba(255,229,164,.34) !important;
+  box-shadow:
+    inset 2px 0 0 rgba(255,225,150,.58),
+    inset 0 1px 0 rgba(255,246,211,.11),
+    inset 0 -1px 0 rgba(255,225,150,.20),
+    0 7px 16px rgba(0,0,0,.30) !important;
+}
+
+
+
+
+
+
+/* ===== Ahly transparent menu choices v13 - actual separate layer =====
+   This block mirrors the no-theme menu-choice transparency and overrides the
+   older inline Ahly V9 layer. Visual only: no layout, display, spacing, sizing,
+   ordering, positioning, links, IDs, or tool logic are changed.
+*/
+html.ahly-premium-theme-live body .tabcontent .dropdown .dropbtn,
+html.ahly-premium-theme-live body .tabcontent .navbar a,
+html.ahly-premium-theme-live body .tabcontent :is(#singlelink, .tabcontent > a[data-sr-catalog-link], .tabcontent > a[href*="srTypeId="]),
+html.ahly-premium-theme-live body .dropdown .dropbtn,
+html.ahly-premium-theme-live body .navbar a,
+html.ahly-premium-theme-live body :is(#singlelink, .tabcontent > a[data-sr-catalog-link], .tabcontent > a[href*="srTypeId="]) {
+  color: rgba(255, 235, 184, 0.98) !important;
+  -webkit-text-fill-color: rgba(255, 235, 184, 0.98) !important;
+  background: transparent !important;
+  background-color: transparent !important;
+  border-color: transparent !important;
+  text-shadow: 0 1px 2px rgba(0,0,0,0.98), 0 0 8px rgba(145,0,0,0.34), 0 0 7px rgba(255,214,116,0.16) !important;
+  box-shadow: none !important;
+  filter: none !important;
+}
+html.ahly-premium-theme-live body .tabcontent .dropdown .dropbtn::before,
+html.ahly-premium-theme-live body .tabcontent .dropdown .dropbtn::after,
+html.ahly-premium-theme-live body .tabcontent .navbar a::before,
+html.ahly-premium-theme-live body .tabcontent .navbar a::after,
+html.ahly-premium-theme-live body .tabcontent :is(#singlelink, .tabcontent > a[data-sr-catalog-link], .tabcontent > a[href*="srTypeId="])::before,
+html.ahly-premium-theme-live body .tabcontent :is(#singlelink, .tabcontent > a[data-sr-catalog-link], .tabcontent > a[href*="srTypeId="])::after,
+html.ahly-premium-theme-live body .dropdown .dropbtn::before,
+html.ahly-premium-theme-live body .dropdown .dropbtn::after,
+html.ahly-premium-theme-live body .navbar a::before,
+html.ahly-premium-theme-live body .navbar a::after,
+html.ahly-premium-theme-live body :is(#singlelink, .tabcontent > a[data-sr-catalog-link], .tabcontent > a[href*="srTypeId="])::before,
+html.ahly-premium-theme-live body :is(#singlelink, .tabcontent > a[data-sr-catalog-link], .tabcontent > a[href*="srTypeId="])::after {
+  opacity: 0 !important;
+  background: none !important;
+  background-color: transparent !important;
+  border-color: transparent !important;
+  box-shadow: none !important;
+  filter: none !important;
+}
+html.ahly-premium-theme-live body .dropdown:hover .dropbtn,
+html.ahly-premium-theme-live body .dropdown:focus-within .dropbtn,
+html.ahly-premium-theme-live body .dropdown.open .dropbtn,
+html.ahly-premium-theme-live body .dropdown.active .dropbtn,
+html.ahly-premium-theme-live body .navbar a:hover,
+html.ahly-premium-theme-live body .navbar a:focus,
+html.ahly-premium-theme-live body :is(#singlelink, .tabcontent > a[data-sr-catalog-link], .tabcontent > a[href*="srTypeId="]):hover,
+html.ahly-premium-theme-live body :is(#singlelink, .tabcontent > a[data-sr-catalog-link], .tabcontent > a[href*="srTypeId="]):focus {
+  color: #fffdf1 !important;
+  -webkit-text-fill-color: #fffdf1 !important;
+  background: transparent !important;
+  background-color: transparent !important;
+  border-color: transparent !important;
+  text-shadow: 0 1px 2px rgba(0,0,0,1), 0 0 10px rgba(255,213,112,0.24), 0 0 14px rgba(205,0,0,0.18) !important;
+  box-shadow: none !important;
+  filter: none !important;
+}
+html.ahly-premium-theme-live body .sub-dropdown,
+html.ahly-premium-theme-live body .sub-dropdown[style],
+html.ahly-premium-theme-live body .dropdown-content a,
+html.ahly-premium-theme-live body .sub-dropdown-content a,
+html.ahly-premium-theme-live body .sub-dropdown > a,
+html.ahly-premium-theme-live body #searchResults.search-results a,
+html.ahly-premium-theme-live body #searchResults a,
+html.ahly-premium-theme-live body .search-results a {
+  color: rgba(255, 235, 184, 0.98) !important;
+  -webkit-text-fill-color: rgba(255, 235, 184, 0.98) !important;
+  background: transparent !important;
+  background-color: transparent !important;
+  border-color: rgba(255,213,112,0.10) !important;
+  text-shadow: 0 1px 2px rgba(0,0,0,0.96) !important;
+  box-shadow: none !important;
+  filter: none !important;
+}
+html.ahly-premium-theme-live body .sub-dropdown:hover,
+html.ahly-premium-theme-live body .sub-dropdown:hover[style],
+html.ahly-premium-theme-live body .dropdown-content a:hover,
+html.ahly-premium-theme-live body .dropdown-content a:focus,
+html.ahly-premium-theme-live body .sub-dropdown-content a:hover,
+html.ahly-premium-theme-live body .sub-dropdown-content a:focus,
+html.ahly-premium-theme-live body .sub-dropdown:hover > a,
+html.ahly-premium-theme-live body #searchResults.search-results a:hover,
+html.ahly-premium-theme-live body #searchResults a:hover,
+html.ahly-premium-theme-live body #searchResults.search-results a:focus,
+html.ahly-premium-theme-live body #searchResults a:focus,
+html.ahly-premium-theme-live body #searchResults.search-results a.highlight,
+html.ahly-premium-theme-live body #searchResults a.highlight,
+html.ahly-premium-theme-live body .search-results a:hover,
+html.ahly-premium-theme-live body .search-results a:focus,
+html.ahly-premium-theme-live body .search-results a.highlight {
+  color: #fffdf1 !important;
+  -webkit-text-fill-color: #fffdf1 !important;
+  background: transparent !important;
+  background-color: transparent !important;
+  border-color: rgba(255,229,164,0.18) !important;
+  text-shadow: 0 1px 2px rgba(0,0,0,1), 0 0 10px rgba(255,213,112,0.20) !important;
+  box-shadow: none !important;
+  filter: none !important;
+}
+/* ===== END Ahly transparent menu choices v13 ===== */
+
+
+
+
+/* ===== MNDO professional menu hover layer v2 =====
+   Ahly/Egypt keep the approved professional hover.
+   Zamalek dropdown panels are intentionally NOT touched here; Zamalek gets only
+   a static main-button hover in ua07-20-theme.css so its dropdown shading stays as accepted.
+   The stopped/off theme gets the requested blue menu/dropdown shading.
+   Visual-only: colors/backgrounds/borders/shadows/text effects; no layout or logic touched.
+*/
+html.egypt-worldcup-theme-live {
+  --mndo-menu-text: #f5d57d;
+  --mndo-menu-hover-text: #fff7d5;
+  --mndo-menu-hover-bg: linear-gradient(180deg, rgba(255,246,211,.16), rgba(255,246,211,.035) 36%, rgba(92,0,0,.36) 100%), radial-gradient(120% 170% at 14% 0%, rgba(255,218,118,.20), rgba(255,218,118,0) 48%), radial-gradient(120% 180% at 100% 0%, rgba(206,14,45,.26), rgba(206,14,45,0) 58%), linear-gradient(90deg, rgba(76,0,0,.66), rgba(18,0,0,.42) 55%, rgba(5,0,0,.30));
+  --mndo-menu-hover-bg-color: rgba(35,0,0,.56);
+  --mndo-menu-hover-border: rgba(255,226,145,.42);
+  --mndo-menu-hover-glow: rgba(255,218,118,.28);
+  --mndo-menu-hover-accent: rgba(255,218,118,.46);
+  --mndo-panel-bg: linear-gradient(180deg, rgba(255,246,211,.075), rgba(255,246,211,.016) 34%, rgba(0,0,0,.02)), radial-gradient(160% 120% at 12% 0%, rgba(255,218,118,.10), rgba(255,218,118,0) 48%), radial-gradient(150% 135% at 100% 6%, rgba(170,0,0,.20), rgba(170,0,0,0) 58%), linear-gradient(180deg, rgba(20,0,0,.88), rgba(38,0,0,.78) 57%, rgba(5,0,0,.90));
+  --mndo-panel-bg-color: rgba(18,0,0,.86);
+  --mndo-panel-border: rgba(255,226,145,.33);
+  --mndo-row-border: rgba(255,226,145,.10);
+  --mndo-row-hover-bg: linear-gradient(180deg, rgba(255,246,211,.10), rgba(255,246,211,.025)), radial-gradient(125% 150% at 8% 0%, rgba(255,218,118,.18), rgba(255,218,118,0) 48%), linear-gradient(90deg, rgba(116,0,0,.58), rgba(35,0,0,.34) 58%, rgba(3,0,0,.18));
+  --mndo-row-hover-bg-color: rgba(58,0,0,.46);
+}
+html.ahly-premium-theme-live {
+  --mndo-menu-text: rgba(255,235,184,.98);
+  --mndo-menu-hover-text: #fff3bf;
+  --mndo-menu-hover-bg: linear-gradient(180deg, rgba(255,255,255,.13), rgba(255,255,255,.030) 34%, rgba(96,0,0,.42) 100%), radial-gradient(120% 165% at 14% 0%, rgba(255,214,112,.18), rgba(255,214,112,0) 48%), radial-gradient(126% 180% at 100% 0%, rgba(230,0,0,.28), rgba(230,0,0,0) 58%), linear-gradient(90deg, rgba(108,0,0,.68), rgba(15,15,19,.46) 58%, rgba(0,0,0,.30));
+  --mndo-menu-hover-bg-color: rgba(38,0,0,.58);
+  --mndo-menu-hover-border: rgba(255,220,130,.42);
+  --mndo-menu-hover-glow: rgba(255,214,112,.27);
+  --mndo-menu-hover-accent: rgba(255,214,112,.48);
+  --mndo-panel-bg: linear-gradient(180deg, rgba(255,255,255,.075), rgba(255,255,255,.014) 34%, rgba(0,0,0,.02)), radial-gradient(155% 125% at 12% 0%, rgba(255,214,112,.10), rgba(255,214,112,0) 48%), radial-gradient(155% 140% at 100% 6%, rgba(175,0,0,.22), rgba(175,0,0,0) 58%), linear-gradient(180deg, rgba(12,12,17,.88), rgba(20,4,7,.78) 56%, rgba(42,0,0,.89));
+  --mndo-panel-bg-color: rgba(8,8,12,.88);
+  --mndo-panel-border: rgba(255,220,130,.31);
+  --mndo-row-border: rgba(255,214,112,.10);
+  --mndo-row-hover-bg: linear-gradient(180deg, rgba(255,255,255,.10), rgba(255,255,255,.024)), radial-gradient(130% 150% at 8% 0%, rgba(255,214,112,.17), rgba(255,214,112,0) 48%), linear-gradient(90deg, rgba(126,0,0,.58), rgba(22,18,20,.36) 58%, rgba(0,0,0,.18));
+  --mndo-row-hover-bg-color: rgba(58,0,0,.48);
+}
+html.sr-theme-off-live {
+  --mndo-menu-text: rgba(238,245,255,.98);
+  --mndo-menu-hover-text: #ffffff;
+  --mndo-menu-hover-bg: linear-gradient(180deg, rgba(255,255,255,.13), rgba(255,255,255,.030) 34%, rgba(20,64,148,.42) 100%), radial-gradient(120% 165% at 14% 0%, rgba(120,190,255,.22), rgba(120,190,255,0) 48%), radial-gradient(126% 180% at 100% 0%, rgba(35,120,255,.30), rgba(35,120,255,0) 58%), linear-gradient(90deg, rgba(13,49,118,.68), rgba(8,18,45,.48) 58%, rgba(0,0,0,.30));
+  --mndo-menu-hover-bg-color: rgba(8,32,88,.60);
+  --mndo-menu-hover-border: rgba(128,194,255,.42);
+  --mndo-menu-hover-glow: rgba(78,160,255,.30);
+  --mndo-menu-hover-accent: rgba(128,194,255,.52);
+  --mndo-panel-bg: linear-gradient(180deg, rgba(255,255,255,.075), rgba(255,255,255,.014) 34%, rgba(0,0,0,.02)), radial-gradient(155% 125% at 12% 0%, rgba(120,190,255,.13), rgba(120,190,255,0) 48%), radial-gradient(155% 140% at 100% 6%, rgba(35,120,255,.24), rgba(35,120,255,0) 58%), linear-gradient(180deg, rgba(4,10,26,.90), rgba(8,20,52,.82) 56%, rgba(2,5,16,.92));
+  --mndo-panel-bg-color: rgba(4,10,26,.90);
+  --mndo-panel-border: rgba(128,194,255,.32);
+  --mndo-row-border: rgba(128,194,255,.10);
+  --mndo-row-hover-bg: linear-gradient(180deg, rgba(255,255,255,.10), rgba(255,255,255,.024)), radial-gradient(130% 150% at 8% 0%, rgba(120,190,255,.19), rgba(120,190,255,0) 48%), linear-gradient(90deg, rgba(19,73,168,.58), rgba(7,20,56,.40) 58%, rgba(0,0,0,.18));
+  --mndo-row-hover-bg-color: rgba(12,50,132,.50);
+}
+html.egypt-worldcup-theme-live body .dropdown .dropbtn,
+html.egypt-worldcup-theme-live body .navbar a,
+html.egypt-worldcup-theme-live body :is(#singlelink, .tabcontent > a[data-sr-catalog-link], .tabcontent > a[href*="srTypeId="]),
+html.ahly-premium-theme-live body .dropdown .dropbtn,
+html.ahly-premium-theme-live body .navbar a,
+html.ahly-premium-theme-live body :is(#singlelink, .tabcontent > a[data-sr-catalog-link], .tabcontent > a[href*="srTypeId="]),
+html.sr-theme-off-live body .dropdown .dropbtn,
+html.sr-theme-off-live body .navbar a,
+html.sr-theme-off-live body :is(#singlelink, .tabcontent > a[data-sr-catalog-link], .tabcontent > a[href*="srTypeId="]) {
+  color: var(--mndo-menu-text) !important;
+  -webkit-text-fill-color: var(--mndo-menu-text) !important;
+}
+html.egypt-worldcup-theme-live body .dropdown .dropbtn,
+html.egypt-worldcup-theme-live body .navbar a,
+html.egypt-worldcup-theme-live body :is(#singlelink, .tabcontent > a[data-sr-catalog-link], .tabcontent > a[href*="srTypeId="]),
+html.egypt-worldcup-theme-live body .dropdown-content a,
+html.egypt-worldcup-theme-live body .sub-dropdown-content a,
+html.egypt-worldcup-theme-live body .sub-dropdown > a,
+html.ahly-premium-theme-live body .dropdown .dropbtn,
+html.ahly-premium-theme-live body .navbar a,
+html.ahly-premium-theme-live body :is(#singlelink, .tabcontent > a[data-sr-catalog-link], .tabcontent > a[href*="srTypeId="]),
+html.ahly-premium-theme-live body .dropdown-content a,
+html.ahly-premium-theme-live body .sub-dropdown-content a,
+html.ahly-premium-theme-live body .sub-dropdown > a,
+html.sr-theme-off-live body .dropdown .dropbtn,
+html.sr-theme-off-live body .navbar a,
+html.sr-theme-off-live body :is(#singlelink, .tabcontent > a[data-sr-catalog-link], .tabcontent > a[href*="srTypeId="]),
+html.sr-theme-off-live body .dropdown-content a,
+html.sr-theme-off-live body .sub-dropdown-content a,
+html.sr-theme-off-live body .sub-dropdown > a {
+  transition: color .16s ease, background .16s ease, border-color .16s ease, box-shadow .16s ease, text-shadow .16s ease, filter .16s ease !important;
+}
+html.egypt-worldcup-theme-live body .dropdown:hover .dropbtn,
+html.egypt-worldcup-theme-live body .dropdown:focus-within .dropbtn,
+html.egypt-worldcup-theme-live body .dropdown.open .dropbtn,
+html.egypt-worldcup-theme-live body .dropdown.active .dropbtn,
+html.egypt-worldcup-theme-live body .navbar a:hover,
+html.egypt-worldcup-theme-live body .navbar a:focus,
+html.egypt-worldcup-theme-live body :is(#singlelink, .tabcontent > a[data-sr-catalog-link], .tabcontent > a[href*="srTypeId="]):hover,
+html.egypt-worldcup-theme-live body :is(#singlelink, .tabcontent > a[data-sr-catalog-link], .tabcontent > a[href*="srTypeId="]):focus,
+html.ahly-premium-theme-live body .dropdown:hover .dropbtn,
+html.ahly-premium-theme-live body .dropdown:focus-within .dropbtn,
+html.ahly-premium-theme-live body .dropdown.open .dropbtn,
+html.ahly-premium-theme-live body .dropdown.active .dropbtn,
+html.ahly-premium-theme-live body .navbar a:hover,
+html.ahly-premium-theme-live body .navbar a:focus,
+html.ahly-premium-theme-live body :is(#singlelink, .tabcontent > a[data-sr-catalog-link], .tabcontent > a[href*="srTypeId="]):hover,
+html.ahly-premium-theme-live body :is(#singlelink, .tabcontent > a[data-sr-catalog-link], .tabcontent > a[href*="srTypeId="]):focus,
+html.sr-theme-off-live body .dropdown:hover .dropbtn,
+html.sr-theme-off-live body .dropdown:focus-within .dropbtn,
+html.sr-theme-off-live body .dropdown.open .dropbtn,
+html.sr-theme-off-live body .dropdown.active .dropbtn,
+html.sr-theme-off-live body .navbar a:hover,
+html.sr-theme-off-live body .navbar a:focus,
+html.sr-theme-off-live body :is(#singlelink, .tabcontent > a[data-sr-catalog-link], .tabcontent > a[href*="srTypeId="]):hover,
+html.sr-theme-off-live body :is(#singlelink, .tabcontent > a[data-sr-catalog-link], .tabcontent > a[href*="srTypeId="]):focus {
+  color: var(--mndo-menu-hover-text) !important;
+  -webkit-text-fill-color: var(--mndo-menu-hover-text) !important;
+  background: var(--mndo-menu-hover-bg) !important;
+  background-color: var(--mndo-menu-hover-bg-color) !important;
+  border-color: var(--mndo-menu-hover-border) !important;
+  text-shadow: 0 1px 2px rgba(0,0,0,1), 0 0 12px var(--mndo-menu-hover-glow) !important;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.15), inset 0 -1px 0 var(--mndo-menu-hover-border), inset 2px 0 0 var(--mndo-menu-hover-accent), 0 8px 20px rgba(0,0,0,.31), 0 0 17px var(--mndo-menu-hover-glow) !important;
+  filter: none !important;
+}
+html.egypt-worldcup-theme-live body .dropdown-content,
+html.egypt-worldcup-theme-live body .sub-dropdown-content,
+html.egypt-worldcup-theme-live body .search-results,
+html.egypt-worldcup-theme-live body #searchResults,
+html.ahly-premium-theme-live body .dropdown-content,
+html.ahly-premium-theme-live body .sub-dropdown-content,
+html.ahly-premium-theme-live body .search-results,
+html.ahly-premium-theme-live body #searchResults,
+html.sr-theme-off-live body .dropdown-content,
+html.sr-theme-off-live body .sub-dropdown-content,
+html.sr-theme-off-live body .search-results,
+html.sr-theme-off-live body #searchResults {
+  background: var(--mndo-panel-bg) !important;
+  background-color: var(--mndo-panel-bg-color) !important;
+  border-color: var(--mndo-panel-border) !important;
+  color: var(--mndo-menu-text) !important;
+  -webkit-text-fill-color: var(--mndo-menu-text) !important;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.11), inset 0 0 0 1px rgba(255,255,255,.025), 0 18px 42px rgba(0,0,0,.60), 0 0 21px var(--mndo-menu-hover-glow) !important;
+  backdrop-filter: blur(10px) saturate(1.16) contrast(1.03) !important;
+  -webkit-backdrop-filter: blur(10px) saturate(1.16) contrast(1.03) !important;
+}
+html.egypt-worldcup-theme-live body .sub-dropdown,
+html.egypt-worldcup-theme-live body .sub-dropdown[style],
+html.egypt-worldcup-theme-live body .dropdown-content a,
+html.egypt-worldcup-theme-live body .sub-dropdown-content a,
+html.egypt-worldcup-theme-live body .sub-dropdown > a,
+html.ahly-premium-theme-live body .sub-dropdown,
+html.ahly-premium-theme-live body .sub-dropdown[style],
+html.ahly-premium-theme-live body .dropdown-content a,
+html.ahly-premium-theme-live body .sub-dropdown-content a,
+html.ahly-premium-theme-live body .sub-dropdown > a,
+html.sr-theme-off-live body .sub-dropdown,
+html.sr-theme-off-live body .sub-dropdown[style],
+html.sr-theme-off-live body .dropdown-content a,
+html.sr-theme-off-live body .sub-dropdown-content a,
+html.sr-theme-off-live body .sub-dropdown > a {
+  color: var(--mndo-menu-text) !important;
+  -webkit-text-fill-color: var(--mndo-menu-text) !important;
+  background: transparent !important;
+  background-color: transparent !important;
+  border-color: var(--mndo-row-border) !important;
+  box-shadow: inset 0 -1px 0 rgba(255,255,255,.035) !important;
+}
+html.egypt-worldcup-theme-live body .sub-dropdown:hover,
+html.egypt-worldcup-theme-live body .sub-dropdown:hover[style],
+html.egypt-worldcup-theme-live body .dropdown-content a:hover,
+html.egypt-worldcup-theme-live body .dropdown-content a:focus,
+html.egypt-worldcup-theme-live body .sub-dropdown-content a:hover,
+html.egypt-worldcup-theme-live body .sub-dropdown-content a:focus,
+html.egypt-worldcup-theme-live body .sub-dropdown:hover > a,
+html.ahly-premium-theme-live body .sub-dropdown:hover,
+html.ahly-premium-theme-live body .sub-dropdown:hover[style],
+html.ahly-premium-theme-live body .dropdown-content a:hover,
+html.ahly-premium-theme-live body .dropdown-content a:focus,
+html.ahly-premium-theme-live body .sub-dropdown-content a:hover,
+html.ahly-premium-theme-live body .sub-dropdown-content a:focus,
+html.ahly-premium-theme-live body .sub-dropdown:hover > a,
+html.sr-theme-off-live body .sub-dropdown:hover,
+html.sr-theme-off-live body .sub-dropdown:hover[style],
+html.sr-theme-off-live body .dropdown-content a:hover,
+html.sr-theme-off-live body .dropdown-content a:focus,
+html.sr-theme-off-live body .sub-dropdown-content a:hover,
+html.sr-theme-off-live body .sub-dropdown-content a:focus,
+html.sr-theme-off-live body .sub-dropdown:hover > a {
+  color: var(--mndo-menu-hover-text) !important;
+  -webkit-text-fill-color: var(--mndo-menu-hover-text) !important;
+  background: var(--mndo-row-hover-bg) !important;
+  background-color: var(--mndo-row-hover-bg-color) !important;
+  border-color: var(--mndo-panel-border) !important;
+  text-shadow: 0 1px 2px rgba(0,0,0,1), 0 0 10px var(--mndo-menu-hover-glow) !important;
+  box-shadow: inset 2px 0 0 var(--mndo-menu-hover-accent), inset 0 1px 0 rgba(255,255,255,.10), inset 0 -1px 0 var(--mndo-panel-border), 0 6px 16px rgba(0,0,0,.25) !important;
+  filter: none !important;
+}
+/* ===== END MNDO professional menu hover layer v2 ===== */

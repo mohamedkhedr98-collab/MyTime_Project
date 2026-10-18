@@ -1,0 +1,1158 @@
+/* Support Desktop Pro v4 — isolated visual owner for Team Support. */
+
+html body #supportChatOverlay.sr-support-pro-v4 {
+  --sp4-bg: #060b12;
+  --sp4-shell: #0a111b;
+  --sp4-panel: #0d1622;
+  --sp4-panel-2: #101b29;
+  --sp4-line: rgba(148,163,184,.14);
+  --sp4-line-strong: rgba(148,163,184,.23);
+  --sp4-text: #f4f7fb;
+  --sp4-muted: #8d9db2;
+  --sp4-muted-2: #66778f;
+  --sp4-blue: #6ea8ff;
+  --sp4-green: #59dfa6;
+  --sp4-danger: #ff8f8f;
+  --sp4-shadow: 0 24px 70px rgba(0,0,0,.52);
+  box-sizing: border-box !important;
+  padding: 12px !important;
+  background: rgba(2,6,12,.78) !important;
+  background-image: none !important;
+  backdrop-filter: blur(8px) saturate(108%) !important;
+  -webkit-backdrop-filter: blur(8px) saturate(108%) !important;
+}
+
+html body #supportChatOverlay.sr-support-pro-v4,
+html body #supportChatOverlay.sr-support-pro-v4 * {
+  box-sizing: border-box;
+}
+
+/* Visual firewall against global/theme decoration. */
+html body #supportChatOverlay.sr-support-pro-v4 .support-chat::before,
+html body #supportChatOverlay.sr-support-pro-v4 .support-chat::after,
+html body #supportChatOverlay.sr-support-pro-v4 .support-users::before,
+html body #supportChatOverlay.sr-support-pro-v4 .support-users::after,
+html body #supportChatOverlay.sr-support-pro-v4 .support-messages::before,
+html body #supportChatOverlay.sr-support-pro-v4 .support-messages::after,
+html body #supportChatOverlay.sr-support-pro-v4 #supportMessagesList::before,
+html body #supportChatOverlay.sr-support-pro-v4 #supportMessagesList::after,
+html body #supportChatOverlay.sr-support-pro-v4 .support-msg::before,
+html body #supportChatOverlay.sr-support-pro-v4 .support-msg::after,
+html body #supportChatOverlay.sr-support-pro-v4 .support-user::before,
+html body #supportChatOverlay.sr-support-pro-v4 .support-user::after,
+html body #supportChatOverlay.sr-support-pro-v4 #supportSendBtn::before,
+html body #supportChatOverlay.sr-support-pro-v4 #supportSendBtn::after,
+html body #supportChatOverlay.sr-support-pro-v4 #supportChatCloseBtn::before,
+html body #supportChatOverlay.sr-support-pro-v4 #supportChatCloseBtn::after {
+  content: none !important;
+  display: none !important;
+  background: none !important;
+  box-shadow: none !important;
+}
+
+html body #supportChatOverlay.sr-support-pro-v4 .support-chat * {
+  text-shadow: none !important;
+  -webkit-text-fill-color: currentColor !important;
+}
+
+html body #supportChatOverlay.sr-support-pro-v4 > .support-chat {
+  position: relative !important;
+  display: grid !important;
+  grid-template-rows: 58px minmax(0,1fr) !important;
+  width: min(1320px, calc(100vw - 24px)) !important;
+  height: min(790px, calc(100dvh - 24px)) !important;
+  max-width: 1320px !important;
+  max-height: 790px !important;
+  min-width: 0 !important;
+  min-height: 0 !important;
+  margin: auto !important;
+  padding: 0 !important;
+  overflow: hidden !important;
+  border: 1px solid var(--sp4-line-strong) !important;
+  border-radius: 14px !important;
+  background: var(--sp4-shell) !important;
+  background-image: none !important;
+  box-shadow: var(--sp4-shadow) !important;
+  color: var(--sp4-text) !important;
+  filter: none !important;
+  isolation: isolate !important;
+  contain: layout paint style !important;
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Arial, sans-serif !important;
+}
+
+html body #supportChatOverlay.sr-support-pro-v4 .support-chat-header {
+  position: relative !important;
+  z-index: 5 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  gap: 12px !important;
+  width: 100% !important;
+  height: 58px !important;
+  min-height: 58px !important;
+  margin: 0 !important;
+  padding: 0 14px 0 16px !important;
+  border: 0 !important;
+  border-bottom: 1px solid var(--sp4-line) !important;
+  border-radius: 0 !important;
+  background: #0c1420 !important;
+  background-image: none !important;
+  box-shadow: none !important;
+  filter: none !important;
+}
+
+html body #supportChatOverlay.sr-support-pro-v4 .support-chat-header > div:first-child {
+  display: grid !important;
+  grid-template-columns: 34px minmax(0,1fr) !important;
+  grid-template-rows: auto auto !important;
+  column-gap: 10px !important;
+  align-items: center !important;
+  min-width: 0 !important;
+}
+
+html body #supportChatOverlay.sr-support-pro-v4 .sr-support-brand-pill {
+  grid-column: 1 !important;
+  grid-row: 1 / 3 !important;
+  display: grid !important;
+  place-items: center !important;
+  width: 34px !important;
+  height: 34px !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: 1px solid rgba(89,223,166,.20) !important;
+  border-radius: 10px !important;
+  background: #10262a !important;
+  background-image: none !important;
+  color: #d9fff0 !important;
+  font: 900 13px/1 inherit !important;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.05) !important;
+}
+
+html body #supportChatOverlay.sr-support-pro-v4 #supportChatTitle {
+  grid-column: 2 !important;
+  grid-row: 1 !important;
+  min-width: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  white-space: nowrap !important;
+  color: var(--sp4-text) !important;
+  font: 800 14px/1.2 inherit !important;
+}
+
+html body #supportChatOverlay.sr-support-pro-v4 #supportChatSubtitle {
+  grid-column: 2 !important;
+  grid-row: 2 !important;
+  min-width: 0 !important;
+  margin: 2px 0 0 !important;
+  padding: 0 !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  white-space: nowrap !important;
+  color: var(--sp4-muted) !important;
+  font: 600 10px/1.2 inherit !important;
+}
+
+html body #supportChatOverlay.sr-support-pro-v4 .support-chat-actions {
+  display: flex !important;
+  align-items: center !important;
+  gap: 7px !important;
+  flex: 0 0 auto !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+html body #supportChatOverlay.sr-support-pro-v4 #supportChatBackBtn,
+html body #supportChatOverlay.sr-support-pro-v4 #supportChatCloseBtn {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  min-width: 34px !important;
+  height: 34px !important;
+  margin: 0 !important;
+  padding: 0 10px !important;
+  border: 1px solid rgba(255,255,255,.11) !important;
+  border-radius: 9px !important;
+  background: #111b28 !important;
+  background-image: none !important;
+  color: #dbe5f2 !important;
+  box-shadow: none !important;
+  filter: none !important;
+  font: 800 11px/1 inherit !important;
+  cursor: pointer !important;
+  transform: none !important;
+}
+html body #supportChatOverlay.sr-support-pro-v4 #supportChatBackBtn[style*="display:none"],
+html body #supportChatOverlay.sr-support-pro-v4 #supportChatBackBtn[style*="display: none"] { display: none !important; }
+html body #supportChatOverlay.sr-support-pro-v4 #supportChatCloseBtn {
+  width: 34px !important;
+  min-width: 34px !important;
+  padding: 0 !important;
+  font-size: 20px !important;
+}
+html body #supportChatOverlay.sr-support-pro-v4 #supportChatBackBtn:hover,
+html body #supportChatOverlay.sr-support-pro-v4 #supportChatCloseBtn:hover {
+  border-color: rgba(110,168,255,.26) !important;
+  background: #152236 !important;
+  color: #fff !important;
+  transform: none !important;
+}
+
+html body #supportChatOverlay.sr-support-pro-v4 .support-chat-body {
+  position: relative !important;
+  display: grid !important;
+  grid-template-columns: 246px minmax(0,1fr) !important;
+  grid-template-rows: minmax(0,1fr) !important;
+  width: 100% !important;
+  height: 100% !important;
+  min-width: 0 !important;
+  min-height: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  gap: 0 !important;
+  overflow: hidden !important;
+  border: 0 !important;
+  background: transparent !important;
+  background-image: none !important;
+}
+
+html body #supportChatOverlay.sr-support-pro-v4 .support-users {
+  position: relative !important;
+  display: flex !important;
+  flex-direction: column !important;
+  width: 100% !important;
+  height: 100% !important;
+  min-width: 0 !important;
+  min-height: 0 !important;
+  margin: 0 !important;
+  padding: 13px 10px 10px !important;
+  overflow: hidden !important;
+  border: 0 !important;
+  border-inline-end: 1px solid var(--sp4-line) !important;
+  border-radius: 0 !important;
+  background: #0b131e !important;
+  background-image: none !important;
+  box-shadow: none !important;
+  filter: none !important;
+}
+
+html body #supportChatOverlay.sr-support-pro-v4 .support-users-title {
+  flex: 0 0 auto !important;
+  margin: 0 !important;
+  padding: 0 4px 8px !important;
+  color: var(--sp4-muted) !important;
+  font: 800 9px/1.2 inherit !important;
+  letter-spacing: .11em !important;
+  text-transform: uppercase !important;
+}
+
+html body #supportChatOverlay.sr-support-pro-v4 #sruxSupportStats {
+  flex: 0 0 auto !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  gap: 8px !important;
+  width: 100% !important;
+  min-height: 34px !important;
+  margin: 0 0 8px !important;
+  padding: 7px 9px !important;
+  border: 1px solid rgba(255,255,255,.07) !important;
+  border-radius: 9px !important;
+  background: #0f1926 !important;
+  background-image: none !important;
+  color: var(--sp4-muted) !important;
+  box-shadow: none !important;
+  font: 700 9px/1.2 inherit !important;
+}
+html body #supportChatOverlay.sr-support-pro-v4 #sruxSupportStats strong { color: #dce5f0 !important; font-weight: 800 !important; }
+html body #supportChatOverlay.sr-support-pro-v4 #sruxSupportStats .srux-online-dot { box-shadow: none !important; }
+
+html body #supportChatOverlay.sr-support-pro-v4 .srux-toolbar {
+  flex: 0 0 auto !important;
+  display: block !important;
+  width: 100% !important;
+  margin: 0 0 8px !important;
+  padding: 0 !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+
+html body #supportChatOverlay.sr-support-pro-v4 #sruxSupportSearch {
+  display: block !important;
+  width: 100% !important;
+  height: 34px !important;
+  min-height: 34px !important;
+  margin: 0 !important;
+  padding: 0 10px !important;
+  border: 1px solid rgba(255,255,255,.08) !important;
+  border-radius: 9px !important;
+  outline: 0 !important;
+  background: #08111c !important;
+  background-image: none !important;
+  color: #eef3f9 !important;
+  box-shadow: none !important;
+  filter: none !important;
+  font: 600 11px/1 inherit !important;
+}
+html body #supportChatOverlay.sr-support-pro-v4 #sruxSupportSearch::placeholder { color: #607189 !important; }
+html body #supportChatOverlay.sr-support-pro-v4 #sruxSupportSearch:focus { border-color: rgba(110,168,255,.34) !important; box-shadow: 0 0 0 3px rgba(110,168,255,.06) !important; }
+
+html body #supportChatOverlay.sr-support-pro-v4 #supportUsersList {
+  flex: 1 1 auto !important;
+  display: flex !important;
+  flex-direction: column !important;
+  width: 100% !important;
+  height: auto !important;
+  min-width: 0 !important;
+  min-height: 0 !important;
+  margin: 0 !important;
+  padding: 0 2px 0 0 !important;
+  overflow-x: hidden !important;
+  overflow-y: auto !important;
+  scroll-behavior: auto !important;
+  overscroll-behavior: contain !important;
+  scrollbar-width: thin !important;
+  scrollbar-color: rgba(110,168,255,.24) transparent !important;
+}
+
+html body #supportChatOverlay.sr-support-pro-v4 #supportUsersList .support-user {
+  order: var(--sr-presence-order, 1) !important;
+  position: relative !important;
+  display: grid !important;
+  grid-template-columns: 9px minmax(0,1fr) auto !important;
+  align-items: center !important;
+  gap: 8px !important;
+  width: 100% !important;
+  min-width: 0 !important;
+  min-height: 42px !important;
+  margin: 0 0 3px !important;
+  padding: 7px 9px !important;
+  overflow: hidden !important;
+  border: 1px solid transparent !important;
+  border-left: 1px solid transparent !important;
+  border-radius: 9px !important;
+  background: transparent !important;
+  background-image: none !important;
+  box-shadow: none !important;
+  filter: none !important;
+  color: #dce5f0 !important;
+  animation: none !important;
+  transform: none !important;
+  transition: background-color .12s ease,border-color .12s ease !important;
+}
+html body #supportChatOverlay.sr-support-pro-v4 #supportUsersList .support-user:hover {
+  border-color: rgba(110,168,255,.10) !important;
+  background: #0f1c2b !important;
+  transform: none !important;
+}
+html body #supportChatOverlay.sr-support-pro-v4 #supportUsersList .support-user.me,
+html body #supportChatOverlay.sr-support-pro-v4 #supportUsersList .support-user.is-active {
+  border-color: rgba(89,223,166,.15) !important;
+  background: #10251f !important;
+  box-shadow: inset 2px 0 0 rgba(89,223,166,.55) !important;
+}
+html body #supportChatOverlay.sr-support-pro-v4 #supportUsersList .support-user-dot {
+  grid-column: 1 !important;
+  width: 8px !important;
+  height: 8px !important;
+  min-width: 8px !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: 0 !important;
+  border-radius: 50% !important;
+  background: var(--u,var(--sp4-blue)) !important;
+  background-image: none !important;
+  box-shadow: none !important;
+}
+html body #supportChatOverlay.sr-support-pro-v4 #supportUsersList .support-user-copy {
+  grid-column: 2 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: flex-start !important;
+  justify-content: center !important;
+  gap: 3px !important;
+  min-width: 0 !important;
+  overflow: hidden !important;
+}
+html body #supportChatOverlay.sr-support-pro-v4 #supportUsersList .support-user-name {
+  display: block !important;
+  width: 100% !important;
+  min-width: 0 !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  white-space: nowrap !important;
+  color: #e8eef6 !important;
+  font: 700 11px/1.25 inherit !important;
+  text-align: start !important;
+  unicode-bidi: plaintext !important;
+}
+html body #supportChatOverlay.sr-support-pro-v4 #supportUsersList .support-user-statusline {
+  display: flex !important;
+  align-items: center !important;
+  min-width: 0 !important;
+  min-height: 13px !important;
+}
+html body #supportChatOverlay.sr-support-pro-v4 #supportUsersList .support-presence-badge {
+  display: inline-flex !important;
+  align-items: center !important;
+  max-width: 120px !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  background-image: none !important;
+  color: #6c7e95 !important;
+  box-shadow: none !important;
+  font: 650 8px/1.2 inherit !important;
+  text-transform: none !important;
+  letter-spacing: 0 !important;
+}
+html body #supportChatOverlay.sr-support-pro-v4 #supportUsersList .support-presence-badge.is-online { color: #70dca9 !important; }
+html body #supportChatOverlay.sr-support-pro-v4 #supportUsersList .support-user-unread,
+html body #supportChatOverlay.sr-support-pro-v4 #supportUsersList .support-user-badge {
+  grid-column: 3 !important;
+  justify-self: end !important;
+  margin: 0 !important;
+  box-shadow: none !important;
+}
+html body #supportChatOverlay.sr-support-pro-v4 #supportUsersList .support-user-badge {
+  padding: 2px 6px !important;
+  border: 1px solid rgba(89,223,166,.18) !important;
+  border-radius: 999px !important;
+  background: rgba(89,223,166,.08) !important;
+  color: #aaf0cf !important;
+  font: 800 7px/1 inherit !important;
+}
+html body #supportChatOverlay.sr-support-pro-v4 #sruxSupportEmpty {
+  margin: 8px 4px !important;
+  color: var(--sp4-muted) !important;
+  font-size: 10px !important;
+}
+
+html body #supportChatOverlay.sr-support-pro-v4 .support-messages {
+  position: relative !important;
+  display: flex !important;
+  flex-direction: column !important;
+  width: 100% !important;
+  height: 100% !important;
+  min-width: 0 !important;
+  min-height: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  overflow: hidden !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: #07101a !important;
+  background-image: none !important;
+  box-shadow: none !important;
+  filter: none !important;
+}
+
+html body #supportChatOverlay.sr-support-pro-v4 #supportMessagesList {
+  order: 0 !important;
+  position: relative !important;
+  z-index: 1 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: stretch !important;
+  justify-content: flex-start !important;
+  gap: 10px !important;
+  flex: 1 1 auto !important;
+  width: 100% !important;
+  height: auto !important;
+  min-width: 0 !important;
+  min-height: 0 !important;
+  margin: 0 !important;
+  padding: 18px 20px 22px !important;
+  overflow-x: hidden !important;
+  overflow-y: auto !important;
+  overflow-anchor: none !important;
+  scroll-behavior: auto !important;
+  scroll-padding: 18px !important;
+  overscroll-behavior: contain !important;
+  contain: layout paint !important;
+  background: #07101a !important;
+  background-image: none !important;
+  scrollbar-width: thin !important;
+  scrollbar-color: rgba(110,168,255,.24) transparent !important;
+}
+
+html body #supportChatOverlay.sr-support-pro-v4 #supportMessagesList .support-msg {
+  position: relative !important;
+  inset: auto !important;
+  float: none !important;
+  clear: both !important;
+  display: block !important;
+  align-self: flex-start !important;
+  flex: 0 0 auto !important;
+  width: auto !important;
+  min-width: 0 !important;
+  max-width: min(72%,720px) !important;
+  height: auto !important;
+  min-height: 0 !important;
+  max-height: none !important;
+  margin: 0 !important;
+  padding: 10px 12px 9px !important;
+  overflow: visible !important;
+  border: 1px solid rgba(148,163,184,.15) !important;
+  border-left: 1px solid rgba(148,163,184,.15) !important;
+  border-radius: 12px 12px 12px 4px !important;
+  background: #111b28 !important;
+  background-image: none !important;
+  box-shadow: 0 3px 10px rgba(0,0,0,.18) !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  filter: none !important;
+  color: var(--sp4-text) !important;
+  animation: none !important;
+  transform: none !important;
+  isolation: isolate !important;
+  contain: layout paint !important;
+}
+html body #supportChatOverlay.sr-support-pro-v4 #supportMessagesList .support-msg.mine {
+  align-self: flex-end !important;
+  margin-left: auto !important;
+  margin-right: 0 !important;
+  border-color: rgba(89,223,166,.18) !important;
+  border-left-color: rgba(89,223,166,.18) !important;
+  border-radius: 12px 12px 4px 12px !important;
+  background: #0e2b25 !important;
+  background-image: none !important;
+  box-shadow: 0 3px 10px rgba(0,0,0,.18) !important;
+}
+html body #supportChatOverlay.sr-support-pro-v4 #supportMessagesList .support-msg:hover,
+html body #supportChatOverlay.sr-support-pro-v4 #supportMessagesList .support-msg.mine:hover {
+  transform: none !important;
+  filter: none !important;
+  box-shadow: 0 5px 14px rgba(0,0,0,.20) !important;
+}
+html body #supportChatOverlay.sr-support-pro-v4 #supportMessagesList .support-msg.is-reply-to-me {
+  box-shadow: 0 0 0 1px rgba(110,168,255,.28),0 4px 12px rgba(0,0,0,.2) !important;
+}
+
+html body #supportChatOverlay.sr-support-pro-v4 #supportMessagesList .support-msg-meta {
+  position: static !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 6px !important;
+  width: 100% !important;
+  min-width: 0 !important;
+  min-height: 15px !important;
+  margin: 0 0 5px !important;
+  padding: 0 !important;
+  overflow: visible !important;
+  color: var(--sp4-muted) !important;
+  font: 650 9px/1.25 inherit !important;
+}
+html body #supportChatOverlay.sr-support-pro-v4 #supportMessagesList .support-msg-dot {
+  flex: 0 0 auto !important;
+  width: 6px !important;
+  height: 6px !important;
+  min-width: 6px !important;
+  margin: 0 !important;
+  border: 0 !important;
+  border-radius: 50% !important;
+  background: var(--u,var(--sp4-blue)) !important;
+  background-image: none !important;
+  box-shadow: none !important;
+}
+html body #supportChatOverlay.sr-support-pro-v4 #supportMessagesList .support-msg-name {
+  min-width: 0 !important;
+  max-width: 220px !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  white-space: nowrap !important;
+  color: #dce6f2 !important;
+  font: 800 10px/1.2 inherit !important;
+  text-align: start !important;
+  unicode-bidi: plaintext !important;
+}
+html body #supportChatOverlay.sr-support-pro-v4 #supportMessagesList .support-msg-time {
+  flex: 0 0 auto !important;
+  margin-inline-start: auto !important;
+  color: var(--sp4-muted-2) !important;
+  font: 600 8px/1.2 inherit !important;
+  font-variant-numeric: tabular-nums !important;
+  white-space: nowrap !important;
+}
+html body #supportChatOverlay.sr-support-pro-v4 #supportMessagesList .support-presence-badge { display: none !important; }
+
+html body #supportChatOverlay.sr-support-pro-v4 #supportMessagesList .support-msg-text,
+html body #supportChatOverlay.sr-support-pro-v4 #supportMessagesList .support-attach-line {
+  position: static !important;
+  display: block !important;
+  float: none !important;
+  width: auto !important;
+  min-width: 0 !important;
+  max-width: none !important;
+  height: auto !important;
+  min-height: 0 !important;
+  max-height: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  overflow: visible !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  white-space: pre-wrap !important;
+  overflow-wrap: anywhere !important;
+  word-break: break-word !important;
+  color: #f2f5f9 !important;
+  font: 500 12.5px/1.55 inherit !important;
+  text-align: start !important;
+  unicode-bidi: plaintext !important;
+}
+html body #supportChatOverlay.sr-support-pro-v4 #supportMessagesList .support-link {
+  color: #9fc2ff !important;
+  text-decoration: underline !important;
+  text-decoration-color: rgba(159,194,255,.45) !important;
+  text-underline-offset: 2px !important;
+}
+
+html body #supportChatOverlay.sr-support-pro-v4 #supportMessagesList .support-reply-reference {
+  position: static !important;
+  display: block !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  margin: 2px 0 7px !important;
+  padding: 6px 8px !important;
+  border: 0 !important;
+  border-inline-start: 2px solid rgba(110,168,255,.46) !important;
+  border-radius: 7px !important;
+  background: rgba(110,168,255,.055) !important;
+  background-image: none !important;
+  color: #cbd8e8 !important;
+  box-shadow: none !important;
+  text-align: start !important;
+  cursor: pointer !important;
+  transform: none !important;
+}
+html body #supportChatOverlay.sr-support-pro-v4 #supportMessagesList .support-reply-reference b,
+html body #supportChatOverlay.sr-support-pro-v4 #supportMessagesList .support-reply-reference span {
+  display: block !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  white-space: nowrap !important;
+}
+html body #supportChatOverlay.sr-support-pro-v4 #supportMessagesList .support-reply-reference b { color: #a9c8f8 !important; font: 800 9px/1.25 inherit !important; }
+html body #supportChatOverlay.sr-support-pro-v4 #supportMessagesList .support-reply-reference span { color: #8294aa !important; font: 600 9px/1.25 inherit !important; }
+html body #supportChatOverlay.sr-support-pro-v4 #supportMessagesList .support-reply-to-you {
+  display: inline-flex !important;
+  align-items: center !important;
+  margin: 0 !important;
+  padding: 2px 6px !important;
+  border: 1px solid rgba(110,168,255,.18) !important;
+  border-radius: 999px !important;
+  background: rgba(110,168,255,.08) !important;
+  color: #bad2f7 !important;
+  font: 800 8px/1 inherit !important;
+}
+
+html body #supportChatOverlay.sr-support-pro-v4 #supportMessagesList .support-msg-interactions {
+  position: static !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: flex-start !important;
+  flex-wrap: wrap !important;
+  gap: 5px !important;
+  width: 100% !important;
+  min-height: 0 !important;
+  margin: 7px 0 0 !important;
+  padding: 6px 0 0 !important;
+  border: 0 !important;
+  border-top: 1px solid rgba(255,255,255,.055) !important;
+  background: transparent !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+html body #supportChatOverlay.sr-support-pro-v4 #supportMessagesList .support-reaction-summary,
+html body #supportChatOverlay.sr-support-pro-v4 #supportMessagesList .support-msg-tools {
+  position: static !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 4px !important;
+  min-width: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+  transform: none !important;
+}
+html body #supportChatOverlay.sr-support-pro-v4 #supportMessagesList .support-reply-btn,
+html body #supportChatOverlay.sr-support-pro-v4 #supportMessagesList .support-msg-action,
+html body #supportChatOverlay.sr-support-pro-v4 #supportMessagesList .sr-support-seen-btn,
+html body #supportChatOverlay.sr-support-pro-v4 #supportMessagesList .support-reaction-badge {
+  position: static !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 4px !important;
+  min-width: 0 !important;
+  min-height: 22px !important;
+  height: 22px !important;
+  margin: 0 !important;
+  padding: 0 7px !important;
+  border: 1px solid rgba(255,255,255,.07) !important;
+  border-radius: 7px !important;
+  background: rgba(255,255,255,.03) !important;
+  background-image: none !important;
+  color: #9eafc3 !important;
+  box-shadow: none !important;
+  filter: none !important;
+  font: 700 9px/1 inherit !important;
+  cursor: pointer !important;
+  transform: none !important;
+}
+html body #supportChatOverlay.sr-support-pro-v4 #supportMessagesList .support-reply-btn:hover,
+html body #supportChatOverlay.sr-support-pro-v4 #supportMessagesList .support-msg-action:hover,
+html body #supportChatOverlay.sr-support-pro-v4 #supportMessagesList .sr-support-seen-btn:hover,
+html body #supportChatOverlay.sr-support-pro-v4 #supportMessagesList .support-reaction-badge:hover {
+  border-color: rgba(110,168,255,.20) !important;
+  background: rgba(110,168,255,.07) !important;
+  color: #e7edf5 !important;
+  transform: none !important;
+}
+html body #supportChatOverlay.sr-support-pro-v4 #supportMessagesList .support-del-btn {
+  flex: 0 0 auto !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 20px !important;
+  height: 20px !important;
+  min-width: 20px !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: 0 !important;
+  border-radius: 6px !important;
+  background: transparent !important;
+  color: #667991 !important;
+  box-shadow: none !important;
+  filter: none !important;
+  opacity: .62 !important;
+  font-size: 10px !important;
+  cursor: pointer !important;
+  transform: none !important;
+}
+html body #supportChatOverlay.sr-support-pro-v4 #supportMessagesList .support-del-btn:hover { background: rgba(255,143,143,.08) !important; color: #ffb2b2 !important; opacity: 1 !important; }
+
+html body #supportChatOverlay.sr-support-pro-v4 #supportMessagesList .support-image-card {
+  position: static !important;
+  display: flex !important;
+  width: min(320px,100%) !important;
+  max-width: 100% !important;
+  min-height: 80px !important;
+  max-height: 330px !important;
+  margin: 7px 0 2px !important;
+  padding: 0 !important;
+  overflow: hidden !important;
+  border: 1px solid rgba(255,255,255,.08) !important;
+  border-radius: 9px !important;
+  background: #050a10 !important;
+  background-image: none !important;
+  box-shadow: none !important;
+  filter: none !important;
+  cursor: pointer !important;
+  transform: none !important;
+}
+html body #supportChatOverlay.sr-support-pro-v4 #supportMessagesList .support-image-card img { display: block !important; width: auto !important; height: auto !important; max-width: 100% !important; max-height: 328px !important; margin: auto !important; object-fit: contain !important; border-radius: 8px !important; }
+html body #supportChatOverlay.sr-support-pro-v4 #supportMessagesList .support-image-caption { display: block !important; max-width: 320px !important; margin: 4px 0 0 !important; color: #6f8197 !important; font: 600 8px/1.25 inherit !important; }
+
+html body #supportChatOverlay.sr-support-pro-v4 #supportReplyPreview,
+html body #supportChatOverlay.sr-support-pro-v4 #supportAttachPreview {
+  position: relative !important;
+  z-index: 3 !important;
+  flex: 0 0 auto !important;
+  width: auto !important;
+  max-width: none !important;
+  margin: 8px 14px 0 !important;
+  padding: 7px 9px !important;
+  border: 1px solid rgba(110,168,255,.12) !important;
+  border-radius: 9px !important;
+  background: #0d1723 !important;
+  background-image: none !important;
+  color: #d5dfeb !important;
+  box-shadow: none !important;
+}
+html body #supportChatOverlay.sr-support-pro-v4 #supportReplyPreview { order: 1 !important; }
+html body #supportChatOverlay.sr-support-pro-v4 #supportAttachPreview { order: 2 !important; }
+html body #supportChatOverlay.sr-support-pro-v4 #supportReplyPreview[hidden] { display: none !important; }
+html body #supportChatOverlay.sr-support-pro-v4 #supportReplyPreview button,
+html body #supportChatOverlay.sr-support-pro-v4 #supportAttachPreview button { background: transparent !important; color: #9eb0c5 !important; box-shadow: none !important; filter: none !important; }
+
+html body #supportChatOverlay.sr-support-pro-v4 .support-compose {
+  order: 3 !important;
+  position: relative !important;
+  z-index: 4 !important;
+  flex: 0 0 auto !important;
+  display: grid !important;
+  grid-template-columns: 34px 34px minmax(0,1fr) 74px !important;
+  align-items: end !important;
+  gap: 7px !important;
+  width: 100% !important;
+  min-height: 62px !important;
+  margin: 0 !important;
+  padding: 10px 14px 11px !important;
+  border: 0 !important;
+  border-top: 1px solid var(--sp4-line) !important;
+  border-radius: 0 !important;
+  background: #0a131e !important;
+  background-image: none !important;
+  box-shadow: none !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  filter: none !important;
+  transform: none !important;
+  contain: layout style !important;
+}
+html body #supportChatOverlay.sr-support-pro-v4 #supportEmojiBtn,
+html body #supportChatOverlay.sr-support-pro-v4 #supportAttachBtn {
+  align-self: end !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 34px !important;
+  height: 34px !important;
+  min-width: 34px !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: 1px solid rgba(255,255,255,.07) !important;
+  border-radius: 9px !important;
+  background: #101b29 !important;
+  background-image: none !important;
+  color: #9aabc0 !important;
+  box-shadow: none !important;
+  filter: none !important;
+  font-size: 15px !important;
+  cursor: pointer !important;
+  transform: none !important;
+}
+html body #supportChatOverlay.sr-support-pro-v4 #supportEmojiBtn:hover,
+html body #supportChatOverlay.sr-support-pro-v4 #supportAttachBtn:hover { border-color: rgba(110,168,255,.18) !important; background: #142237 !important; color: #e7edf5 !important; transform: none !important; }
+html body #supportChatOverlay.sr-support-pro-v4 #supportAttachInput { display: none !important; }
+
+html body #supportChatOverlay.sr-support-pro-v4 #supportMessageInput {
+  align-self: stretch !important;
+  display: block !important;
+  width: 100% !important;
+  min-width: 0 !important;
+  min-height: 38px !important;
+  max-height: 96px !important;
+  height: auto !important;
+  margin: 0 !important;
+  padding: 9px 11px !important;
+  overflow-y: auto !important;
+  resize: none !important;
+  border: 1px solid rgba(255,255,255,.08) !important;
+  border-radius: 9px !important;
+  outline: 0 !important;
+  background: #07101a !important;
+  background-image: none !important;
+  color: #f2f5f9 !important;
+  caret-color: var(--sp4-blue) !important;
+  box-shadow: none !important;
+  filter: none !important;
+  font: 500 11.5px/1.45 inherit !important;
+}
+html body #supportChatOverlay.sr-support-pro-v4 #supportMessageInput::placeholder { color: #66778e !important; opacity: 1 !important; }
+html body #supportChatOverlay.sr-support-pro-v4 #supportMessageInput:focus { border-color: rgba(110,168,255,.30) !important; background: #07101a !important; box-shadow: 0 0 0 3px rgba(110,168,255,.055) !important; }
+
+html body #supportChatOverlay.sr-support-pro-v4 #supportSendBtn {
+  align-self: end !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  min-width: 74px !important;
+  width: 74px !important;
+  height: 34px !important;
+  margin: 0 !important;
+  padding: 0 14px !important;
+  border: 1px solid rgba(128,184,255,.24) !important;
+  border-radius: 9px !important;
+  background: #2f7ee6 !important;
+  background-image: none !important;
+  color: #fff !important;
+  box-shadow: none !important;
+  filter: none !important;
+  font: 900 10px/1 inherit !important;
+  cursor: pointer !important;
+  transform: none !important;
+}
+html body #supportChatOverlay.sr-support-pro-v4 #supportSendBtn:hover:not(:disabled) { border-color: rgba(163,203,255,.36) !important; background: #3889f0 !important; color: #fff !important; filter: none !important; transform: none !important; }
+html body #supportChatOverlay.sr-support-pro-v4 #supportSendBtn:disabled { opacity: .42 !important; cursor: default !important; filter: none !important; }
+html body #supportChatOverlay.sr-support-pro-v4 .support-compose .srux-char-counter {
+  position: absolute !important;
+  right: 96px !important;
+  bottom: 4px !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  color: #586a81 !important;
+  font: 600 7px/1 inherit !important;
+  pointer-events: none !important;
+}
+
+html body #supportChatOverlay.sr-support-pro-v4 #supportChatStatus {
+  order: 4 !important;
+  position: relative !important;
+  z-index: 2 !important;
+  flex: 0 0 auto !important;
+  min-height: 0 !important;
+  max-height: 22px !important;
+  margin: 0 14px 5px !important;
+  padding: 0 !important;
+  overflow: hidden !important;
+  background: transparent !important;
+  color: #718299 !important;
+  font: 600 8px/1.2 inherit !important;
+}
+html body #supportChatOverlay.sr-support-pro-v4 #supportChatStatus:empty { display: none !important; }
+
+html body #supportChatOverlay.sr-support-pro-v4 #supportEmojiPopover {
+  position: absolute !important;
+  z-index: 20 !important;
+  left: 14px !important;
+  right: auto !important;
+  bottom: 70px !important;
+  width: min(350px,calc(100% - 28px)) !important;
+  max-height: min(380px,70%) !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  overflow: hidden !important;
+  border: 1px solid rgba(255,255,255,.10) !important;
+  border-radius: 12px !important;
+  background: #0d1723 !important;
+  background-image: none !important;
+  color: var(--sp4-text) !important;
+  box-shadow: 0 18px 50px rgba(0,0,0,.46) !important;
+  filter: none !important;
+}
+html body #supportChatOverlay.sr-support-pro-v4 #supportEmojiPopover .support-emoji-catalog { max-height: 360px !important; padding: 6px !important; overflow-y: auto !important; }
+html body #supportChatOverlay.sr-support-pro-v4 #supportEmojiPopover .support-emoji-section { padding: 2px 2px 6px !important; }
+html body #supportChatOverlay.sr-support-pro-v4 #supportEmojiPopover .support-emoji-section-title { position: sticky !important; top: 0 !important; z-index: 2 !important; padding: 5px !important; background: #0d1723 !important; color: #73859d !important; font: 800 8px/1.2 inherit !important; text-transform: uppercase !important; letter-spacing: .08em !important; }
+html body #supportChatOverlay.sr-support-pro-v4 #supportEmojiPopover .support-emoji-grid { display: grid !important; grid-template-columns: repeat(8,minmax(28px,1fr)) !important; gap: 2px !important; }
+html body #supportChatOverlay.sr-support-pro-v4 #supportEmojiPopover .support-emoji-btn { display: grid !important; place-items: center !important; min-width: 28px !important; min-height: 28px !important; margin: 0 !important; padding: 0 !important; border: 1px solid transparent !important; border-radius: 7px !important; background: transparent !important; color: inherit !important; box-shadow: none !important; filter: none !important; font-size: 17px !important; transform: none !important; }
+html body #supportChatOverlay.sr-support-pro-v4 #supportEmojiPopover .support-emoji-btn:hover { border-color: rgba(110,168,255,.12) !important; background: rgba(110,168,255,.07) !important; transform: none !important; }
+
+/* Popovers attached outside the overlay. */
+html.sr-support-pro-v4-active body #supportReactionMenu {
+  position: fixed !important;
+  z-index: 2147483500 !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 5px !important;
+  margin: 0 !important;
+  padding: 6px !important;
+  border: 1px solid rgba(148,163,184,.24) !important;
+  border-radius: 999px !important;
+  background: #0b1420 !important;
+  background-image: none !important;
+  box-shadow: 0 16px 42px rgba(0,0,0,.46) !important;
+  filter: none !important;
+}
+html.sr-support-pro-v4-active body #supportReactionMenu[hidden] { display: none !important; }
+html.sr-support-pro-v4-active body #supportReactionMenu button { display: grid !important; place-items: center !important; width: 34px !important; height: 34px !important; margin: 0 !important; padding: 0 !important; border: 0 !important; border-radius: 50% !important; background: rgba(255,255,255,.055) !important; background-image: none !important; box-shadow: none !important; filter: none !important; font-size: 18px !important; cursor: pointer !important; transform: none !important; }
+html.sr-support-pro-v4-active body #supportReactionMenu button:hover,
+html.sr-support-pro-v4-active body #supportReactionMenu button.active { background: rgba(110,168,255,.13) !important; transform: none !important; }
+
+html.sr-support-pro-v4-active body #srSupportMentionLite { border-color: rgba(148,163,184,.22) !important; border-radius: 11px !important; background: #0b1420 !important; box-shadow: 0 16px 42px rgba(0,0,0,.46) !important; filter: none !important; }
+html.sr-support-pro-v4-active body #srSupportMentionLite button { background: transparent !important; color: #eaf0f7 !important; box-shadow: none !important; filter: none !important; transform: none !important; }
+html.sr-support-pro-v4-active body #srSupportMentionLite button:hover,
+html.sr-support-pro-v4-active body #srSupportMentionLite button.is-active { border-color: rgba(110,168,255,.20) !important; background: rgba(110,168,255,.10) !important; }
+
+html body #supportChatOverlay.sr-support-pro-v4 #supportUsersList::-webkit-scrollbar,
+html body #supportChatOverlay.sr-support-pro-v4 #supportMessagesList::-webkit-scrollbar { width: 8px !important; height: 8px !important; }
+html body #supportChatOverlay.sr-support-pro-v4 #supportUsersList::-webkit-scrollbar-thumb,
+html body #supportChatOverlay.sr-support-pro-v4 #supportMessagesList::-webkit-scrollbar-thumb { border: 2px solid transparent !important; border-radius: 999px !important; background: rgba(110,168,255,.28) !important; background-clip: padding-box !important; }
+html body #supportChatOverlay.sr-support-pro-v4 #supportUsersList::-webkit-scrollbar-track,
+html body #supportChatOverlay.sr-support-pro-v4 #supportMessagesList::-webkit-scrollbar-track { background: transparent !important; }
+
+html body #supportChatOverlay.sr-support-pro-v4 .support-loading-state {
+  display: grid !important;
+  place-items: center !important;
+  min-height: 120px !important;
+  color: var(--sp4-muted) !important;
+  font: 600 11px/1.4 inherit !important;
+}
+
+@media (max-width: 900px) {
+  html body #supportChatOverlay.sr-support-pro-v4 { padding: 8px !important; }
+  html body #supportChatOverlay.sr-support-pro-v4 > .support-chat { width: 100% !important; height: 100% !important; max-width: none !important; max-height: none !important; }
+  html body #supportChatOverlay.sr-support-pro-v4 .support-chat-body { grid-template-columns: 220px minmax(0,1fr) !important; }
+  html body #supportChatOverlay.sr-support-pro-v4 #supportMessagesList { padding: 14px 12px 18px !important; }
+  html body #supportChatOverlay.sr-support-pro-v4 #supportMessagesList .support-msg { max-width: 82% !important; }
+}
+
+@media (max-width: 680px) {
+  /* Mobile Support is full-screen. Remove the parent dim/backdrop compositor so
+     mobile browsers cannot paint a filtered veil over the chat surface. */
+  html body #supportChatOverlay.sr-support-pro-v4,
+  html body #supportChatOverlay.sr-support-pro-v4.mndo-dialog-layer-open {
+    padding: 0 !important;
+    background: transparent !important;
+    background-image: none !important;
+    -webkit-backdrop-filter: none !important;
+    backdrop-filter: none !important;
+  }
+  html body #supportChatOverlay.sr-support-pro-v4::before,
+  html body #supportChatOverlay.sr-support-pro-v4::after {
+    content: none !important;
+    display: none !important;
+    pointer-events: none !important;
+  }
+  html body #supportChatOverlay.sr-support-pro-v4 > .support-chat {
+    position: relative !important;
+    z-index: 1 !important;
+    width: 100% !important;
+    height: 100% !important;
+    max-width: none !important;
+    max-height: none !important;
+    border: 0 !important;
+    border-radius: 0 !important;
+    background: var(--sp4-shell) !important;
+    background-image: none !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    filter: none !important;
+    pointer-events: auto !important;
+  }
+  html body #supportChatOverlay.sr-support-pro-v4 .support-chat-body { grid-template-columns: 1fr !important; }
+  html body #supportChatOverlay.sr-support-pro-v4 .support-users { display: none !important; }
+  html body #supportChatOverlay.sr-support-pro-v4 #supportMessagesList .support-msg { max-width: 90% !important; }
+  html body #supportChatOverlay.sr-support-pro-v4 .support-compose { grid-template-columns: 34px 34px minmax(0,1fr) 66px !important; padding-inline: 8px !important; }
+  html body #supportChatOverlay.sr-support-pro-v4 #supportSendBtn { width: 66px !important; min-width: 66px !important; }
+  html body #supportChatOverlay.sr-support-pro-v4 #supportReplyPreview,
+  html body #supportChatOverlay.sr-support-pro-v4 #supportAttachPreview { margin-inline: 8px !important; }
+}
+
+
+/*
+ * Android/Samsung support viewport guard: even if the layout viewport is
+ * wider than the physical mobile screen, the conversation stays in front.
+ * This class is only set for compact screens (or narrow viewport windows).
+ */
+html body #supportChatOverlay.sr-support-pro-v4.sr-support-mobile-viewport {
+  position: fixed !important;
+  inset: 0 !important;
+  width: 100% !important;
+  height: 100dvh !important;
+  padding: 0 !important;
+  overflow: hidden !important;
+  background: #07101a !important;
+  background-image: none !important;
+  -webkit-backdrop-filter: none !important;
+  backdrop-filter: none !important;
+}
+html body #supportChatOverlay.sr-support-pro-v4.sr-support-mobile-viewport::before,
+html body #supportChatOverlay.sr-support-pro-v4.sr-support-mobile-viewport::after {
+  content: none !important;
+  display: none !important;
+}
+html body #supportChatOverlay.sr-support-pro-v4.sr-support-mobile-viewport > .support-chat {
+  position: relative !important;
+  z-index: 2 !important;
+  display: grid !important;
+  grid-template-rows: 58px minmax(0, 1fr) !important;
+  width: 100% !important;
+  height: 100% !important;
+  min-height: 0 !important;
+  max-width: none !important;
+  max-height: none !important;
+  margin: 0 !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  overflow: hidden !important;
+  background: var(--sp4-shell) !important;
+  background-image: none !important;
+  -webkit-backdrop-filter: none !important;
+  backdrop-filter: none !important;
+  contain: none !important;
+}
+html body #supportChatOverlay.sr-support-pro-v4.sr-support-mobile-viewport .support-chat-body {
+  display: grid !important;
+  grid-template-columns: minmax(0, 1fr) !important;
+  grid-template-rows: minmax(0, 1fr) !important;
+  min-height: 0 !important;
+  overflow: hidden !important;
+}
+html body #supportChatOverlay.sr-support-pro-v4.sr-support-mobile-viewport .support-users {
+  display: none !important;
+}
+html body #supportChatOverlay.sr-support-pro-v4.sr-support-mobile-viewport .support-messages {
+  display: flex !important;
+  flex-direction: column !important;
+  min-height: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  overflow: hidden !important;
+}
+html body #supportChatOverlay.sr-support-pro-v4.sr-support-mobile-viewport #supportMessagesList {
+  display: flex !important;
+  flex: 1 1 auto !important;
+  min-height: 0 !important;
+  overflow-x: hidden !important;
+  overflow-y: auto !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html body #supportChatOverlay.sr-support-pro-v4 *,
+  html.sr-support-pro-v4-active body #supportReactionMenu * {
+    animation: none !important;
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+
+/* Support role icons — icon only, identity remains the nickname */
+html body #supportChatOverlay.sr-support-pro-v4 .support-user-name-wrap,
+html body #supportChatOverlay.sr-support-pro-v4 .support-msg-name-wrap{
+  display:inline-flex!important;
+  align-items:center!important;
+  gap:5px!important;
+  min-width:0!important;
+}
+html body #supportChatOverlay.sr-support-pro-v4 .support-user-name-wrap .support-user-name,
+html body #supportChatOverlay.sr-support-pro-v4 .support-msg-name-wrap .support-msg-name{
+  min-width:0!important;
+  overflow:hidden!important;
+  text-overflow:ellipsis!important;
+  white-space:nowrap!important;
+}
+html body #supportChatOverlay.sr-support-pro-v4 .support-role-icon{
+  flex:0 0 auto!important;
+  display:inline-grid!important;
+  place-items:center!important;
+  width:17px!important;
+  height:17px!important;
+  margin:0!important;
+  padding:0!important;
+  border-radius:6px!important;
+  background:#101b29!important;
+  box-shadow:none!important;
+}
+html body #supportChatOverlay.sr-support-pro-v4 .support-role-icon svg{
+  width:12px!important;
+  height:12px!important;
+  fill:none!important;
+  stroke:currentColor!important;
+  stroke-width:1.8!important;
+  stroke-linecap:round!important;
+  stroke-linejoin:round!important;
+}
+html body #supportChatOverlay.sr-support-pro-v4 .support-role-icon.sr-admin{
+  color:#8fd0ff!important;
+  border:1px solid rgba(86,166,232,.28)!important;
+  background:rgba(42,110,169,.16)!important;
+}
+html body #supportChatOverlay.sr-support-pro-v4 .support-role-icon.full-admin{
+  color:#ffd477!important;
+  border:1px solid rgba(230,178,72,.30)!important;
+  background:rgba(151,103,26,.16)!important;
+}

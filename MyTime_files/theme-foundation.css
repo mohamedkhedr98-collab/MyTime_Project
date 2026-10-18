@@ -1,0 +1,344 @@
+/*
+ * SR Theme Foundation v3
+ * One paint owner for the two top number fields.
+ * Geometry stays in base/header CSS. Original + Eid inherit the exact production
+ * field language; themed modes only provide palette values.
+ */
+:root{
+ --sr-number-surface:#111827;
+ --sr-number-bg:radial-gradient(120% 160% at 12% 0%,rgba(255,255,255,.18),rgba(255,255,255,0) 55%),radial-gradient(120% 160% at 90% 100%,rgba(0,0,0,.40),rgba(0,0,0,0) 55%),linear-gradient(180deg,rgba(255,255,255,.09),rgba(255,255,255,.03));
+ --sr-number-text:rgba(250,252,255,.96);--sr-number-hover-text:rgba(255,70,70,.92);
+ --sr-number-caret:rgba(250,252,255,.96);--sr-number-hover-caret:rgba(255,70,70,.95);
+ --sr-number-placeholder:rgba(255,255,255,.58);--sr-number-hover-placeholder:rgba(255,70,70,.70);
+ --sr-number-border:rgba(255,255,255,.18);--sr-number-focus-border:rgba(255,255,255,.30);
+ --sr-number-shadow:inset 0 1px 0 rgba(255,255,255,.22),inset 0 -2px 10px rgba(0,0,0,.30),0 10px 22px rgba(0,0,0,.22);
+ --sr-number-focus-shadow:inset 0 1px 0 rgba(255,255,255,.22),inset 0 -2px 10px rgba(0,0,0,.30),0 0 0 2px rgba(255,255,255,.16),0 12px 26px rgba(0,0,0,.28);
+ --sr-number-text-shadow:0 1px 0 rgba(0,0,0,.35);--sr-number-backdrop:blur(10px) saturate(160%);
+ --sr-number-outline:none;--sr-number-outline-offset:0px;
+}
+html.ivory-gold-theme-live{
+ --sr-number-surface:#f2e2c7;
+ --sr-number-bg:var(--ivory-control-bg,linear-gradient(180deg,#f6ead5 0%,#e9d5b5 52%,#dcc097 100%));
+ --sr-number-text:var(--ivory-control-text,#392b1c);--sr-number-hover-text:#392b1c;
+ --sr-number-caret:var(--ivory-gold,#916323);--sr-number-hover-caret:#76552f;
+ --sr-number-placeholder:#756550;--sr-number-hover-placeholder:#604426;
+ --sr-number-border:var(--ivory-control-border,#b38e58);--sr-number-focus-border:#9f7640;
+ --sr-number-shadow:var(--ivory-control-shadow,inset 0 1px 0 rgba(255,255,255,.58),0 5px 14px rgba(68,46,21,.15));
+ --sr-number-focus-shadow:0 0 0 2px rgba(145,99,35,.12),var(--ivory-control-hover-shadow,0 7px 17px rgba(68,46,21,.19));
+ --sr-number-text-shadow:none;--sr-number-backdrop:none;
+ --sr-number-outline:none;--sr-number-outline-offset:0px;
+
+ /* Search uses the same Ivory control DNA. The shell paints the gradient so a
+    Chromium autofill state cannot replace the visible themed surface. */
+ --sr-search-bg:var(--ivory-control-bg,linear-gradient(180deg,#f6ead5 0%,#e9d5b5 52%,#dcc097 100%));
+ --sr-search-text:var(--ivory-control-text,#392b1c);
+ --sr-search-caret:var(--ivory-gold,#916323);
+ --sr-search-placeholder:#756550;
+ --sr-search-border:var(--ivory-control-border,#b38e58);
+ --sr-search-shadow:var(--ivory-control-shadow,inset 0 1px 0 rgba(255,255,255,.58),0 5px 14px rgba(68,46,21,.15));
+ --sr-search-focus-border:#9f7640;
+ --sr-search-focus-shadow:0 0 0 2px rgba(145,99,35,.12),var(--ivory-control-hover-shadow,0 7px 17px rgba(68,46,21,.19));
+ --sr-search-focus-placeholder:#604426;
+ --sr-search-icon:var(--ivory-gold,#916323);
+}
+html.egypt-worldcup-theme-live{
+ --sr-number-surface:#100a08;
+ --sr-number-bg:radial-gradient(130% 150% at 18% 0%,rgba(255,255,255,.15),rgba(255,255,255,0) 44%),linear-gradient(180deg,rgba(32,18,12,.78),rgba(8,7,7,.86) 58%,rgba(31,7,5,.78));
+ --sr-number-text:#f4e6c0;--sr-number-hover-text:#f4e6c0;--sr-number-caret:#ffd27a;--sr-number-hover-caret:#ffd27a;
+ --sr-number-placeholder:rgba(255,238,196,.66);--sr-number-hover-placeholder:rgba(255,238,196,.66);
+ --sr-number-border:rgba(255,210,116,.34);--sr-number-focus-border:rgba(255,223,148,.62);
+ --sr-number-shadow:inset 0 1px 0 rgba(255,255,255,.18),0 12px 30px rgba(0,0,0,.42),0 0 0 1px rgba(255,210,116,.06);
+ --sr-number-focus-shadow:inset 0 1px 0 rgba(255,255,255,.24),0 15px 36px rgba(0,0,0,.52),0 0 0 1px rgba(255,223,148,.16),0 0 24px rgba(205,24,31,.12);
+ --sr-number-text-shadow:0 1px 2px rgba(0,0,0,.74);--sr-number-backdrop:none;
+}
+html.ahly-premium-theme-live{
+ --sr-number-surface:#07070a;
+ --sr-number-bg:linear-gradient(180deg,rgba(255,255,255,.070),rgba(255,255,255,0) 30%),radial-gradient(120% 150% at 18% 0%,rgba(231,195,111,.060),rgba(231,195,111,0) 45%),linear-gradient(180deg,rgba(10,10,14,.78),rgba(2,2,5,.76) 58%,rgba(46,0,0,.50) 100%);
+ --sr-number-text:#f2e2b1;--sr-number-hover-text:#fff0bd;--sr-number-caret:#ffd36c;--sr-number-hover-caret:#ffd36c;
+ --sr-number-placeholder:rgba(255,239,198,.70);--sr-number-hover-placeholder:rgba(255,239,198,.70);
+ --sr-number-border:rgba(214,191,136,.20);--sr-number-focus-border:rgba(255,220,133,.56);
+ --sr-number-shadow:inset 0 1px 0 rgba(255,255,255,.075),inset 0 -7px 15px rgba(0,0,0,.20),0 8px 19px rgba(0,0,0,.40);
+ --sr-number-focus-shadow:inset 0 1px 0 rgba(255,255,255,.12),inset 0 -7px 16px rgba(0,0,0,.22),0 0 0 2px rgba(216,182,106,.10),0 10px 24px rgba(0,0,0,.52);
+ --sr-number-text-shadow:0 1px 2px rgba(0,0,0,.88);--sr-number-backdrop:none;
+}
+html.ua07-legacy-theme-live{
+ --sr-number-surface:#111114;
+ --sr-number-bg:radial-gradient(150% 170% at 20% 0%,rgba(255,255,255,.20),rgba(255,255,255,0) 42%),linear-gradient(180deg,rgba(30,30,34,.90),rgba(5,5,6,.92) 62%,rgba(38,0,0,.72) 100%);
+ --sr-number-text:rgba(255,255,255,.96);--sr-number-hover-text:rgba(255,255,255,.98);
+ --sr-number-caret:rgba(255,255,255,.95);--sr-number-hover-caret:rgba(255,255,255,.98);
+ --sr-number-placeholder:rgba(255,255,255,.78);--sr-number-hover-placeholder:rgba(255,255,255,.78);
+ --sr-number-border:rgba(255,255,255,.22);--sr-number-focus-border:rgba(255,255,255,.34);
+ --sr-number-shadow:inset 0 1px 0 rgba(255,255,255,.24),inset 0 -10px 18px rgba(0,0,0,.20),0 10px 24px rgba(0,0,0,.45),0 0 0 1px rgba(255,255,255,.04);
+ --sr-number-focus-shadow:inset 0 1px 0 rgba(255,255,255,.30),inset 0 -10px 18px rgba(0,0,0,.18),0 12px 28px rgba(0,0,0,.48),0 0 0 1px rgba(255,255,255,.08),0 0 18px rgba(170,0,0,.16);
+ --sr-number-text-shadow:0 1px 2px rgba(0,0,0,.76);--sr-number-backdrop:none;
+}
+
+/* Search paint contract for the two states that do not own a dedicated search skin.
+ * Geometry is intentionally absent here and remains owned only by header-core.css.
+ */
+:root{
+ --sr-search-bg:
+   radial-gradient(120% 160% at 10% 0%,rgba(255,255,255,.20),rgba(255,255,255,0) 54%),
+   radial-gradient(120% 160% at 90% 100%,rgba(0,0,0,.38),rgba(0,0,0,0) 56%),
+   linear-gradient(180deg,rgba(20,26,46,.94),rgba(7,10,24,.96));
+ --sr-search-text:rgba(250,252,255,.96);
+ --sr-search-caret:rgba(250,252,255,.96);
+ --sr-search-placeholder:rgba(255,255,255,.60);
+ --sr-search-border:rgba(255,255,255,.20);
+ --sr-search-shadow:inset 0 1px 0 rgba(255,255,255,.18),0 8px 20px rgba(0,0,0,.30);
+ --sr-search-focus-border:rgba(255,92,112,.52);
+ --sr-search-focus-shadow:inset 0 1px 0 rgba(255,255,255,.20),0 0 0 2px rgba(255,70,90,.14),0 10px 24px rgba(0,0,0,.36);
+ --sr-search-focus-placeholder:rgba(255,92,112,.92);
+ --sr-search-icon:rgba(250,252,255,.82);
+}
+html[data-sr-visual-theme="eid"]{
+ --sr-search-bg:
+   radial-gradient(120% 170% at 12% 0%,rgba(243,211,122,.15),rgba(243,211,122,0) 45%),
+   radial-gradient(120% 170% at 92% 100%,rgba(73,165,255,.14),rgba(73,165,255,0) 50%),
+   linear-gradient(180deg,rgba(16,25,48,.96),rgba(7,12,25,.97));
+ --sr-search-text:rgba(244,247,255,.96);
+ --sr-search-caret:#f3d37a;
+ --sr-search-placeholder:rgba(255,239,186,.76);
+ --sr-search-border:rgba(243,211,122,.38);
+ --sr-search-shadow:inset 0 1px 0 rgba(255,255,255,.13),0 8px 20px rgba(0,0,0,.30);
+ --sr-search-focus-border:rgba(255,232,163,.72);
+ --sr-search-focus-shadow:inset 0 1px 0 rgba(255,255,255,.16),0 0 0 2px rgba(243,211,122,.12),0 10px 24px rgba(0,0,0,.38);
+ --sr-search-focus-placeholder:#fff0bd;
+ --sr-search-icon:#f3d37a;
+}
+html[data-sr-visual-theme="off"] body #searchInput,
+html[data-sr-visual-theme="eid"] body #searchInput{
+ background:var(--sr-search-bg) !important;
+ color:var(--sr-search-text) !important;
+ -webkit-text-fill-color:var(--sr-search-text) !important;
+ caret-color:var(--sr-search-caret) !important;
+ border-color:var(--sr-search-border) !important;
+ box-shadow:var(--sr-search-shadow) !important;
+ text-shadow:none !important;
+ filter:none !important;
+}
+html[data-sr-visual-theme="off"] body #searchInput::placeholder,
+html[data-sr-visual-theme="eid"] body #searchInput::placeholder{
+ color:var(--sr-search-placeholder) !important;
+ -webkit-text-fill-color:var(--sr-search-placeholder) !important;
+ opacity:1 !important;
+}
+html[data-sr-visual-theme="off"] body #searchInput:focus,
+html[data-sr-visual-theme="eid"] body #searchInput:focus{
+ outline:none !important;
+ border-color:var(--sr-search-focus-border) !important;
+ box-shadow:var(--sr-search-focus-shadow) !important;
+}
+html[data-sr-visual-theme="off"] body #searchInput:focus::placeholder,
+html[data-sr-visual-theme="eid"] body #searchInput:focus::placeholder{
+ color:var(--sr-search-focus-placeholder) !important;
+ -webkit-text-fill-color:var(--sr-search-focus-placeholder) !important;
+}
+html[data-sr-visual-theme="off"] body .search-icon,
+html[data-sr-visual-theme="eid"] body .search-icon{
+ color:var(--sr-search-icon) !important;
+}
+
+/* Haya Karima helper paint tokens: runtime markup consumes paint variables only. */
+:root{
+ --sr-hk-line-text:rgba(255,255,255,.88);
+ --sr-hk-text-shadow:0 1px 2px rgba(0,0,0,.55);
+ --sr-hk-button-bg:rgba(255,255,255,.08);
+ --sr-hk-button-border:rgba(255,255,255,.18);
+ --sr-hk-button-text:#fff;
+ --sr-hk-button-shadow:0 10px 22px rgba(0,0,0,.22);
+ --sr-hk-button-hover-bg:rgba(255,255,255,.12);
+ --sr-hk-button-hover-border:rgba(255,255,255,.32);
+ --sr-hk-focus-ring:rgba(255,255,255,.10);
+ --sr-hk-input-bg:rgba(10,14,24,.72);
+ --sr-hk-input-border:rgba(255,255,255,.14);
+ --sr-hk-input-text:#fff;
+ --sr-hk-input-caret:#fff;
+ --sr-hk-input-placeholder:rgba(255,255,255,.72);
+ --sr-hk-input-shadow:inset 0 1px 0 rgba(255,255,255,.05);
+ --sr-hk-input-focus-border:rgba(255,255,255,.28);
+ --sr-hk-input-focus-shadow:0 0 0 3px rgba(255,255,255,.08);
+ --sr-hk-muted:rgba(255,255,255,.72);
+ --sr-hk-status:#fff;
+ --sr-hk-ok:#d7ffe7;
+ --sr-hk-bad:#ff8686;
+ --sr-hk-warn:#fff;
+}
+html.ivory-gold-theme-live{
+ --sr-hk-line-text:var(--ivory-ink,#392b1c);
+ --sr-hk-text-shadow:none;
+ --sr-hk-button-bg:var(--ivory-control-bg,linear-gradient(180deg,#f6ead5,#dcc097));
+ --sr-hk-button-border:var(--ivory-control-border,#b38e58);
+ --sr-hk-button-text:var(--ivory-control-text,#392b1c);
+ --sr-hk-button-shadow:var(--ivory-control-shadow,0 5px 14px rgba(68,46,21,.15));
+ --sr-hk-button-hover-bg:var(--ivory-control-hover-bg,linear-gradient(180deg,#fff5df,#e6cfaa));
+ --sr-hk-button-hover-border:#9f7640;
+ --sr-hk-focus-ring:rgba(145,99,35,.13);
+ --sr-hk-input-bg:var(--ivory-control-bg,linear-gradient(180deg,#f6ead5,#dcc097));
+ --sr-hk-input-border:var(--ivory-control-border,#b38e58);
+ --sr-hk-input-text:var(--ivory-control-text,#392b1c);
+ --sr-hk-input-caret:var(--ivory-gold,#916323);
+ --sr-hk-input-placeholder:#756550;
+ --sr-hk-input-shadow:var(--ivory-control-shadow,0 5px 14px rgba(68,46,21,.15));
+ --sr-hk-input-focus-border:#9f7640;
+ --sr-hk-input-focus-shadow:0 0 0 3px rgba(145,99,35,.11);
+ --sr-hk-muted:#756550;
+ --sr-hk-status:#392b1c;
+ --sr-hk-warn:#604426;
+}
+
+/* Haya Karima paint owner. Runtime owns markup and behavior only. */
+#hkSmartFloatingLine{color:var(--sr-hk-line-text) !important;text-shadow:var(--sr-hk-text-shadow) !important;}
+#hkSmartFloatingLine .hk-button{
+ background:var(--sr-hk-button-bg) !important;border:1px solid var(--sr-hk-button-border) !important;
+ color:var(--sr-hk-button-text) !important;-webkit-text-fill-color:var(--sr-hk-button-text) !important;
+ box-shadow:var(--sr-hk-button-shadow) !important;text-shadow:var(--sr-hk-text-shadow) !important;
+}
+#hkSmartFloatingLine .hk-button:hover{
+ background:var(--sr-hk-button-hover-bg) !important;border-color:var(--sr-hk-button-hover-border) !important;
+ color:var(--sr-hk-button-text) !important;-webkit-text-fill-color:var(--sr-hk-button-text) !important;
+ box-shadow:var(--sr-hk-button-shadow) !important;transform:none !important;
+}
+#hkSmartFloatingLine .hk-button:focus,
+#hkSmartFloatingLine .hk-button:focus-visible{
+ outline:none !important;box-shadow:0 0 0 3px var(--sr-hk-focus-ring),var(--sr-hk-button-shadow) !important;transform:none !important;
+}
+#hkSmartFloatingLine #hkRawSourceInput{
+ background:var(--sr-hk-input-bg) !important;border:1px solid var(--sr-hk-input-border) !important;
+ color:var(--sr-hk-input-text) !important;-webkit-text-fill-color:var(--sr-hk-input-text) !important;
+ caret-color:var(--sr-hk-input-caret) !important;box-shadow:var(--sr-hk-input-shadow) !important;
+ text-shadow:none !important;filter:none !important;
+}
+#hkSmartFloatingLine #hkRawSourceInput::placeholder{
+ color:var(--sr-hk-input-placeholder) !important;-webkit-text-fill-color:var(--sr-hk-input-placeholder) !important;opacity:1 !important;
+}
+#hkSmartFloatingLine #hkRawSourceInput:focus{
+ outline:none !important;border-color:var(--sr-hk-input-focus-border) !important;box-shadow:var(--sr-hk-input-focus-shadow) !important;
+}
+#hkSmartFloatingLine #hkRawSourceInput.is-ok{color:var(--sr-hk-ok) !important;-webkit-text-fill-color:var(--sr-hk-ok) !important;border-color:rgba(124,255,177,.34) !important;}
+#hkSmartFloatingLine #hkRawSourceInput.is-bad{color:var(--sr-hk-bad) !important;-webkit-text-fill-color:var(--sr-hk-bad) !important;border-color:rgba(255,134,134,.38) !important;}
+#hkSmartFloatingLine #hkRawSourceInput.is-warn{color:var(--sr-hk-warn) !important;-webkit-text-fill-color:var(--sr-hk-warn) !important;border-color:var(--sr-hk-input-focus-border) !important;}
+#hkSmartFloatingLine .hk-status{color:var(--sr-hk-status) !important;text-shadow:var(--sr-hk-text-shadow) !important;}
+#hkSmartFloatingLine .hk-status.is-ok{color:var(--sr-hk-ok) !important;}
+#hkSmartFloatingLine .hk-status.is-bad{color:var(--sr-hk-bad) !important;}
+#hkSmartFloatingLine .hk-status.is-warn{color:var(--sr-hk-warn) !important;}
+#hkSmartFloatingLine .hk-muted{color:var(--sr-hk-muted) !important;}
+
+html[data-sr-visual-theme] body :is(#arabicNumber,#arabiccNumber){
+ background:var(--sr-number-bg) !important;color:var(--sr-number-text) !important;-webkit-text-fill-color:var(--sr-number-text) !important;
+ caret-color:var(--sr-number-caret) !important;border:1px solid var(--sr-number-border) !important;box-shadow:var(--sr-number-shadow) !important;
+ text-shadow:var(--sr-number-text-shadow) !important;backdrop-filter:var(--sr-number-backdrop) !important;-webkit-backdrop-filter:var(--sr-number-backdrop) !important;
+ border-radius:18px !important;font-weight:500 !important;opacity:1 !important;
+ transition:background .14s ease,color .14s ease,-webkit-text-fill-color .14s ease,border-color .14s ease,box-shadow .14s ease !important;
+}
+html[data-sr-visual-theme] body :is(#arabicNumber,#arabiccNumber)::placeholder{
+ color:var(--sr-number-placeholder) !important;-webkit-text-fill-color:var(--sr-number-placeholder) !important;opacity:1 !important;
+}
+html[data-sr-visual-theme] body :is(#arabicNumber,#arabiccNumber):is(:hover,:focus){
+ color:var(--sr-number-hover-text) !important;-webkit-text-fill-color:var(--sr-number-hover-text) !important;caret-color:var(--sr-number-hover-caret) !important;
+ border-color:var(--sr-number-focus-border) !important;box-shadow:var(--sr-number-focus-shadow) !important;outline:var(--sr-number-outline) !important;outline-offset:var(--sr-number-outline-offset) !important;
+}
+html[data-sr-visual-theme] body :is(#arabicNumber,#arabiccNumber):is(:hover,:focus)::placeholder{
+ color:var(--sr-number-hover-placeholder) !important;-webkit-text-fill-color:var(--sr-number-hover-placeholder) !important;
+}
+
+
+/* Browser saved-value/autofill state is visual-only.
+ * Keep Chrome's saved suggestions, but never let its internal pale fill replace
+ * the active theme surface after the user chooses a stored number.
+ */
+html[data-sr-visual-theme] body :is(#arabicNumber,#arabiccNumber):-webkit-autofill,
+html[data-sr-visual-theme] body :is(#arabicNumber,#arabiccNumber):-webkit-autofill:hover,
+html[data-sr-visual-theme] body :is(#arabicNumber,#arabiccNumber):-webkit-autofill:focus,
+html[data-sr-visual-theme] body :is(#arabicNumber,#arabiccNumber):-webkit-autofill:active,
+html[data-sr-visual-theme] body :is(#arabicNumber,#arabiccNumber):autofill{
+  -webkit-text-fill-color:var(--sr-number-text) !important;
+  caret-color:var(--sr-number-caret) !important;
+  background:var(--sr-number-bg) !important;
+  background-color:var(--sr-number-surface) !important;
+  -webkit-box-shadow:0 0 0 1000px var(--sr-number-surface) inset,var(--sr-number-shadow) !important;
+  box-shadow:0 0 0 1000px var(--sr-number-surface) inset,var(--sr-number-shadow) !important;
+  border-color:var(--sr-number-border) !important;
+  filter:none !important;
+  opacity:1 !important;
+  transition:
+    background-color 9999s ease-out 0s,
+    color .14s ease,
+    -webkit-text-fill-color .14s ease,
+    border-color .14s ease,
+    box-shadow .14s ease !important;
+}
+html[data-sr-visual-theme] body :is(#arabicNumber,#arabiccNumber):disabled,
+html[data-sr-visual-theme] body :is(#arabicNumber,#arabiccNumber)[readonly]{
+  opacity:1 !important;
+  filter:none !important;
+}
+
+
+/* Outage Normal component isolation v1 */
+/* Theme skins may paint global form controls, but Outage Normal owns its own contrast. */
+html body #outageNormalPanel{
+  color-scheme:dark !important;
+  --sr-outage-text:#eaf0ff;
+  --sr-outage-muted:rgba(234,240,255,.76);
+  --sr-outage-field:rgba(255,255,255,.075);
+  --sr-outage-border:rgba(255,255,255,.22);
+}
+html body #outageNormalPanel :is(h2,summary,.label,.value,.highlight-box,.line,#ocrStatus){
+  color:var(--sr-outage-text) !important;
+  -webkit-text-fill-color:var(--sr-outage-text) !important;
+  text-shadow:none !important;
+}
+html body #outageNormalPanel :is(label,.hint){
+  color:var(--sr-outage-muted) !important;
+  -webkit-text-fill-color:var(--sr-outage-muted) !important;
+  text-shadow:none !important;
+}
+html body #outageNormalPanel :is(input,select,textarea){
+  background:var(--sr-outage-field) !important;
+  color:var(--sr-outage-text) !important;
+  -webkit-text-fill-color:var(--sr-outage-text) !important;
+  caret-color:var(--sr-outage-text) !important;
+  border-color:var(--sr-outage-border) !important;
+  text-shadow:none !important;
+  filter:none !important;
+}
+html body #outageNormalPanel :is(input,select,textarea):focus{
+  outline:none !important;
+  border-color:rgba(106,167,255,.62) !important;
+  box-shadow:0 0 0 4px rgba(106,167,255,.14) !important;
+}
+html body #outageNormalPanel input::placeholder,
+html body #outageNormalPanel textarea::placeholder{
+  color:rgba(234,240,255,.56) !important;
+  -webkit-text-fill-color:rgba(234,240,255,.56) !important;
+  opacity:1 !important;
+}
+html body #outageNormalPanel select option{
+  color:#111 !important;
+  -webkit-text-fill-color:#111 !important;
+  background:#fff !important;
+}
+html body #outageNormalPanel button{
+  background:rgba(255,255,255,.08) !important;
+  color:var(--sr-outage-text) !important;
+  -webkit-text-fill-color:var(--sr-outage-text) !important;
+  border:1px solid var(--sr-outage-border) !important;
+  box-shadow:none !important;
+  text-shadow:none !important;
+  filter:none !important;
+}
+html body #outageNormalPanel button.primary{
+  background:linear-gradient(135deg,#6aa7ff,#9b7cff) !important;
+  color:#06101f !important;
+  -webkit-text-fill-color:#06101f !important;
+  border-color:transparent !important;
+  box-shadow:0 12px 26px rgba(106,167,255,.18) !important;
+}
+html body #outageNormalPanel button.ghost{
+  background:rgba(255,255,255,.08) !important;
+  color:var(--sr-outage-text) !important;
+  -webkit-text-fill-color:var(--sr-outage-text) !important;
+  border-color:var(--sr-outage-border) !important;
+}
+html body #outageNormalPanel button:hover{filter:brightness(1.07) !important;}

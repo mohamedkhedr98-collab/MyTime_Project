@@ -1,0 +1,165 @@
+/*
+  Eid Prestige Theme
+  - Keeps the tool's original controls and behavior intact.
+  - Uses the provided Eid artwork as a lightweight, optimized background.
+  - Hides the old Ramadan moon/stars while the Eid theme is active.
+  - Keeps the Eid toggle compact so it matches the envelope button size.
+*/
+html.eid-theme-live{
+  --eid-night: #060b16;
+  --eid-night-soft: rgba(7, 11, 20, 0.72);
+  --eid-gold: #f3d37a;
+  --eid-gold-soft: rgba(255, 239, 186, 0.78);
+  --eid-rose: rgba(255, 165, 118, 0.16);
+  --eid-sky: rgba(113, 160, 255, 0.14);
+  --eid-text: rgba(244, 247, 255, 0.96);
+  --eid-edge: rgba(255, 255, 255, 0.18);
+  --sr-theme-switch-edge-a:#f5c650;
+  --sr-theme-switch-edge-b:#49a5ff;
+  --sr-theme-switch-moon-a:#fff3ae;
+  --sr-theme-switch-moon-b:#ee9f2e;
+  --sr-theme-switch-orb-a:#fff0a8;
+  --sr-theme-switch-orb-b:#407dff;
+  --sr-theme-switch-surface:rgba(10,18,43,.34);
+  --sr-theme-switch-trail:#f3ad35;
+  --sr-theme-switch-star:#ffe278;
+  --sr-theme-switch-glow:rgba(45,132,255,.24);
+  --sr-tools-bg:linear-gradient(135deg,rgba(243,211,122,.26),rgba(113,160,255,.18));
+  --sr-tools-border-color:rgba(243,211,122,.34);
+  --sr-tools-shadow:inset 0 1px 0 rgba(255,255,255,.18),0 8px 20px rgba(0,0,0,.34);
+  --sr-tools-text:var(--eid-text);
+  --sr-tools-text-shadow:0 1px 2px rgba(0,0,0,.55);
+  --sr-tools-hover-bg:linear-gradient(135deg,rgba(243,211,122,.38),rgba(90,143,255,.30));
+  --sr-tools-hover-border-color:rgba(255,232,163,.52);
+  --sr-tools-hover-shadow:inset 0 1px 0 rgba(255,255,255,.22),0 10px 24px rgba(0,0,0,.40);
+  --sr-tools-hover-text:#fff8df;
+}
+
+html.eid-theme-live,
+html.eid-theme-live body{
+  min-height: 100%;
+  background: transparent !important;
+  color: var(--eid-text);
+}
+
+/* Replace the old Ramadan sky with the optimized Eid artwork. */
+html.eid-theme-live::before{
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -12;
+  pointer-events: none;
+  transform: translateZ(0);
+  background:
+    linear-gradient(180deg,
+      rgba(4, 7, 15, 0.82) 0%,
+      rgba(6, 10, 19, 0.74) 11%,
+      rgba(7, 10, 18, 0.56) 30%,
+      rgba(6, 9, 15, 0.62) 58%,
+      rgba(5, 8, 14, 0.78) 100%),
+    radial-gradient(54% 26% at 50% 0%, rgba(255, 231, 166, 0.28), rgba(255, 231, 166, 0) 74%),
+    radial-gradient(42% 32% at 50% 38%, rgba(255, 169, 73, 0.20), rgba(255, 169, 73, 0) 72%),
+    radial-gradient(28% 22% at 14% 18%, rgba(121, 102, 255, 0.14), rgba(121, 102, 255, 0) 76%),
+    radial-gradient(28% 22% at 86% 18%, rgba(106, 190, 255, 0.12), rgba(106, 190, 255, 0) 76%),
+    url("./eid-festive-bg.webp") center 18% / cover no-repeat;
+}
+
+/* Soft festive glow + bokeh polish without touching the tool controls. */
+html.eid-theme-live::after{
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -11;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at 10% 14%, rgba(255, 244, 206, 0.56) 0 1.2px, transparent 2px),
+    radial-gradient(circle at 18% 7%, rgba(255, 227, 161, 0.46) 0 1px, transparent 1.8px),
+    radial-gradient(circle at 28% 17%, rgba(255, 245, 214, 0.42) 0 1.2px, transparent 2px),
+    radial-gradient(circle at 40% 10%, rgba(255, 231, 166, 0.34) 0 1px, transparent 1.8px),
+    radial-gradient(circle at 54% 8%, rgba(255, 248, 226, 0.44) 0 1px, transparent 1.8px),
+    radial-gradient(circle at 67% 11%, rgba(255, 230, 176, 0.34) 0 1px, transparent 1.8px),
+    radial-gradient(circle at 80% 8%, rgba(255, 241, 198, 0.40) 0 1.1px, transparent 1.9px),
+    radial-gradient(circle at 91% 14%, rgba(255, 231, 182, 0.46) 0 1.1px, transparent 2px),
+    linear-gradient(180deg, rgba(255, 230, 162, 0.10), rgba(255, 230, 162, 0) 16%),
+    radial-gradient(90% 56% at 50% 112%, rgba(1, 3, 9, 0), rgba(1, 3, 9, 0.36) 68%, rgba(1, 3, 9, 0.72) 100%);
+  opacity: 0.9;
+  mix-blend-mode: screen;
+}
+
+html.eid-theme-live body::before{
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -10;
+  pointer-events: none;
+  background:
+    linear-gradient(90deg, rgba(4, 7, 15, 0.34), rgba(4, 7, 15, 0.06) 22%, rgba(4, 7, 15, 0.06) 78%, rgba(4, 7, 15, 0.34)),
+    linear-gradient(180deg, rgba(255, 235, 182, 0.06), rgba(255, 235, 182, 0) 18%);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.06),
+    inset 0 -90px 120px rgba(0, 0, 0, 0.28);
+}
+
+/* Disable the old Ramadan moon + animated stars while the Eid stylesheet is active. */
+html.eid-theme-live body .moon,
+html.eid-theme-live body .star{
+  display: none !important;
+}
+
+/* Keep the injected decorative layer light and premium. */
+html.eid-theme-live body #EID_DECOR_LAYER{
+  position: fixed;
+  inset: 0;
+  z-index: -9;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+html.eid-theme-live body #EID_DECOR_LAYER .eid-art{
+  display: none !important;
+}
+
+html.eid-theme-live body #EID_DECOR_LAYER::before{
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(90deg, rgba(255, 226, 156, 0), rgba(255, 226, 156, 0.15) 50%, rgba(255, 226, 156, 0)),
+    linear-gradient(180deg, rgba(255, 243, 208, 0.04), rgba(255, 243, 208, 0) 22%);
+  opacity: 0.9;
+}
+
+html.eid-theme-live body #EID_DECOR_LAYER::after{
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(60% 26% at 50% 0%, rgba(255, 223, 144, 0.18), rgba(255, 223, 144, 0) 76%),
+    radial-gradient(52% 36% at 50% 100%, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.30) 72%, rgba(0, 0, 0, 0.56) 100%);
+}
+
+/* Do not alter the core tool buttons; only let the original tabs keep their existing nice style. */
+html.eid-theme-live body #tabs.tab,
+html.eid-theme-live body #tabs .tablinks,
+html.eid-theme-live body .dropbtn,
+html.eid-theme-live body .dropdown-content,
+html.eid-theme-live body button{
+  will-change: auto;
+}
+
+@media (max-width: 980px){
+  html.eid-theme-live::before{
+    background-position: center 15%;
+  }
+}
+
+@media (max-width: 720px){
+  html.eid-theme-live::before{
+    background-position: center 12%;
+  }
+
+  html.eid-theme-live::after{
+    opacity: 0.78;
+  }
+}
+

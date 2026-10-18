@@ -1,0 +1,27 @@
+/* Loaded only after SR private shortcut intent. Scoped styles never touch SR catalog DOM. */
+.srpe-layer[hidden], .srpe-toast[hidden] { display:none !important; }
+.srpe-layer { position:fixed; inset:0; z-index:2147483000; display:grid; place-items:center; padding:18px; background:rgba(5,12,21,.72); backdrop-filter:blur(5px); }
+.srpe-sheet { position:relative; width:min(100%,545px); padding:38px 22px 24px; border:1px solid #3b536b; border-radius:18px; background:#131e2c; box-shadow:0 20px 70px #0009; font:16px system-ui,Arial,sans-serif; }
+.srpe-close { position:absolute; top:7px; left:9px; padding:3px 9px; font-size:25px; color:#d7e7f8; background:transparent; border:0; cursor:pointer; }
+.srpe-form { display:flex; gap:10px; margin:0; }
+.srpe-input { flex:1; min-width:0; height:52px; padding:0 14px; border:1px solid #455a71; border-radius:12px; outline:none; background:#223044; color:#fff; text-align:center; font-size:18px; }
+.srpe-input:focus { border-color:#78beed; box-shadow:0 0 0 3px #3996cb44; }
+.srpe-submit { height:52px; padding:0 20px; border:0; border-radius:12px; background:#2879b2; color:white; font-weight:700; white-space:nowrap; cursor:pointer; }
+.srpe-submit:disabled { opacity:.55; cursor:wait; }
+.srpe-status { margin-top:9px; min-height:1.3em; text-align:center; color:#ffcc85; font:13px system-ui,Arial,sans-serif; }
+.srpe-toast { position:fixed; z-index:2147483001; left:50%; bottom:24px; transform:translateX(-50%); max-width:90vw; padding:11px 18px; border:1px solid #526c8a; border-radius:12px; background:#1c2d42; color:#fff; box-shadow:0 10px 40px #0007; font:14px system-ui,Arial,sans-serif; }
+.srpe-audit { width:100%; min-width:0; box-sizing:border-box; direction:rtl; color:inherit; }
+.srpe-audit-head { display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:14px; padding:10px 0 18px; }
+.srpe-audit-head h3 { margin:0 0 8px; color:inherit; font-size:20px; }
+.srpe-audit-head p { margin:0; font-size:12px; color:inherit; opacity:.72; }
+.srpe-audit-actions { display:flex; gap:7px; }
+.srpe-action { padding:10px 13px; border-radius:9px; border:1px solid #418ac0; background:#286eab; color:#fff; cursor:pointer; }
+.srpe-secondary { background:transparent; color:inherit; border-color:#8294a7; }
+.srpe-audit-status { margin:0 0 12px; font-size:13px; }
+.srpe-audit-list { width:100%; max-width:100%; overflow-x:auto; border-radius:12px; }
+.srpe-table { width:100%; min-width:550px; border-collapse:collapse; text-align:right; font-size:13px; }
+.srpe-table th, .srpe-table td { padding:12px 10px; border-bottom:1px solid #89929b33; white-space:nowrap; }
+.srpe-table th { font-weight:700; }
+.srpe-table tr:hover td { background:#809bb010; }
+.srpe-audit-empty { opacity:.7; padding:18px; }
+@media(max-width:440px) { .srpe-form { flex-direction:column; } .srpe-input, .srpe-submit { width:100%; } .srpe-sheet { padding-top:38px; } }

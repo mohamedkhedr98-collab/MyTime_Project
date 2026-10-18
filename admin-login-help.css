@@ -1,0 +1,374 @@
+/* Full-Admin Login Help V1 */
+#adminPanel .login-help-tab{
+  position:relative;
+  display:inline-flex;
+  align-items:center;
+  gap:6px;
+}
+#adminPanel .login-help-tab-count{
+  min-width:17px;
+  height:17px;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  padding:0 5px;
+  border-radius:999px;
+  background:rgba(255,92,111,.16);
+  border:1px solid rgba(255,112,129,.24);
+  color:#ffb0bb;
+  font-size:8px;
+  font-weight:850;
+  line-height:1;
+}
+#adminPanel .login-help-tab-count[hidden]{display:none}
+#adminPanel .login-help-tab.has-new-login-help{
+  border-color:rgba(102,176,244,.25);
+}
+#adminTabLoginHelp{
+  color:#eaf3fc;
+}
+#adminTabLoginHelp .login-help-admin-shell{
+  display:grid;
+  gap:10px;
+}
+#adminTabLoginHelp .login-help-admin-head{
+  display:flex;
+  align-items:flex-start;
+  justify-content:space-between;
+  gap:14px;
+  padding:14px 16px;
+  border:1px solid rgba(125,171,220,.13);
+  border-radius:14px;
+  background:linear-gradient(180deg,rgba(29,68,108,.17),rgba(255,255,255,.018));
+}
+#adminTabLoginHelp .login-help-admin-kicker{
+  margin-bottom:3px;
+  color:#6e91b4;
+  font-size:9px;
+  font-weight:850;
+  letter-spacing:.14em;
+}
+#adminTabLoginHelp h3{
+  margin:0;
+  color:#f1f7fd;
+  font-size:17px;
+}
+#adminTabLoginHelp .login-help-admin-head p{
+  max-width:680px;
+  margin:4px 0 0;
+  color:#879fb7;
+  font-size:10px;
+  line-height:1.5;
+}
+#adminTabLoginHelp .login-help-admin-refresh,
+#adminTabLoginHelp .login-help-admin-action{
+  min-height:34px;
+  border:1px solid rgba(118,167,215,.17);
+  border-radius:9px;
+  padding:0 10px;
+  background:rgba(255,255,255,.035);
+  color:#c7d8e8;
+  font:inherit;
+  font-size:9.5px;
+  font-weight:780;
+  cursor:pointer;
+  text-decoration:none;
+}
+#adminTabLoginHelp .login-help-admin-toolbar{
+  display:grid;
+  grid-template-columns:minmax(0,1fr) 150px;
+  gap:8px;
+}
+#adminTabLoginHelp .login-help-admin-toolbar input,
+#adminTabLoginHelp .login-help-admin-toolbar select{
+  width:100%;
+  min-height:38px;
+  box-sizing:border-box;
+  border:1px solid rgba(127,170,213,.18);
+  border-radius:10px;
+  outline:none;
+  background:rgba(2,10,20,.58);
+  color:#e2edf8;
+  padding:0 11px;
+  font:500 10.5px/1.2 Inter,Segoe UI,Arial,sans-serif;
+}
+#adminTabLoginHelp .login-help-admin-list{
+  display:grid;
+  gap:8px;
+  max-height:520px;
+  overflow:auto;
+  padding-right:3px;
+  scrollbar-width:thin;
+  scrollbar-color:rgba(91,150,211,.36) transparent;
+}
+#adminTabLoginHelp .login-help-request-card{
+  padding:11px 12px;
+  border:1px solid rgba(128,164,202,.09);
+  border-radius:12px;
+  background:rgba(255,255,255,.018);
+}
+#adminTabLoginHelp .login-help-request-card.is-new{
+  border-color:rgba(74,154,225,.20);
+  background:linear-gradient(180deg,rgba(47,113,174,.065),rgba(255,255,255,.012));
+}
+#adminTabLoginHelp .login-help-request-card.is-resolved{
+  opacity:.68;
+}
+#adminTabLoginHelp .login-help-request-top{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+}
+#adminTabLoginHelp .login-help-request-contact{
+  display:flex;
+  align-items:center;
+  gap:7px;
+  min-width:0;
+}
+#adminTabLoginHelp .login-help-request-contact strong{
+  color:#dceaf7;
+  font-size:11.5px;
+  overflow-wrap:anywhere;
+}
+#adminTabLoginHelp .login-help-request-state{
+  padding:3px 6px;
+  border-radius:999px;
+  border:1px solid rgba(93,177,237,.18);
+  background:rgba(52,126,182,.10);
+  color:#93c9ee;
+  font-size:7.5px;
+  font-weight:900;
+}
+#adminTabLoginHelp .is-resolved .login-help-request-state{
+  border-color:rgba(96,172,137,.16);
+  background:rgba(49,126,91,.09);
+  color:#9cccb6;
+}
+#adminTabLoginHelp time{
+  color:#607890;
+  font-size:8px;
+}
+#adminTabLoginHelp .login-help-request-tags{
+  display:flex;
+  flex-wrap:wrap;
+  gap:5px;
+  margin-top:7px;
+}
+#adminTabLoginHelp .login-help-request-tags span{
+  padding:3px 6px;
+  border-radius:7px;
+  background:rgba(255,255,255,.03);
+  color:#7089a1;
+  font-size:8px;
+}
+#adminTabLoginHelp .login-help-request-card.has-login-success{
+  border-color:rgba(73,190,129,.28);
+  background:
+    linear-gradient(180deg,rgba(49,138,91,.085),rgba(255,255,255,.012));
+}
+#adminTabLoginHelp .login-help-login-success{
+  display:grid;
+  gap:3px;
+  margin-top:8px;
+  padding:8px 10px;
+  border:1px solid rgba(74,194,132,.25);
+  border-radius:10px;
+  background:rgba(38,129,83,.10);
+  box-shadow:inset 0 0 0 1px rgba(255,255,255,.012);
+}
+#adminTabLoginHelp .login-help-login-success-head{
+  display:flex;
+  align-items:center;
+  gap:6px;
+  color:#8fd3ad;
+  font-size:8px;
+  font-weight:900;
+  letter-spacing:.08em;
+}
+#adminTabLoginHelp .login-help-login-success-head b{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  width:16px;
+  height:16px;
+  border-radius:50%;
+  background:rgba(77,193,133,.14);
+  color:#b8edcf;
+  font-size:10px;
+}
+#adminTabLoginHelp .login-help-login-success strong{
+  color:#d1f1de;
+  font-size:11px;
+  font-weight:820;
+}
+#adminTabLoginHelp .login-help-login-success small{
+  color:#82ad94;
+  font-size:8.5px;
+}
+
+#adminTabLoginHelp .login-help-request-error{
+  display:grid;
+  gap:2px;
+  margin-top:8px;
+  padding:7px 9px;
+  border-left:2px solid rgba(230,111,121,.42);
+  background:rgba(117,42,50,.08);
+}
+#adminTabLoginHelp .login-help-request-error b{
+  color:#cf8e96;
+  font-size:8px;
+  text-transform:uppercase;
+}
+#adminTabLoginHelp .login-help-request-error span{
+  color:#b9c9d9;
+  font-size:9px;
+  overflow-wrap:anywhere;
+}
+#adminTabLoginHelp .login-help-request-message{
+  margin-top:8px;
+  color:#c6d5e4;
+  font-size:10.5px;
+  line-height:1.55;
+  white-space:pre-wrap;
+  overflow-wrap:anywhere;
+}
+#adminTabLoginHelp .login-help-request-actions{
+  display:flex;
+  flex-wrap:wrap;
+  gap:6px;
+  margin-top:10px;
+}
+#adminTabLoginHelp .login-help-admin-action.whatsapp{
+  border-color:rgba(69,174,123,.18);
+  background:rgba(42,132,91,.10);
+  color:#a2d8ba;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+}
+#adminTabLoginHelp .login-help-admin-action.activate{
+  border-color:rgba(88,190,143,.28);
+  background:rgba(48,143,96,.11);
+  color:#b7e4ca;
+}
+#adminTabLoginHelp .login-help-admin-action.activate:disabled{
+  border-color:rgba(107,178,144,.16);
+  background:rgba(56,121,88,.07);
+  color:#8ebca3;
+}
+#adminTabLoginHelp .login-help-admin-action.resolve{
+  border-color:rgba(82,167,130,.18);
+  color:#a2d1ba;
+}
+#adminTabLoginHelp .login-help-admin-action.reopen{
+  border-color:rgba(221,166,77,.18);
+  color:#d9ba86;
+}
+#adminTabLoginHelp .login-help-admin-action:hover,
+#adminTabLoginHelp .login-help-admin-refresh:hover{
+  background:rgba(255,255,255,.065);
+}
+#adminTabLoginHelp .login-help-admin-action:disabled{opacity:.48;cursor:not-allowed}
+#adminTabLoginHelp .login-help-admin-empty{
+  padding:22px 12px;
+  color:#6e859b;
+  font-size:10px;
+  text-align:center;
+}
+#adminTabLoginHelp .login-help-admin-empty.error{color:#d39aa0}
+@media(max-width:720px){
+  #adminTabLoginHelp .login-help-admin-head{flex-direction:column}
+  #adminTabLoginHelp .login-help-admin-refresh{width:100%}
+  #adminTabLoginHelp .login-help-admin-toolbar{grid-template-columns:1fr}
+  #adminTabLoginHelp .login-help-request-top{align-items:flex-start;flex-direction:column}
+}
+
+#adminTabLoginHelp .login-help-admin-action.reply{
+  border-color:rgba(85,160,232,.22);
+  background:rgba(52,120,184,.10);
+  color:#b9dcf7;
+}
+#adminTabLoginHelp .login-help-thread-host:empty{display:none}
+#adminTabLoginHelp .login-help-thread{
+  display:grid;
+  gap:8px;
+  margin-top:10px;
+  padding-top:10px;
+  border-top:1px solid rgba(125,171,220,.10);
+}
+#adminTabLoginHelp .login-help-thread-summary{
+  color:#8ba4bb;
+  font-size:9px;
+  font-weight:760;
+  letter-spacing:.01em;
+}
+#adminTabLoginHelp .login-help-thread-history{
+  display:grid;
+  gap:6px;
+  max-height:360px;
+  overflow:auto;
+  scrollbar-gutter:stable;
+}
+#adminTabLoginHelp .login-help-thread-message{
+  padding:8px 9px;
+  border-radius:9px;
+  border:1px solid rgba(127,170,213,.12);
+  background:rgba(255,255,255,.025);
+}
+#adminTabLoginHelp .login-help-thread-message.support{
+  border-color:rgba(82,153,219,.18);
+  background:rgba(44,106,164,.07);
+}
+#adminTabLoginHelp .login-help-thread-message.customer{
+  border-color:rgba(130,166,198,.12);
+  background:rgba(255,255,255,.02);
+}
+#adminTabLoginHelp .login-help-thread-label{
+  color:#708aa2;
+  font-size:8px;
+  font-weight:780;
+}
+#adminTabLoginHelp .login-help-thread-body{
+  margin-top:4px;
+  color:#cbd9e7;
+  font-size:10px;
+  line-height:1.55;
+  white-space:pre-wrap;
+  overflow-wrap:anywhere;
+}
+#adminTabLoginHelp .login-help-thread-empty{
+  color:#70879e;
+  font-size:9px;
+  padding:6px 0;
+}
+#adminTabLoginHelp .login-help-thread-compose{
+  display:grid;
+  gap:7px;
+}
+#adminTabLoginHelp .login-help-thread-from{
+  color:#7f98b0;
+  font-size:9px;
+}
+#adminTabLoginHelp .login-help-thread-from b{color:#b8d6ee}
+#adminTabLoginHelp .login-help-thread-compose textarea{
+  width:100%;
+  box-sizing:border-box;
+  resize:vertical;
+  min-height:86px;
+  border:1px solid rgba(127,170,213,.18);
+  border-radius:10px;
+  outline:none;
+  background:rgba(2,10,20,.58);
+  color:#e2edf8;
+  padding:9px 10px;
+  font:500 10.5px/1.5 Inter,Segoe UI,Arial,sans-serif;
+}
+#adminTabLoginHelp .login-help-thread-compose textarea:focus{
+  border-color:rgba(91,166,240,.34);
+}
+#adminTabLoginHelp .login-help-thread-compose-actions{
+  display:flex;
+  justify-content:flex-end;
+  gap:6px;
+}

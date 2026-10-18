@@ -1,0 +1,546 @@
+/* Ivory & Gold — a scoped visual skin. SR links, ordering and event handlers stay canonical. */
+html.ivory-gold-theme-live{
+  color-scheme: light;
+  /* Eye-comfort palette: lower luminance, lower gold saturation, softer depth. */
+  --ivory-ink:#342f2a;
+  --ivory-muted:#746a60;
+  --ivory-gold:#85683f;
+  --ivory-line:rgba(112,96,73,.24);
+  --ivory-panel:rgba(244,240,234,.94);
+  --ivory-soft:#e6ded3;
+  --ivory-shadow:0 4px 14px rgba(47,39,30,.09);
+  --ivory-control-bg:linear-gradient(180deg,#e8dfd2 0%,#dacdb9 54%,#cbb99d 100%);
+  --ivory-control-hover-bg:linear-gradient(180deg,#e3d6c3 0%,#cbb797 100%);
+  --ivory-control-active-bg:linear-gradient(180deg,#756247 0%,#5f4f3d 100%);
+  --ivory-control-border:#a38b68;
+  --ivory-control-text:#342f2a;
+  --ivory-control-shadow:inset 0 1px 0 rgba(255,255,255,.34),inset 0 -1px 0 rgba(83,68,49,.06),0 2px 7px rgba(48,38,26,.12);
+  --ivory-control-hover-shadow:inset 0 1px 0 rgba(255,255,255,.38),0 4px 10px rgba(48,38,26,.14);
+
+  --sr-tab-bg:var(--ivory-control-bg);
+  --sr-tab-border-color:var(--ivory-control-border);
+  --sr-tab-text:var(--ivory-control-text);
+  --sr-tab-text-shadow:none;
+  --sr-tab-shadow:var(--ivory-control-shadow);
+  --sr-tab-hover-filter:none;
+  --sr-tab-hover-border-color:#9f7640;
+  --sr-tab-hover-shadow:var(--ivory-control-hover-shadow);
+  --sr-tab-active-bg:var(--ivory-control-active-bg);
+  --sr-tab-active-border-color:#76552f;
+  --sr-tab-active-text:#fff8ec;
+  --sr-tab-active-shadow:0 5px 15px rgba(67,44,19,.22);
+  --sr-header-logo-filter:none;
+  --sr-header-logo-visual-scale:.90;
+  --sr-header-logo-hover-scale:.91;
+  --sr-theme-switch-edge-a:#8f7149;
+  --sr-theme-switch-edge-b:#c8b895;
+  --sr-theme-switch-moon-a:#eee5d5;
+  --sr-theme-switch-moon-b:#9c7849;
+  --sr-theme-switch-orb-a:#f0e8da;
+  --sr-theme-switch-orb-b:#8f744f;
+  --sr-theme-switch-surface:rgba(220,211,196,.34);
+  --sr-theme-switch-trail:#96764c;
+  --sr-theme-switch-star:#b99c69;
+  --sr-theme-switch-glow:rgba(116,91,56,.10);
+  --sr-tools-bg:linear-gradient(180deg,#d6c8b2 0%,#c2af91 100%);
+  --sr-tools-border-color:rgba(117,97,69,.40);
+  --sr-tools-shadow:0 1px 4px rgba(47,38,27,.10),inset 0 1px 0 rgba(255,255,255,.28);
+  --sr-tools-text:#332f2a;
+  --sr-tools-text-shadow:none;
+  --sr-tools-hover-bg:var(--ivory-control-hover-bg);
+  --sr-tools-hover-border-color:#8f7655;
+  --sr-tools-hover-shadow:var(--ivory-control-hover-shadow);
+  --sr-tools-hover-text:var(--ivory-control-text);
+
+  --mndo-border: var(--ivory-line);
+  --mndo-focus: rgba(156, 112, 46, .22);
+  background: #e9e1d4 !important;
+}
+html.ivory-gold-theme-live body{
+  color: var(--ivory-ink) !important;
+  background: transparent !important;
+  text-shadow: none !important;
+}
+
+/* Ivory top-control palette. Geometry stays in header-core; the base/off paint stays
+   isolated in styles.css and cannot be recolored through inherited variables. */
+html.ivory-gold-theme-live body :is(
+  #copyBtn,#copyBtn1,#mndoTTTop,#mndoTTBottom,#mndoSRTop,#mndoSRBottom
+){
+  background:var(--ivory-control-bg) !important;
+  border:1px solid var(--ivory-control-border) !important;
+  box-shadow:var(--ivory-control-shadow) !important;
+  backdrop-filter:none !important;
+  -webkit-backdrop-filter:none !important;
+  color:var(--ivory-control-text) !important;
+  -webkit-text-fill-color:var(--ivory-control-text) !important;
+  caret-color:#6d4d25 !important;
+  text-shadow:none !important;
+}
+html.ivory-gold-theme-live body :is(#copyBtn,#copyBtn1):hover{
+  background:var(--ivory-control-hover-bg) !important;
+  border-color:#9f7640 !important;
+  box-shadow:var(--ivory-control-hover-shadow) !important;
+  filter:none !important;
+}
+/* One static background layer avoids repainting the photograph with the page. */
+html.ivory-gold-theme-live::before{
+  content:"";
+  position:fixed;
+  inset:0;
+  z-index:-1;
+  pointer-events:none;
+  background:linear-gradient(180deg,rgba(38,33,29,.29) 0%,rgba(30,25,21,.27) 32%,rgba(24,20,17,.29) 58%,rgba(20,16,14,.32) 100%),radial-gradient(circle at 68% 52%,rgba(18,14,11,.18) 0 14%,rgba(18,14,11,.08) 28%,transparent 52%),url('./ivory-gold-bg.webp') center / cover no-repeat;
+  transform:translateZ(0);
+  opacity:1;
+  filter:saturate(.86) contrast(.96) brightness(.97);
+  animation:none;
+}
+html.ivory-gold-theme-live body :is(.moon,.star,#EID_DECOR_LAYER){ display:none !important; animation:none !important; pointer-events:none !important; }
+html.ivory-gold-theme-live body :is(button,input,textarea,select,a,h1,h2,h3,label){ text-shadow: none !important; }
+html.ivory-gold-theme-live body :is(h1,h2,h3){ color: var(--ivory-ink) !important; letter-spacing: -.025em; }
+html.ivory-gold-theme-live body > h1,
+html.ivory-gold-theme-live body center > h1{ font-size: 23px !important; font-weight: 700; }
+html.ivory-gold-theme-live body :is(input:not([type=checkbox]):not([type=radio]):not(#arabicNumber):not(#arabiccNumber):not(#searchInput):not(#hkRawSourceInput),textarea,select){
+  background: rgba(255,253,249,.94) !important;
+  color: var(--ivory-ink) !important;
+  -webkit-text-fill-color: var(--ivory-ink) !important;
+  border-color: var(--ivory-line) !important;
+  caret-color: var(--ivory-gold) !important;
+  box-shadow: inset 0 1px 2px rgba(65,46,25,.03), 0 3px 10px rgba(65,46,25,.04) !important;
+  filter: none !important;
+}
+html.ivory-gold-theme-live body :is(input:not(#arabicNumber):not(#arabiccNumber):not(#searchInput):not(#hkRawSourceInput),textarea)::placeholder{ color: #807364 !important; opacity: 1; -webkit-text-fill-color: #807364 !important; }
+html.ivory-gold-theme-live body :is(input:not(#arabicNumber):not(#arabiccNumber):not(#searchInput):not(#hkRawSourceInput),textarea,select):focus{
+  outline: 2px solid #9c743c !important;
+  outline-offset: 2px;
+  border-color: #9c743c !important;
+  box-shadow: 0 0 0 4px rgba(166,124,62,.10) !important;
+}
+html.ivory-gold-theme-live body select option{ color:#332e27; background:#fffaf2; }
+
+/* Header search is a first-class Ivory control; geometry stays in header-core.css. */
+html.ivory-gold-theme-live body #searchInput{
+  background:var(--sr-search-bg) !important;
+  color:var(--sr-search-text) !important;
+  -webkit-text-fill-color:var(--sr-search-text) !important;
+  caret-color:var(--sr-search-caret) !important;
+  border-color:var(--sr-search-border) !important;
+  box-shadow:var(--sr-search-shadow) !important;
+  text-shadow:none !important;
+  filter:none !important;
+}
+html.ivory-gold-theme-live body #searchInput::placeholder{
+  color:var(--sr-search-placeholder) !important;
+  -webkit-text-fill-color:var(--sr-search-placeholder) !important;
+  opacity:1 !important;
+}
+html.ivory-gold-theme-live body #searchInput:focus{
+  outline:none !important;
+  border-color:var(--sr-search-focus-border) !important;
+  box-shadow:var(--sr-search-focus-shadow) !important;
+}
+html.ivory-gold-theme-live body #searchInput:focus::placeholder{
+  color:var(--sr-search-focus-placeholder) !important;
+  -webkit-text-fill-color:var(--sr-search-focus-placeholder) !important;
+}
+html.ivory-gold-theme-live body .search-icon{
+  color:var(--sr-search-icon) !important;
+  filter:none !important;
+}
+html.ivory-gold-theme-live body :is(button:not(.dropbtn),.RSR2,.mndoLuxuryBtn:not(.mndo-header-utility),.outage-mail-btn,.outage-tabbtn){
+  color: var(--ivory-ink) !important;
+  -webkit-text-fill-color: var(--ivory-ink) !important;
+  background:var(--ivory-control-bg) !important;
+  border:1px solid var(--ivory-control-border) !important;
+  border-radius:11px !important;
+  box-shadow:var(--ivory-control-shadow) !important;
+  filter: none !important;
+  text-decoration: none;
+  transition: color .12s ease, background-color .12s ease, border-color .12s ease !important;
+}
+html.ivory-gold-theme-live body :is(button:not(.dropbtn),.RSR2):hover{
+  background:var(--ivory-control-hover-bg) !important;
+  border-color:#9f7640 !important;
+  color:var(--ivory-control-text) !important;
+  -webkit-text-fill-color:var(--ivory-control-text) !important;
+  box-shadow:var(--ivory-control-hover-shadow) !important;
+  filter: none !important;
+}
+html.ivory-gold-theme-live body :is(button,a,input,textarea,select):not(.mndo-header-utility):focus-visible{ outline:2px solid rgba(111,86,54,.72) !important; outline-offset:2px !important; }
+html.ivory-gold-theme-live body button:disabled{ opacity: .5; cursor:not-allowed; }
+html.ivory-gold-theme-live body :is(#tabs .tablinks.active,#tabs .tablinks.mndo-ahly-current-tab,#tabs [aria-current=page],.outage-tabbtn.is-active,.admin-tab.active){
+  color: #fffaf1 !important;
+  -webkit-text-fill-color: #fffaf1 !important;
+  background:var(--ivory-control-active-bg) !important;
+  border-color:#76552f !important;
+  box-shadow:var(--sr-tab-active-shadow) !important;
+}
+html.ivory-gold-theme-live body #tabs{
+  /* Match the other themes: the main choices sit directly on the page with
+     no extra shaded card surrounding the whole header row. */
+  background: transparent !important;
+  box-shadow: none !important;
+}
+html.ivory-gold-theme-live body #tabs .tablinks{ }
+/* Keep shared menu geometry. Resting choices are clear; the open choice and
+   hovered row use the same gold/ivory materials as their containing panel. */
+html.ivory-gold-theme-live body :is(.dropdown .dropbtn,.navbar a,.sub-dropdown,.dropdown-content a,.sub-dropdown-content a),
+html.ivory-gold-theme-live body :is(#singlelink, .tabcontent > a[data-sr-catalog-link], .tabcontent > a[href*="srTypeId="]){
+  color: var(--ivory-ink) !important;
+  -webkit-text-fill-color: var(--ivory-ink) !important;
+  background: transparent !important;
+  border-color: transparent !important;
+  box-shadow: none !important;
+  filter: none !important;
+  text-decoration:none !important;
+  /* The gradient and text-fill change together; animating color only adds paints. */
+  transition:none !important;
+}
+
+/* Ivory main-content hierarchy upgrade.
+   Quick-action geometry remains owned by styles.css; Ivory supplies only its
+   palette variables above. Idle top-level menu triggers get paint only. */
+html.ivory-gold-theme-live body .dropdown:not(:hover):not(:focus-within):not(.open):not(.active) > .dropbtn,
+html.ivory-gold-theme-live body .navbar > a:not(:hover):not(:focus-visible):not(.active),
+html.ivory-gold-theme-live body .navbar > div:not(.dropdown) > a:not(:hover):not(:focus-visible):not(.active),
+html.ivory-gold-theme-live body :is(#singlelink, .tabcontent > a[data-sr-catalog-link], .tabcontent > a[href*="srTypeId="]):not(:hover):not(:focus-visible):not(.active){
+  color:#F2E4D0 !important;
+  -webkit-text-fill-color:#F2E4D0 !important;
+  -webkit-text-stroke:0 !important;
+  text-shadow:0 1px 2px rgba(13,10,8,.82) !important;
+}
+html.ivory-gold-theme-live body .dropdown:not(:hover):not(:focus-within):not(.open):not(.active) > .dropbtn .fa{
+  color:#D9C5AA !important;
+  -webkit-text-fill-color:#D9C5AA !important;
+  -webkit-text-stroke:0 !important;
+  text-shadow:0 1px 1px rgba(13,10,8,.72) !important;
+}
+html.ivory-gold-theme-live body .dropdown:is(:hover,:focus-within,.open,.active) > .dropbtn,
+html.ivory-gold-theme-live body :is(.navbar > a,:is(#singlelink, .tabcontent > a[data-sr-catalog-link], .tabcontent > a[href*="srTypeId="])):is(:hover,:focus-visible),
+html.ivory-gold-theme-live body .navbar > div:not(.dropdown) > a:is(:hover,:focus-visible){
+  color:#fff9e9 !important;
+  -webkit-text-fill-color:#fff9e9 !important;
+  background:linear-gradient(180deg,#957344,#604426) !important;
+  border-color:#bea16d !important;
+  border-radius:8px !important;
+  box-shadow:inset 0 0 0 1px #bea16d,inset 0 1px 0 rgba(255,249,223,.4),0 5px 14px rgba(68,45,20,.16) !important;
+  -webkit-text-stroke:0 !important;
+  text-shadow:none !important;
+}
+
+html.ivory-gold-theme-live body :is(.dropdown-content,.sub-dropdown-content){
+  background:linear-gradient(145deg,#fffdf8,#f8f2e7 62%,#f1e5d0) !important;
+  color:var(--ivory-ink) !important;
+  border-color:#c9af80 !important;
+  border-radius:10px !important;
+  box-shadow:inset 0 2px 0 #b59151,inset 0 0 0 1px rgba(255,255,255,.8),0 12px 28px rgba(69,45,17,.18) !important;
+  backdrop-filter:none !important;
+  -webkit-backdrop-filter:none !important;
+}
+html.ivory-gold-theme-live body :is(.dropdown-content a,.sub-dropdown-content a):is(:hover,:focus-visible),
+html.ivory-gold-theme-live body .sub-dropdown:is(:hover,:focus-within) > a{
+  color:#513914 !important;
+  -webkit-text-fill-color:#513914 !important;
+  background:linear-gradient(90deg,#e6d1a9,#f4e9d3) !important;
+  box-shadow:inset 3px 0 0 #a77b35,inset 0 1px 0 rgba(255,255,255,.55) !important;
+}
+html.ivory-gold-theme-live body :is(#searchResults,.search-results){
+  background:#fffaf1 !important;
+  color: var(--ivory-ink) !important;
+  border: 1px solid #cbb99c !important;
+  border-radius: 12px !important;
+  box-shadow: 0 15px 40px rgba(55,39,18,.18) !important;
+  backdrop-filter:none !important;
+  -webkit-backdrop-filter:none !important;
+}
+html.ivory-gold-theme-live body #searchResults a{
+  color: var(--ivory-ink) !important;
+  -webkit-text-fill-color: var(--ivory-ink) !important;
+  background: transparent !important;
+  border-color: rgba(133,105,61,.12) !important;
+  box-shadow: none !important;
+  filter: none !important;
+}
+html.ivory-gold-theme-live body #searchResults a:hover,
+html.ivory-gold-theme-live body #searchResults a:focus-visible{
+  color:#352714 !important;
+  -webkit-text-fill-color:#352714 !important;
+  background:#ecddc2 !important;
+  box-shadow:inset 3px 0 #a77b35 !important;
+}
+html.ivory-gold-theme-live body #searchResults :is(.sr-search-status,.sr-search-pagination,.sr-search-count,[role=status]){ color:var(--ivory-muted) !important; background:#f4ede0 !important; }
+html.ivory-gold-theme-live body .search-icon{ color:#8c7046 !important; }
+html.ivory-gold-theme-live body :is(.navbar,.tabcontent){ background: transparent !important; }
+html.ivory-gold-theme-live body :is(.outage-switchbar,.outage-mail-wrap,.outage-mail-panel,.outage-mail-card,.outage-card,.outage-normal-wrap,.outage-panel,.calculator-panel,#calcBox,.calc-card,.calc-panel){
+  color:var(--ivory-ink) !important;
+  background:var(--ivory-panel) !important;
+  border-color:var(--ivory-line) !important;
+  box-shadow:var(--ivory-shadow) !important;
+}
+html.ivory-gold-theme-live body :is(.outage-mail-label,.outage-mail-hint,.outage-switchbar-title,.outage-mail-title){ color:var(--ivory-muted) !important; }
+html.ivory-gold-theme-live body :is(.support-overlay,.suggestions-overlay,.sr-notifications-overlay){ background:rgba(39,32,23,.38) !important; backdrop-filter:none !important; -webkit-backdrop-filter:none !important; }
+html.ivory-gold-theme-live body :is(.support-modal,.support-chat,.admin-modal,.suggestions-modal,.suggestions-panel,.sr-notifications-panel,.sr-notifications-dialog){
+  color:var(--ivory-ink) !important;
+  background:#fbf7ef !important;
+  border-color:var(--ivory-line) !important;
+  box-shadow:0 22px 64px rgba(47,32,12,.20) !important;
+}
+html.ivory-gold-theme-live body :is(.support-chat-header,.support-users,.support-compose,.suggestions-header,.sr-notifications-header,.sr-notifications-toolbar){ background:#f1e9dc !important; color:var(--ivory-ink) !important; border-color:var(--ivory-line) !important; }
+html.ivory-gold-theme-live body :is(.support-chat-title,.support-users-title,.suggestions-title,.sr-notifications-title,.sr-notifications-item-title){color:var(--ivory-ink) !important;}
+html.ivory-gold-theme-live body :is(.support-subtitle,.support-chat-subtitle,.suggestions-subtitle,.support-hint,.sr-notifications-subtitle,.sr-notifications-empty){color:var(--ivory-muted) !important;}
+html.ivory-gold-theme-live body :is(.sr-notifications-item,.sr-notifications-card,.support-msg,.support-user,.suggestion-card){ color:var(--ivory-ink) !important; background:#fffdf9 !important; border-color:var(--ivory-line) !important; }
+html.ivory-gold-theme-live body :is(.sr-notifications-item.is-unread,.sr-notifications-card.is-unread){background:#f5ead5 !important; border-color:#b9975b !important;}
+html.ivory-gold-theme-live body :is(.sr-notifications-fab,.suggestions-fab,.support-fab){background:#fdf8ed !important; color:#6e512d !important; box-shadow:0 5px 18px rgba(51,36,16,.16) !important;}
+html.ivory-gold-theme-live body :is(.fab-badge,.sr-notifications-count){ background:#805620 !important; color:#fff !important; -webkit-text-fill-color:#fff !important; }
+html.ivory-gold-theme-live body #MNDO_UA07_LOGO3{
+  background:none !important;
+  filter:none !important;
+  box-shadow:none !important;
+  overflow:visible !important;
+}
+html.ivory-gold-theme-live body #MNDO_UA07_LOGO3::before,
+html.ivory-gold-theme-live body #MNDO_UA07_LOGO3::after{
+  content:none !important;
+  display:none !important;
+}
+html.ivory-gold-theme-live body #UA07_SECRET_ENVELOPE svg path{stroke:#7a603e !important;}
+html.ivory-gold-theme-live body :is(#UA07_ONLINE_COUNT,#ahtTimer,.aht-pill,.mndo-aht-pill,.mndo-one-home-toggle){background:var(--ivory-control-bg) !important;color:var(--ivory-control-text) !important;-webkit-text-fill-color:var(--ivory-control-text) !important;border-color:var(--ivory-control-border) !important;box-shadow:var(--ivory-control-shadow) !important;backdrop-filter:none !important;-webkit-backdrop-filter:none !important;}
+html.ivory-gold-theme-live body ::-webkit-scrollbar{ width:8px; height:8px; }
+html.ivory-gold-theme-live body ::-webkit-scrollbar-thumb{ background:#bba889; border:2px solid #f5efe4; border-radius:20px; }
+html.ivory-gold-theme-live body ::selection{background:#d6b980; color:#322719;}
+html.ivory-gold-theme-live.mndo-low-power body :is(.dropdown-content,.sub-dropdown-content,#searchResults){ backdrop-filter:none; }
+@media (max-width:700px){
+  html.ivory-gold-theme-live::before{background-position:62% top !important;}
+  html.ivory-gold-theme-live body #tabs .tablinks{}
+}
+@media (prefers-reduced-motion:reduce){
+  html.ivory-gold-theme-live body *,
+html.ivory-gold-theme-live body *::before,
+html.ivory-gold-theme-live body *::after{animation:none !important;transition:none !important;scroll-behavior:auto !important;}
+}
+/* Shared utility links have their own legacy class; give them the same materials. */
+html.ivory-gold-theme-live body a.ireportStyle{
+  display:inline-block;
+  color:#4d3b23 !important;
+  -webkit-text-fill-color:#4d3b23 !important;
+  background:linear-gradient(180deg,#fffdf8,#eee3d0) !important;
+  border:1px solid #cdbb9c !important;
+  border-radius:10px !important;
+  padding:10px 15px !important;
+  margin:4px 3px !important;
+  font-size:13px !important;
+  font-weight:600;
+  box-shadow:0 3px 10px rgba(78,53,22,.08) !important;
+  text-decoration:none !important;
+}
+html.ivory-gold-theme-live body a.ireportStyle:hover{background:#e3cfac !important; border-color:#a88850 !important; color:#322310 !important;}
+html.ivory-gold-theme-live body h1{font-size:24px !important; font-weight:650 !important;}
+@media(max-width:700px){
+  html.ivory-gold-theme-live body{min-width:0 !important;}
+  html.ivory-gold-theme-live::before{background-image:linear-gradient(rgba(246,240,229,.52),rgba(238,227,209,.55)),url('./ivory-gold-bg.webp');background-size:auto 100vh;}
+  html.ivory-gold-theme-live body :is(#arabiccNumber,#arabicNumber){position:absolute !important;left:12px !important;right:auto !important;width:calc(100vw - 184px) !important;min-width:0 !important;height:34px !important;font-size:12px !important;box-sizing:border-box !important;}
+  html.ivory-gold-theme-live body #arabiccNumber{top:12px !important;}
+  html.ivory-gold-theme-live body #arabicNumber{top:54px !important;}
+  html.ivory-gold-theme-live body :is(#copyBtn,#copyBtn1){position:absolute !important;left:auto !important;right:112px !important;width:48px !important;height:34px !important;transform:none !important;}
+  html.ivory-gold-theme-live body :is(#copyBtn,#mndoTTTop,#mndoSRTop){top:12px !important;}
+  html.ivory-gold-theme-live body :is(#copyBtn1,#mndoTTBottom,#mndoSRBottom){top:54px !important;}
+  html.ivory-gold-theme-live body :is(#mndoTTTop,#mndoTTBottom,#mndoSRTop,#mndoSRBottom){position:absolute !important;left:auto !important;width:44px !important;height:34px !important;transform:none !important;}
+  html.ivory-gold-theme-live body :is(#mndoTTTop,#mndoTTBottom){right:62px !important;}
+  html.ivory-gold-theme-live body :is(#mndoSRTop,#mndoSRBottom){right:12px !important;}
+  html.ivory-gold-theme-live body .mndo-header-logo-slot{position:absolute !important;top:47px !important;left:0 !important;width:110px !important;min-width:0 !important;max-width:110px !important;height:30px !important;margin:0 !important;}
+  html.ivory-gold-theme-live body #MNDO_UA07_LOGO3{width:110px !important;min-width:0 !important;height:30px !important;margin:0 !important;}
+  html.ivory-gold-theme-live body #UA07_SECRET_ENVELOPE_WRAP{position:absolute !important;top:1px !important;left:110px !important;right:auto !important;bottom:auto !important;transform:none !important;margin:0 !important;}
+  html.ivory-gold-theme-live body #mndoOneHomeToggle{position:absolute !important;top:189px !important;right:12px !important;left:auto !important;}
+  html.ivory-gold-theme-live body #tabs{}
+  html.ivory-gold-theme-live body #tabs .tablinks{}
+  html.ivory-gold-theme-live body .floating-actions{gap:7px !important;right:12px !important;bottom:12px !important;}
+  html.ivory-gold-theme-live body .floating-actions button{font-size:11px !important;min-height:40px !important;}
+}
+@media(max-width:700px){
+  html.ivory-gold-theme-live body #MNDO_UA07_LOGO3{position:relative !important;left:0 !important;top:0 !important;right:auto !important;transform:none !important;}
+  html.ivory-gold-theme-live body #mndoOneHomeToggle{top:40px !important;right:0 !important;}
+}
+
+/* One control language: quiet navigation, gold primary actions, muted red removal. */
+html.ivory-gold-theme-live body :is(button:not(.dropbtn),.RSR2,a.ireportStyle){
+  font-family:'Segoe UI',Tahoma,Arial,sans-serif !important;
+  font-weight:600 !important;
+  letter-spacing:0 !important;
+  text-shadow:none !important;
+  transform:none !important;
+}
+html.ivory-gold-theme-live body a.ireportStyle{
+  box-sizing:border-box !important;
+  min-height:40px !important;
+  padding:10px 15px !important;
+  font-size:13px !important;
+  line-height:20px !important;
+  border-radius:10px !important;
+}
+html.ivory-gold-theme-live body .floating-actions button{height:42px !important;min-height:42px !important;border-radius:12px !important;font-size:13px !important;}
+html.ivory-gold-theme-live body #tabs .tab-utility-btn{}
+html.ivory-gold-theme-live body :is(#suggestionAddBtn,.sug-reply-send,#supportSendBtn,#supportNameConfirmBtn,#adminLoginBtn,#genSimpleBtn,.outage-mail-btn.primary){
+  background:#76562d !important;color:#fffaf2 !important;-webkit-text-fill-color:#fffaf2 !important;border-color:#76562d !important;box-shadow:0 3px 8px rgba(77,53,20,.14) !important;
+}
+html.ivory-gold-theme-live body :is(#suggestionAddBtn,.sug-reply-send,#supportSendBtn,#supportNameConfirmBtn,#adminLoginBtn,#genSimpleBtn,.outage-mail-btn.primary):hover:not(:disabled){background:#604321 !important;border-color:#604321 !important;}
+html.ivory-gold-theme-live body :is(.support-del-btn,.admin-delete,.admin-danger,button.danger){color:#9b3d32 !important;-webkit-text-fill-color:#9b3d32 !important;background:#fff5f1 !important;border-color:#e4bbb1 !important;}
+html.ivory-gold-theme-live body :is(.support-del-btn,.admin-delete,.admin-danger,button.danger):hover{background:#f6ded7 !important;}
+
+/* Support keeps its proven layout; every surface and state shares the new palette. */
+html.ivory-gold-theme-live body #supportChatOverlay.sr-support-pro-v4{
+  --sp4-bg:#f8f3e9;--sp4-shell:#fffaf2;--sp4-panel:#fffdf8;--sp4-panel-2:#f4ecdE;
+  --sp4-line:#e4d8c6;--sp4-line-strong:#d1bfa3;--sp4-text:#332e27;--sp4-muted:#72634f;--sp4-muted-2:#7b6b55;
+  --sp4-blue:#886128;--sp4-green:#397252;--sp4-danger:#a34639;--sp4-shadow:0 24px 70px rgba(51,36,17,.25);
+  background:rgba(49,39,26,.38) !important;
+}
+html.ivory-gold-theme-live body #supportChatOverlay.sr-support-pro-v4 :is(.support-chat-header,.support-users,.support-compose){background:#f5eee2 !important;border-color:#e4d8c6 !important;}
+html.ivory-gold-theme-live body #supportChatOverlay.sr-support-pro-v4 :is(.support-messages,#supportMessagesList){background:#faf6ee !important;}
+html.ivory-gold-theme-live body #supportChatOverlay.sr-support-pro-v4 :is(#sruxSupportStats,.sr-support-brand-pill,#supportReplyPreview,#supportAttachPreview,#supportEmojiPopover){background:#eee3cf !important;color:#66502f !important;border-color:#d9c7a8 !important;box-shadow:none !important;}
+html.ivory-gold-theme-live body #supportChatOverlay.sr-support-pro-v4 #sruxSupportStats strong{color:#4d3b23 !important;}
+html.ivory-gold-theme-live body #supportChatOverlay.sr-support-pro-v4 :is(#sruxSupportSearch,#supportMessageInput,#supportMessageInput:focus){background:#fffdf8 !important;color:#332e27 !important;border-color:#d7c7af !important;caret-color:#886128 !important;}
+html.ivory-gold-theme-live body #supportChatOverlay.sr-support-pro-v4 :is(#sruxSupportSearch,#supportMessageInput)::placeholder{color:#85755f !important;}
+html.ivory-gold-theme-live body #supportChatOverlay.sr-support-pro-v4 :is(#supportChatBackBtn,#supportChatCloseBtn,#supportEmojiBtn,#supportAttachBtn){background:#fffcf6 !important;color:#5c4930 !important;border-color:#d8c7aa !important;box-shadow:0 2px 5px rgba(55,36,14,.04) !important;}
+html.ivory-gold-theme-live body #supportChatOverlay.sr-support-pro-v4 :is(#supportChatBackBtn,#supportChatCloseBtn,#supportEmojiBtn,#supportAttachBtn):hover{background:#ead9bb !important;color:#42321d !important;border-color:#b79a68 !important;}
+html.ivory-gold-theme-live body #supportChatOverlay.sr-support-pro-v4 #supportUsersList .support-user{background:transparent !important;color:#493c2b !important;border-color:transparent !important;}
+html.ivory-gold-theme-live body #supportChatOverlay.sr-support-pro-v4 #supportUsersList .support-user:hover{background:#eee3cf !important;border-color:#d7c5a5 !important;}
+html.ivory-gold-theme-live body #supportChatOverlay.sr-support-pro-v4 #supportUsersList :is(.support-user.me,.support-user.is-active){background:#e5eedf !important;border-color:#c2d0b5 !important;}
+html.ivory-gold-theme-live body #supportChatOverlay.sr-support-pro-v4 #supportUsersList .support-user-name{color:#3f372b !important;font-size:12px !important;}
+html.ivory-gold-theme-live body #supportChatOverlay.sr-support-pro-v4 #supportUsersList .support-presence-badge{color:#81725e !important;}
+html.ivory-gold-theme-live body #supportChatOverlay.sr-support-pro-v4 #supportUsersList .support-presence-badge.is-online{color:#34704e !important;}
+html.ivory-gold-theme-live body #supportChatOverlay.sr-support-pro-v4 #supportUsersList .support-user-badge{color:#34704e !important;background:#dce9d2 !important;}
+html.ivory-gold-theme-live body #supportChatOverlay.sr-support-pro-v4 #supportMessagesList .support-msg{background:#fffdf8 !important;border-color:#dfd3c0 !important;color:#332e27 !important;box-shadow:0 3px 10px rgba(57,41,19,.04) !important;}
+html.ivory-gold-theme-live body #supportChatOverlay.sr-support-pro-v4 #supportMessagesList .support-msg.mine{background:#f0e4cc !important;border-color:#d2b98b !important;}
+html.ivory-gold-theme-live body #supportChatOverlay.sr-support-pro-v4 #supportMessagesList :is(.support-msg:hover,.support-msg.mine:hover){border-color:#b69763 !important;box-shadow:0 4px 12px rgba(57,41,19,.07) !important;}
+html.ivory-gold-theme-live body #supportChatOverlay.sr-support-pro-v4 #supportMessagesList :is(.support-msg-name,.support-msg-text,.support-attach-line){color:#3e3529 !important;}
+html.ivory-gold-theme-live body #supportChatOverlay.sr-support-pro-v4 #supportMessagesList .support-msg-text{font-size:14px !important;line-height:1.7 !important;}
+html.ivory-gold-theme-live body #supportChatOverlay.sr-support-pro-v4 #supportMessagesList .support-msg-name{font-size:11px !important;}
+html.ivory-gold-theme-live body #supportChatOverlay.sr-support-pro-v4 #supportMessagesList :is(.support-link,.support-reply-reference b){color:#805619 !important;}
+html.ivory-gold-theme-live body #supportChatOverlay.sr-support-pro-v4 #supportMessagesList :is(.support-reply-reference,.support-reply-to-you){background:#eee5d6 !important;color:#6d5a3e !important;border-color:#d9c9ac !important;}
+html.ivory-gold-theme-live body #supportChatOverlay.sr-support-pro-v4 #supportMessagesList .support-reply-reference span{color:#796951 !important;}
+html.ivory-gold-theme-live body #supportChatOverlay.sr-support-pro-v4 #supportMessagesList :is(.support-reply-btn,.support-msg-action,.sr-support-seen-btn,.support-reaction-badge){background:#f7f0e5 !important;color:#6b5738 !important;border-color:#dfcfb5 !important;}
+html.ivory-gold-theme-live body #supportChatOverlay.sr-support-pro-v4 #supportMessagesList :is(.support-reply-btn,.support-msg-action,.sr-support-seen-btn,.support-reaction-badge):hover{background:#e9d8b8 !important;color:#44311a !important;border-color:#baa06e !important;}
+html.ivory-gold-theme-live body #supportChatOverlay.sr-support-pro-v4 #supportMessagesList .support-del-btn{color:#9b493b !important;background:#fff5ef !important;border-color:#e5c3b7 !important;opacity:1 !important;}
+html.ivory-gold-theme-live body #supportChatOverlay.sr-support-pro-v4 #supportMessagesList .support-del-btn:hover{background:#f3dacf !important;color:#84362b !important;}
+html.ivory-gold-theme-live body #supportChatOverlay.sr-support-pro-v4 #supportSendBtn{background:#76562d !important;color:#fffaf2 !important;border-color:#76562d !important;}
+html.ivory-gold-theme-live body #supportChatOverlay.sr-support-pro-v4 #supportSendBtn:hover:not(:disabled){background:#604321 !important;color:#fffaf2 !important;border-color:#604321 !important;}
+html.ivory-gold-theme-live body #supportChatOverlay.sr-support-pro-v4 :is(#supportChatStatus,.support-compose .srux-char-counter){color:#7d6b51 !important;}
+html.ivory-gold-theme-live body #supportChatOverlay.sr-support-pro-v4 #supportEmojiPopover .support-emoji-section-title{background:#eee3cf !important;color:#796243 !important;}
+html.ivory-gold-theme-live body #supportChatOverlay.sr-support-pro-v4 .support-role-icon{background:#f4e8d1 !important;border-color:#d4bb8c !important;color:#846021 !important;}
+html.ivory-gold-theme-live.sr-support-pro-v4-active body :is(#supportReactionMenu,#srSupportMentionLite){background:#fffaf0 !important;border-color:#d6c3a2 !important;box-shadow:var(--ivory-shadow) !important;}
+html.ivory-gold-theme-live.sr-support-pro-v4-active body :is(#supportReactionMenu,#srSupportMentionLite) button{background:#f3e9d7 !important;color:#624822 !important;}
+
+/* Suggestions, replies and their action controls. */
+html.ivory-gold-theme-live body #suggestionsOverlay{background:rgba(49,39,26,.38) !important;}
+html.ivory-gold-theme-live body #suggestionsOverlay :is(.suggestions-modal,.suggestions-panel){background:#faf6ed !important;border-color:#d4c2a4 !important;box-shadow:0 18px 60px rgba(49,33,13,.20) !important;border-radius:22px !important;}
+html.ivory-gold-theme-live body #suggestionsOverlay .suggestions-panel{box-shadow:none !important;border:0 !important;}
+html.ivory-gold-theme-live body #suggestionsOverlay :is(.suggestions-header,.suggestions-form,.suggestions-meta-row){background:transparent !important;color:#77654c !important;border-color:#e3d6c0 !important;}
+html.ivory-gold-theme-live body #suggestionsOverlay :is(h2,.suggestion-name,.sug-reply-name,.suggestion-text,.sug-reply-text){color:#3d3326 !important;text-shadow:none !important;}
+html.ivory-gold-theme-live body #suggestionsList :is(.suggestion-item,.suggestion-item:hover,.suggestion-item.has-replies,.sug-reply-item){background:#fffdf8 !important;border:1px solid #e1d3ba !important;border-inline-start:3px solid #b7955a !important;border-radius:14px !important;box-shadow:0 3px 10px rgba(66,45,15,.05) !important;transform:none !important;}
+html.ivory-gold-theme-live body #suggestionsList .sug-reply-item{background:#f4eddf !important;}
+html.ivory-gold-theme-live body #suggestionsList :is(.suggestion-meta,.sug-reply-meta,.suggestion-when,.sug-reply-when,.sug-reply-hint,.sr-suggest-seen){color:#7c6a50 !important;}
+html.ivory-gold-theme-live body #suggestionsList .sug-reply-compose{background:#f8f0e2 !important;border-color:#e0ceb0 !important;box-shadow:none !important;border-radius:13px !important;}
+html.ivory-gold-theme-live body #suggestionsList :is(.sug-replies-toggle,.sug-reply-to-btn,.sug-reply-reference,.sr-suggest-seen-btn){background:#f3e7d0 !important;color:#694d26 !important;border-color:#d4ba89 !important;border-radius:9px !important;}
+html.ivory-gold-theme-live body #suggestionsOverlay :is(#suggestionInput,.sug-reply-input){background:#fffdfa !important;border-color:#d6c3a1 !important;border-radius:12px !important;color:#3f3528 !important;box-shadow:none !important;}
+html.ivory-gold-theme-live body #suggestionsOverlay #suggestionsCloseBtn{background:#f3e9d9 !important;color:#735833 !important;border-color:#d4c09d !important;box-shadow:none !important;}
+html.ivory-gold-theme-live body #suggestionsList :is(.suggestion-name,.sug-reply-name){font-weight:650 !important;}
+html.ivory-gold-theme-live body #suggestionsList :is(.suggestion-text,.sug-reply-text){font-size:14px !important;line-height:1.7 !important;}
+
+/* Application stacking order is owned by header-core.css. */
+html.ivory-gold-theme-live body #supportChatOverlay.sr-support-pro-v4 .support-users-title{background:transparent !important;}
+html.ivory-gold-theme-live body #supportChatOverlay.sr-support-pro-v4 #supportMessagesList .support-msg.is-reply-to-me{box-shadow:0 0 0 1px #c2a36d,0 4px 14px rgba(74,50,19,.07) !important;}
+html.ivory-gold-theme-live body #suggestionsOverlay :is(#suggestionsList,.sug-replies,.sug-replies-list){background:transparent !important;box-shadow:none !important;border-color:#e0d2b9 !important;}
+html.ivory-gold-theme-live body #suggestionsOverlay :is(#suggestionAddBtn,.sug-reply-send){background:#76562d !important;color:#fffaf2 !important;-webkit-text-fill-color:#fffaf2 !important;border-color:#76562d !important;}
+html.ivory-gold-theme-live body #suggestionsOverlay :is(#suggestionAddBtn,.sug-reply-send):hover:not(:disabled){background:#604321 !important;border-color:#604321 !important;}
+html.ivory-gold-theme-live body #suggestionsOverlay .suggestions-modal{width:min(1000px,calc(100vw - 40px)) !important;max-width:1000px !important;max-height:calc(100dvh - 80px) !important;}
+html.ivory-gold-theme-live body #suggestionsOverlay #suggestionsList{max-height:calc(100dvh - 310px) !important;}
+html.ivory-gold-theme-live body .tabcontent a.RSR2{display:inline-flex !important;align-items:center !important;min-height:38px !important;padding:8px 13px !important;font-size:13px !important;line-height:20px !important;margin:4px !important;}
+@media(max-width:700px){
+  html.ivory-gold-theme-live body .mndo-header-logo-slot{transform:none !important;margin-left:0 !important;}
+
+/* Header utilities are not content buttons. Their interaction states keep the
+   exact same geometry and shadow so hover cannot look like a physical lift. */
+  html.ivory-gold-theme-live body #suggestionsOverlay .suggestions-modal{width:calc(100vw - 16px) !important;max-height:calc(100dvh - 24px) !important;}
+  html.ivory-gold-theme-live body #suggestionsOverlay #suggestionsList{max-height:calc(100dvh - 230px) !important;}
+}
+
+
+@media(max-width:700px){
+  html.ivory-gold-theme-live body #MNDO_UA07_LOGO3{flex:0 0 110px !important;max-width:110px !important;min-height:30px !important;max-height:30px !important;}
+  
+  
+}
+html.ivory-gold-theme-live body #supportChatOverlay.sr-support-pro-v4 #supportSendBtn,
+html.ivory-gold-theme-live body #supportChatOverlay.sr-support-pro-v4 #supportSendBtn:hover:not(:disabled){-webkit-text-fill-color:#fffaf2 !important;}
+html.ivory-gold-theme-live body #suggestionsOverlay [id^=sugReplies_]{background:#f4ecde !important;border-color:#e1d1b6 !important;box-shadow:none !important;border-radius:13px !important;}
+html.ivory-gold-theme-live body #suggestionsOverlay .srux-char-counter{color:#7a684e !important;}
+@media(max-width:700px){
+  html.ivory-gold-theme-live body #suggestionsOverlay :is(.suggestion-meta,.sug-reply-meta){flex-wrap:wrap !important;gap:7px !important;align-items:center !important;}
+  html.ivory-gold-theme-live body #suggestionsOverlay :is(.suggestion-who,.sug-reply-who){flex:1 1 130px !important;min-width:0 !important;}
+  html.ivory-gold-theme-live body #suggestionsOverlay :is(.suggestion-name,.sug-reply-name){white-space:nowrap !important;max-width:150px !important;overflow:hidden !important;text-overflow:ellipsis !important;}
+}
+
+/* Remaining tool surfaces: calculator, converters, callback OCR and results. */
+html.ivory-gold-theme-live body :is(#divv,#withoutvat,.converter-card,.containerM,.ocrBox,.calc-smart-modal,.calc-smart-panel,.calc-smart-dialog,.quota-summary-card,#landlineResults,.landline-extras-panel,.outage-normal-embed .card){background:var(--ivory-panel) !important;color:var(--ivory-ink) !important;border:1px solid #d9c8ad !important;border-radius:16px !important;box-shadow:var(--ivory-shadow) !important;}
+html.ivory-gold-theme-live body :is(#Mobile,.containerM label,.calculator-service-type label,.landline-extra-option,.landline-breakdown-item,.quota-label,.quota-value,.ocrTitle,.ocrSubtitle,.ocrSubHint,.ocrStatus){color:#56452f !important;-webkit-text-fill-color:#56452f !important;}
+html.ivory-gold-theme-live body .containerM{padding:20px !important;box-sizing:border-box !important;}
+html.ivory-gold-theme-live body :is(.ocrPasteZone,.ocrSubtitle,.ocrStatus,.landline-extra-option,.landline-breakdown-item,.quota-line){background:#f2e9da !important;border-color:#d6c0a0 !important;color:#605037 !important;box-shadow:none !important;}
+html.ivory-gold-theme-live body .ocrPasteZone{border:1px dashed #b99762 !important;}
+html.ivory-gold-theme-live body :is(.ocrBox,.converter-card,#divv,#withoutvat) button{font-size:13px !important;min-height:36px !important;}
+html.ivory-gold-theme-live body :is(.button-group button.active,.vat-btn.active,button[aria-pressed=true],.calc-smart-tab.active){background:#76562d !important;color:#fffaf2 !important;-webkit-text-fill-color:#fffaf2 !important;border-color:#76562d !important;}
+html.ivory-gold-theme-live body :is(#cbOcrExtractBtn,.converter-card button){background:#76562d !important;color:#fffaf2 !important;-webkit-text-fill-color:#fffaf2 !important;border-color:#76562d !important;}
+html.ivory-gold-theme-live body :is(#Calculate hr,.containerM hr){border:0 !important;border-top:1px solid #e1d4be !important;}
+@media(max-width:700px){
+  html.ivory-gold-theme-live body #mndoOneHomeToggle{top:6px !important;right:160px !important;}
+  html.ivory-gold-theme-live body #tabs{}
+  html.ivory-gold-theme-live body :is(#divv,#withoutvat){position:relative !important;left:auto !important;right:auto !important;top:auto !important;transform:none !important;width:calc(100% - 24px) !important;max-width:100% !important;box-sizing:border-box !important;margin:16px 12px !important;}
+}
+html.ivory-gold-theme-live body :is(.landline-field-label,.landline-extras-header,.smart-calc-title,.smart-calc-expression,.smart-calc-result){color:#54432b !important;}
+html.ivory-gold-theme-live body :is(.smart-calc-panel,.smart-calc-display,#tagsLoader,#tagStudio .panel,.ltTimerDock,.ltTop,.ltTile,.ltNotice,#smartDockBar){background:#faf4e8 !important;color:#44351f !important;border-color:#d6c3a2 !important;box-shadow:var(--ivory-shadow) !important;}
+html.ivory-gold-theme-live body :is(.smart-calc-key.is-equals,#tagStudio .btn.primary){background:#76562d !important;color:#fffaf2 !important;-webkit-text-fill-color:#fffaf2 !important;}
+html.ivory-gold-theme-live body #tagsContainer{background:#efe5d2 !important;}
+html.ivory-gold-theme-live body :is(.ltTime,.ltMiniTime,.ltLabel,.ltSub,.ltNotice b,#tagStudio .title,#tagStudio .tiny,#tagStudio label,.tag-label){color:#59462b !important;-webkit-text-fill-color:#59462b !important;text-shadow:none !important;}
+html.ivory-gold-theme-live body #tagStudio{color:#44351f !important;}
+html.ivory-gold-theme-live body .yy{min-height:38px !important;font-size:13px !important;padding:8px 13px !important;}
+html.ivory-gold-theme-live body .tag-delete{color:#984537 !important;background:#fae6df !important;border-color:#d8afa1 !important;}
+
+html.ivory-gold-theme-live body #supportChatOverlay.sr-support-pro-v4 #supportAttachBtn{font-size:0 !important;}
+html.ivory-gold-theme-live body #supportChatOverlay.sr-support-pro-v4 #supportAttachBtn::before{content:"" !important;display:inline-block !important;width:15px !important;height:15px !important;background:currentColor !important;mask:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22black%22%20stroke-width%3D%221.8%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Cpath%20d%3D%22m21%2011-8.5%208.5a6%206%200%200%201-8.5-8.5l9-9a4%204%200%200%201%205.7%205.7l-9%209a2%202%200%200%201-2.8-2.8l8.3-8.3%22%2F%3E%3C%2Fsvg%3E") center/contain no-repeat !important;}
+
+html.ivory-gold-theme-live body #supportChatOverlay.sr-support-pro-v4 #supportMessagesList .support-del-btn{font-size:0 !important;}
+html.ivory-gold-theme-live body #supportChatOverlay.sr-support-pro-v4 #supportMessagesList .support-del-btn::before{content:"" !important;display:inline-block !important;width:15px !important;height:15px !important;background:currentColor !important;mask:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22black%22%20stroke-width%3D%221.8%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Cpath%20d%3D%22M3%206h18M9%206V3h6v3M5%206l1%2015h12l1-15M10%2010v7M14%2010v7%22%2F%3E%3C%2Fsvg%3E") center/contain no-repeat !important;}
+html.ivory-gold-theme-live body .tag-label{font-size:13px !important;font-weight:600 !important;letter-spacing:0 !important;line-height:20px !important;filter:none !important;transform:none !important;}
+html.ivory-gold-theme-live body:has(#tagStudio){padding:70px 18px 24px !important;margin:0 !important;}
+html.ivory-gold-theme-live body:has(#tagStudio)::before,
+html.ivory-gold-theme-live body:has(#tagStudio)::after{display:none !important;}
+html.ivory-gold-theme-live body :is(.smart-calc-hint,.smart-calc-preview){color:#786447 !important;}
+html.ivory-gold-theme-live body .smart-calc-btn.is-equals{background:#76562d !important;color:#fffaf2 !important;-webkit-text-fill-color:#fffaf2 !important;border-color:#76562d !important;}
+html.ivory-gold-theme-live body .smart-calc-btn.is-operator{background:#eedcbb !important;color:#65471e !important;}
+html.ivory-gold-theme-live body :is(.smart-calc-preview[data-state=ok],.support-status[data-type=success],#suggestionStatus[data-type=success]){color:#346b46 !important;}
+html.ivory-gold-theme-live body :is(.smart-calc-preview[data-state=error],.support-status[data-type=error],#suggestionStatus[data-type=error]){color:#a14533 !important;}
+html.ivory-gold-theme-live:has(#tagStudio)::before,
+html.ivory-gold-theme-live:has(#tagStudio)::after{display:none !important;}
+html.ivory-gold-theme-live body .yy::before,
+html.ivory-gold-theme-live body .yy::after,
+html.ivory-gold-theme-live body .tag-label::after{content:none !important;display:none !important;}
+html.ivory-gold-theme-live body #Calculate :is(.button-group button.active,.vat-btn.active),
+html.ivory-gold-theme-live body #Mobile .converter-card button,
+html.ivory-gold-theme-live body #cbOcrExtractBtn.ocrBtn,
+html.ivory-gold-theme-live body #smartCalcOverlay .smart-calc-btn.is-equals{
+  background:#76562d !important;color:#fffaf2 !important;-webkit-text-fill-color:#fffaf2 !important;border-color:#76562d !important;
+}
+html.ivory-gold-theme-live body #smartCalcOverlay .smart-calc-btn.is-operator{background:#eedcbb !important;color:#65471e !important;}
+html.ivory-gold-theme-live body #mndoOneHomeToggle[aria-pressed=true]{background:#e2edd7 !important;color:#326540 !important;-webkit-text-fill-color:#326540 !important;border-color:#adbf9d !important;}
+
+/* The search guard owns geometry; provide its palette and match its visual specificity. */
+html.ivory-gold-theme-live body #searchResults{
+  --ua07-sr-panel-bg:#fffaf1;--ua07-sr-panel-border:#cbb38b;--ua07-sr-panel-border-top:#cbb38b;
+  --ua07-sr-panel-shadow:0 16px 36px rgba(63,43,15,.18);--ua07-sr-top-line:#bc985c;
+  --ua07-sr-text:#463720;--ua07-sr-muted:#83704f;--ua07-sr-item-bg:#f6eedf;--ua07-sr-item-border:#e0ceb0;
+  --ua07-sr-item-hover-bg:#76562d;--ua07-sr-item-hover-border:#76562d;--ua07-sr-accent:#ad8645;--ua07-sr-scroll:#bba889;
+}
+html.ivory-gold-theme-live body #searchResults#searchResults.search-results a{font-weight:600 !important;text-shadow:none !important;box-shadow:0 2px 5px rgba(61,42,16,.04) !important;border-radius:9px !important;}
+html.ivory-gold-theme-live body #searchResults#searchResults.search-results a:hover,
+html.ivory-gold-theme-live body #searchResults#searchResults.search-results a:focus{background:#76562d !important;color:#fffaf2 !important;-webkit-text-fill-color:#fffaf2 !important;}
+
+/* Navigation geometry lives in header-core.css; shared paint resolves from the Ivory variables above. */

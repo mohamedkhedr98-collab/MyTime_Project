@@ -1,0 +1,324 @@
+/* SR Admin Access V4 — isolated scoped-access UI.
+   Intentionally does not reuse #adminTabMembers rules. */
+#adminTabSrAccess{
+  color:#eaf3fc;
+  background:transparent;
+}
+#adminTabSrAccess .sr-access-shell{
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+  min-height:100%;
+  box-sizing:border-box;
+}
+#adminTabSrAccess .sr-access-hero{
+  display:flex;
+  align-items:flex-start;
+  justify-content:space-between;
+  gap:18px;
+  padding:14px 16px;
+  border:1px solid rgba(137,177,219,.14);
+  border-radius:14px;
+  background:linear-gradient(180deg,rgba(27,60,96,.18),rgba(255,255,255,.018));
+}
+#adminTabSrAccess .sr-access-eyebrow{
+  margin-bottom:3px;
+  color:#7492b1;
+  font-size:9px;
+  font-weight:800;
+  letter-spacing:.13em;
+}
+#adminTabSrAccess .sr-access-hero h3{
+  margin:0;
+  color:#f3f8fd;
+  font-size:17px;
+  font-weight:820;
+}
+#adminTabSrAccess .sr-access-hero p{
+  margin:4px 0 0;
+  color:#91a7bd;
+  font-size:10.5px;
+  line-height:1.5;
+}
+#adminTabSrAccess .sr-access-privacy-badge{
+  flex:0 0 auto;
+  padding:6px 9px;
+  border:1px solid rgba(105,188,158,.20);
+  border-radius:999px;
+  background:rgba(51,137,108,.10);
+  color:#9bd5bf;
+  font-size:9px;
+  font-weight:800;
+  white-space:nowrap;
+}
+#adminTabSrAccess .sr-access-supervisors-shell{
+  display:grid;
+  gap:8px;
+  padding:11px;
+  border:1px solid rgba(80,177,143,.18);
+  border-radius:12px;
+  background:linear-gradient(180deg,rgba(35,112,87,.075),rgba(255,255,255,.012));
+}
+#adminTabSrAccess .sr-access-section-head{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+}
+#adminTabSrAccess .sr-access-section-head strong{
+  display:block;
+  color:#d8e9e2;
+  font-size:11px;
+}
+#adminTabSrAccess .sr-access-section-head small{
+  display:block;
+  margin-top:2px;
+  color:#739286;
+  font-size:8.5px;
+}
+#adminTabSrAccess .sr-access-count{
+  min-width:24px;
+  height:24px;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  border:1px solid rgba(79,177,142,.22);
+  border-radius:999px;
+  background:rgba(38,132,98,.13);
+  color:#9dd6c1;
+  font-size:9px;
+  font-weight:850;
+}
+#adminTabSrAccess .sr-access-supervisors{
+  display:grid;
+  gap:7px;
+  max-height:220px;
+  overflow:auto;
+  padding-right:2px;
+  scrollbar-width:thin;
+  scrollbar-color:rgba(78,163,132,.35) transparent;
+}
+#adminTabSrAccess .sr-access-supervisor-card{
+  display:grid;
+  grid-template-columns:minmax(0,1fr) auto;
+  align-items:center;
+  gap:10px;
+  padding:9px 10px;
+  border:1px solid rgba(80,177,143,.14);
+  border-radius:10px;
+  background:rgba(20,75,58,.12);
+}
+#adminTabSrAccess .sr-access-button.supervisor-remove{
+  min-width:132px;
+}
+
+#adminTabSrAccess .sr-access-toolbar{
+  display:grid;
+  grid-template-columns:minmax(0,1fr) auto;
+  gap:8px;
+  align-items:end;
+  padding:2px 1px;
+}
+#adminTabSrAccess .sr-access-search-wrap{
+  display:grid;
+  gap:5px;
+  min-width:0;
+  color:#829bb4;
+  font-size:9px;
+  font-weight:750;
+}
+#adminTabSrAccess .sr-access-search{
+  display:block !important;
+  width:100% !important;
+  min-width:0 !important;
+  height:38px !important;
+  padding:0 12px !important;
+  box-sizing:border-box !important;
+  border:1px solid rgba(127,170,213,.20) !important;
+  border-radius:10px !important;
+  outline:none !important;
+  background:rgba(2,10,20,.62) !important;
+  color:#e6f0fa !important;
+  font:500 11px/1.2 Inter,Segoe UI,Arial,sans-serif !important;
+  appearance:auto !important;
+}
+#adminTabSrAccess .sr-access-search::placeholder{color:#5f7892 !important}
+#adminTabSrAccess .sr-access-search:focus{
+  border-color:rgba(94,163,224,.58) !important;
+  box-shadow:0 0 0 3px rgba(56,124,186,.12) !important;
+}
+#adminTabSrAccess .sr-access-refresh,
+#adminTabSrAccess .sr-access-button{
+  min-height:36px;
+  border:1px solid rgba(130,174,218,.16);
+  border-radius:9px;
+  padding:0 11px;
+  background:rgba(255,255,255,.035);
+  color:#c9d9e8;
+  font-size:10px;
+  font-weight:760;
+  cursor:pointer;
+  transition:background .14s ease,border-color .14s ease,transform .14s ease;
+}
+#adminTabSrAccess .sr-access-refresh:hover,
+#adminTabSrAccess .sr-access-button:hover{
+  background:rgba(255,255,255,.065);
+  border-color:rgba(132,186,238,.28);
+}
+#adminTabSrAccess .sr-access-refresh:disabled,
+#adminTabSrAccess .sr-access-button:disabled{opacity:.48;cursor:not-allowed}
+#adminTabSrAccess .sr-access-note{
+  padding:8px 10px;
+  border:1px solid rgba(255,255,255,.055);
+  border-radius:10px;
+  background:rgba(255,255,255,.018);
+  color:#6f879f;
+  font-size:9.5px;
+  line-height:1.5;
+}
+#adminTabSrAccess .sr-access-list{
+  display:grid;
+  gap:7px;
+  min-height:120px;
+  max-height:390px;
+  overflow:auto;
+  padding:1px 3px 1px 0;
+  scrollbar-width:thin;
+  scrollbar-color:rgba(91,150,211,.38) transparent;
+}
+#adminTabSrAccess .sr-access-card{
+  display:grid;
+  grid-template-columns:minmax(0,1fr) auto;
+  gap:10px;
+  align-items:center;
+  padding:10px 11px;
+  border:1px solid rgba(129,166,209,.09);
+  border-radius:11px;
+  background:linear-gradient(180deg,rgba(255,255,255,.022),rgba(255,255,255,.010));
+}
+#adminTabSrAccess .sr-access-card[data-enabled="true"]{
+  border-color:rgba(73,162,130,.17);
+  background:linear-gradient(180deg,rgba(44,124,96,.065),rgba(255,255,255,.012));
+}
+#adminTabSrAccess .sr-access-identity{min-width:0}
+#adminTabSrAccess .sr-access-name-row{
+  display:flex;
+  align-items:center;
+  gap:7px;
+  min-width:0;
+}
+#adminTabSrAccess .sr-access-name{
+  overflow:hidden;
+  color:#dce9f5;
+  font-size:11.5px;
+  font-weight:760;
+  text-overflow:ellipsis;
+  white-space:nowrap;
+}
+#adminTabSrAccess .sr-access-badge{
+  flex:0 0 auto;
+  padding:3px 6px;
+  border:1px solid rgba(124,153,183,.15);
+  border-radius:999px;
+  background:rgba(255,255,255,.028);
+  color:#748ba2;
+  font-size:8px;
+  font-weight:800;
+}
+#adminTabSrAccess .sr-access-badge.enabled{
+  border-color:rgba(80,177,143,.20);
+  background:rgba(45,133,103,.11);
+  color:#92cdb8;
+}
+#adminTabSrAccess .sr-access-meta{
+  margin-top:4px;
+  color:#677e96;
+  font-size:9px;
+  line-height:1.45;
+  overflow-wrap:anywhere;
+}
+#adminTabSrAccess .sr-access-meta b{color:#8da6bf;font-weight:680}
+#adminTabSrAccess .sr-access-actions{display:flex;align-items:center}
+#adminTabSrAccess .sr-access-button{min-width:124px}
+#adminTabSrAccess .sr-access-button.grant{
+  border-color:rgba(72,157,216,.22);
+  background:rgba(42,112,164,.12);
+  color:#a9d0ed;
+}
+#adminTabSrAccess .sr-access-button.revoke{
+  border-color:rgba(202,99,107,.20);
+  background:rgba(137,54,62,.10);
+  color:#daa0a5;
+}
+#adminTabSrAccess .sr-access-audit-head{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  margin-top:4px;
+  padding:9px 2px 2px;
+}
+#adminTabSrAccess .sr-access-audit-head strong{
+  display:block;
+  color:#cbd9e7;
+  font-size:10.5px;
+}
+#adminTabSrAccess .sr-access-audit-head small{
+  display:block;
+  margin-top:2px;
+  color:#667d94;
+  font-size:8.5px;
+}
+#adminTabSrAccess .sr-access-audit{
+  display:grid;
+  gap:6px;
+  max-height:215px;
+  overflow:auto;
+  padding-right:3px;
+  scrollbar-width:thin;
+  scrollbar-color:rgba(91,150,211,.34) transparent;
+}
+#adminTabSrAccess .sr-access-audit-row{
+  padding:8px 10px;
+  border:1px solid rgba(255,255,255,.055);
+  border-radius:9px;
+  background:rgba(0,0,0,.10);
+}
+#adminTabSrAccess .sr-access-audit-top{
+  display:flex;
+  justify-content:space-between;
+  gap:8px;
+  color:#607890;
+  font-size:8px;
+}
+#adminTabSrAccess .sr-access-audit-event{
+  color:#87a5c1;
+  font-weight:800;
+  text-transform:uppercase;
+}
+#adminTabSrAccess .sr-access-audit-main{
+  margin-top:3px;
+  color:#bfcede;
+  font-size:9.5px;
+  font-weight:700;
+}
+#adminTabSrAccess .sr-access-audit-meta{
+  margin-top:2px;
+  color:#61778d;
+  font-size:8.5px;
+  overflow-wrap:anywhere;
+}
+#adminTabSrAccess .sr-access-empty{
+  padding:18px 10px;
+  color:#6b8299;
+  font-size:10px;
+  text-align:center;
+}
+#adminTabSrAccess .sr-access-empty.error{color:#d49a9f}
+@media(max-width:720px){
+  #adminTabSrAccess .sr-access-hero{flex-direction:column}
+  #adminTabSrAccess .sr-access-toolbar{grid-template-columns:1fr}
+  #adminTabSrAccess .sr-access-refresh{width:100%}
+  #adminTabSrAccess .sr-access-card,
+  #adminTabSrAccess .sr-access-supervisor-card{grid-template-columns:1fr}
+  #adminTabSrAccess .sr-access-button{width:100%}
+}

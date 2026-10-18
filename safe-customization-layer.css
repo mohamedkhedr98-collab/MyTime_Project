@@ -1,0 +1,115 @@
+/*
+ * Safe Customization Layer stylesheet
+ *
+ * Safe to edit in future for additive overrides only.
+ * Keep selectors scoped with .scl-* guard classes.
+ *
+ * Protected unless explicitly requested:
+ * - public/app.js
+ * - public/index.html
+ * - SR/menu data and menu HTML structure
+ *
+ * Ahly-theme-only fix pattern (safe):
+ * html.scl-theme-ahly body.scl-theme-ahly .target { ... }
+ */
+
+@layer safe-customization-layer {
+  /* Placeholder hooks only: no visual changes in this task. */
+
+  html.scl-theme-default body.scl-theme-default {
+    /* Future default-theme-safe overrides go here. */
+  }
+
+  html.scl-theme-eid body.scl-theme-eid {
+    /* Future Eid-theme-safe overrides go here. */
+  }
+
+  html.scl-theme-ramadan body.scl-theme-ramadan {
+    /* Future Ramadan-theme-safe overrides go here. */
+  }
+
+  html.scl-theme-ahly body.scl-theme-ahly {
+    /* Future Ahly-theme-only UI fixes go here (scoped, additive). */
+  }
+
+  html.scl-has-search body.scl-has-search {
+    /* Future search-present safe injections go here. */
+  }
+
+  /* Search/HK structure is owned by header-core.css.
+     This layer only handles verified visibility recovery. */
+
+  /*
+   * Recovery only: a restored theme / legacy CSS can hide the top search
+   * although the node remains mounted. Keep its original layout untouched
+   * unless the event-driven runtime has measured an actual failure.
+   * Do not pull the header in front of open Admin/Support dialogs.
+   */
+  html.scl-search-recovery.scl-has-search body.scl-search-recovery.scl-has-search:not(.mndo-front-dialog-open)
+  :is(.mndo-search-logo-row,.mndo-search-hk-anchor,.search-container,#searchInput) {
+    visibility: visible !important;
+    opacity: 1 !important;
+  }
+  html.scl-search-recovery.scl-has-search body.scl-search-recovery.scl-has-search:not(.mndo-front-dialog-open)
+  :is(.mndo-search-logo-row,.mndo-search-hk-anchor,.search-container) {
+    overflow: visible !important;
+  }
+
+  html.scl-has-tags-link body.scl-has-tags-link {
+    /* Future tags-link-present safe injections go here. */
+  }
+
+  html.scl-has-tabs body.scl-has-tabs {
+    /* Future tabs-present safe injections go here. */
+  }
+
+  body #sclUrgentTickerOverlayRoot {
+    position: static;
+  }
+
+  body #SR_URGENT_TICKER {
+    position: fixed !important;
+    top: 72px !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    width: min(560px, calc(100vw - 24px)) !important;
+    max-width: min(560px, calc(100vw - 24px)) !important;
+    z-index: 2147483647 !important;
+    box-sizing: border-box !important;
+    pointer-events: auto !important;
+  }
+
+  body #SR_URGENT_TICKER .sr-urgent-inner {
+    background: rgba(20, 24, 33, 0.92) !important;
+    -webkit-backdrop-filter: blur(6px) !important;
+    backdrop-filter: blur(6px) !important;
+    border-radius: 14px !important;
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.28) !important;
+    border: 1px solid rgba(255, 255, 255, 0.14) !important;
+    gap: 8px !important;
+  }
+
+  body #SR_URGENT_TICKER .sr-urgent-label {
+    display: none !important;
+  }
+
+  body #SR_URGENT_TICKER .sr-urgent-track {
+    min-width: 0 !important;
+  }
+
+  body #SR_URGENT_TICKER .sr-urgent-ack {
+    padding-left: 10px !important;
+    padding-right: 10px !important;
+    font-size: 12px !important;
+    white-space: nowrap !important;
+  }
+
+  @media (max-width: 700px) {
+    body #SR_URGENT_TICKER {
+      top: 82px !important;
+      width: min(92vw, 560px) !important;
+      max-width: min(92vw, 560px) !important;
+    }
+  }
+
+}
